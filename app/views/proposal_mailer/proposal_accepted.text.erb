@@ -1,0 +1,13 @@
+<%= t("mailers.proposal_accepted.greeting") %>
+
+<%= t("mailers.proposal_accepted.intro", title: @proposal.title) %>
+
+<%= t("mailers.proposal_accepted.signed_by") %>: <%= @proposal.signature_name %>
+<%= t("mailers.proposal_accepted.signed_at") %>: <%= @proposal.signature_at&.strftime("%B %d, %Y at %I:%M %p") %>
+
+<%= t("mailers.proposal_accepted.next_steps") %>
+
+<%= t("mailers.proposal_accepted.view_proposal") %>: <%= proposal_url(@proposal) %>
+
+--
+<%= t("app_name") %>

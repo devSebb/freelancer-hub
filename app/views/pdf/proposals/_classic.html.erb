@@ -1,0 +1,86 @@
+<% if client.present? %>
+  <div class="pdf-recipient">
+    <h3><%= t("proposals.client") %></h3>
+    <p class="client-name"><%= client.name %></p>
+    <% if client.company.present? %>
+      <p><%= client.company %></p>
+    <% end %>
+    <p><%= client.email %></p>
+  </div>
+<% end %>
+
+<h1 class="pdf-title"><%= proposal.title %></h1>
+
+<% if proposal.scope.present? %>
+  <div class="pdf-section">
+    <h2 class="pdf-section-title"><%= t("proposals.scope") %></h2>
+    <div class="pdf-prose"><%= simple_format(proposal.scope) %></div>
+  </div>
+<% end %>
+
+<% if proposal.deliverables.present? %>
+  <div class="pdf-section">
+    <h2 class="pdf-section-title"><%= t("proposals.deliverables") %></h2>
+    <div class="pdf-prose"><%= simple_format(proposal.deliverables) %></div>
+  </div>
+<% end %>
+
+<div class="pdf-section">
+  <h2 class="pdf-section-title"><%= t("proposals.timeline") %> & <%= t("proposals.pricing") %></h2>
+  <table class="pdf-table">
+    <tbody>
+      <% if proposal.timeline_start.present? %>
+        <tr>
+          <td><%= t("proposals.timeline_start") %></td>
+          <td class="text-right"><%= l(proposal.timeline_start, format: :long) %></td>
+        </tr>
+      <% end %>
+      <% if proposal.timeline_end.present? %>
+        <tr>
+          <td><%= t("proposals.timeline_end") %></td>
+          <td class="text-right"><%= l(proposal.timeline_end, format: :long) %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td><%= t("proposals.pricing_type") %></td>
+        <td class="text-right"><%= t("proposals.pricing_types.#{proposal.pricing_type}") %></td>
+      </tr>
+      <% if proposal.fixed? %>
+        <tr>
+          <td><strong><%= t("proposals.amount") %></strong></td>
+          <td class="text-right"><strong><%= number_to_currency(proposal.amount) %></strong></td>
+        </tr>
+      <% else %>
+        <tr>
+          <td><%= t("proposals.hourly_rate") %></td>
+          <td class="text-right"><%= number_to_currency(proposal.hourly_rate) %>/hr</td>
+        </tr>
+        <% if proposal.estimated_hours.present? %>
+          <tr>
+            <td><%= t("proposals.estimated_hours") %></td>
+            <td class="text-right"><%= proposal.estimated_hours %> hrs</td>
+          </tr>
+        <% end %>
+        <tr>
+          <td><strong><%= t("public_proposals.estimated_total") %></strong></td>
+          <td class="text-right"><strong><%= number_to_currency(proposal.total_amount) %></strong></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<% if proposal.terms.present? %>
+  <div class="pdf-section">
+    <h2 class="pdf-section-title"><%= t("proposals.terms") %></h2>
+    <div class="pdf-prose"><%= simple_format(proposal.terms) %></div>
+  </div>
+<% end %>
+
+<% if proposal.accepted? && proposal.signature_name.present? %>
+  <div class="pdf-signature">
+    <h2><%= t("proposals.statuses.accepted") %></h2>
+    <p><strong><%= t("mailers.proposal_accepted.signed_by") %>:</strong> <%= proposal.signature_name %></p>
+    <p><strong><%= t("mailers.proposal_accepted.signed_at") %>:</strong> <%= l(proposal.signature_at, format: :long) %></p>
+  </div>
+<% end %>

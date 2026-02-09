@@ -1,0 +1,37 @@
+<div class="invoice-item flex items-start gap-3 p-4 bg-white/5 rounded-xl" data-invoice-items-target="item">
+  <div class="flex-1 grid grid-cols-12 gap-3">
+    <div class="col-span-6">
+      <%= f.text_field :description,
+          class: "w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-0 transition-colors",
+          placeholder: t("invoices.description") %>
+    </div>
+    <div class="col-span-2">
+      <%= f.number_field :quantity,
+          step: 0.01,
+          min: 0,
+          class: "w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-0 transition-colors text-right",
+          placeholder: t("invoices.qty") %>
+    </div>
+    <div class="col-span-2">
+      <%= f.number_field :rate,
+          step: 0.01,
+          min: 0,
+          class: "w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-0 transition-colors text-right",
+          placeholder: t("invoices.rate") %>
+    </div>
+    <div class="col-span-2 flex items-center">
+      <span class="text-sm text-white/50 w-full text-right pr-2">
+        <%= number_to_currency((f.object.quantity || 0) * (f.object.rate || 0)) %>
+      </span>
+    </div>
+  </div>
+
+  <%= f.hidden_field :_destroy, value: "0", data: { invoice_items_target: "destroy" } %>
+  <%= f.hidden_field :position %>
+
+  <button type="button" data-action="invoice-items#remove" class="flex-shrink-0 p-1.5 text-white/40 hover:text-red-400 transition-colors">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  </button>
+</div>

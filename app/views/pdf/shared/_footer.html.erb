@@ -1,0 +1,6 @@
+<div class="pdf-footer <%= 'free-tier' if show_powered_by %>">
+  <% if show_powered_by %>
+    <p class="powered-by"><%= t("pdf.powered_by") %></p>
+  <% end %>
+  <p class="generated"><%= t("pdf.generated_on", date: l(Date.current, format: :long)) %></p>
+</div>

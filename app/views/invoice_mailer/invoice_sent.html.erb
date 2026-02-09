@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { text-align: center; padding: 20px 0; border-bottom: 1px solid #e5e7eb; }
+    .content { padding: 30px 0; }
+    .invoice-box { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; margin: 20px 0; }
+    .invoice-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+    .invoice-label { color: #6b7280; font-size: 14px; }
+    .invoice-value { font-weight: 500; }
+    .total { font-size: 24px; font-weight: bold; color: #111; }
+    .button { display: inline-block; background: #2563eb; color: white !important; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 500; margin: 20px 0; }
+    .footer { text-align: center; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 style="margin: 0; color: #111;"><%= @user.business_name.presence || @user.name %></h1>
+    </div>
+
+    <div class="content">
+      <p><%= t("mailers.invoice_sent.greeting", name: @client.name) %></p>
+      <p><%= t("mailers.invoice_sent.intro") %></p>
+
+      <div class="invoice-box">
+        <div class="invoice-row">
+          <span class="invoice-label"><%= t("invoices.invoice_number") %></span>
+          <span class="invoice-value"><%= @invoice.invoice_number %></span>
+        </div>
+        <% if @invoice.due_date.present? %>
+          <div class="invoice-row">
+            <span class="invoice-label"><%= t("invoices.due_date") %></span>
+            <span class="invoice-value"><%= @invoice.due_date.strftime("%B %d, %Y") %></span>
+          </div>
+        <% end %>
+        <div class="invoice-row" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb;">
+          <span class="invoice-label"><%= t("invoices.total") %></span>
+          <span class="total"><%= number_to_currency(@invoice.total) %></span>
+        </div>
+        <% if @invoice.has_deposit? %>
+          <div class="invoice-row">
+            <span class="invoice-label"><%= t("invoices.deposit") %> (<%= number_with_precision(@invoice.deposit_percent, precision: 0) %>%)</span>
+            <span class="invoice-value"><%= number_to_currency(@invoice.deposit_amount) %></span>
+          </div>
+        <% end %>
+      </div>
+
+      <% if @invoice.has_payment_methods? %>
+        <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; margin: 20px 0;">
+          <h3 style="margin: 0 0 12px 0; font-size: 16px; color: #111;"><%= t("invoices.payment_methods.title") %></h3>
+          <% @invoice.payment_methods.each do |method| %>
+            <div style="margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #e5e7eb;">
+              <strong style="color: #111;"><%= method["label"] || t("invoices.payment_methods.types.#{method['type']}") %></strong>
+              <div style="font-size: 14px; color: #6b7280; margin-top: 4px;">
+                <% case method["type"] %>
+                <% when "bank_transfer" %>
+                  <% if method["bank_name"].present? %><div><%= method["bank_name"] %></div><% end %>
+                  <% if method["account_number"].present? %><div><%= t("invoices.payment_methods.fields.account_number") %>: <%= method["account_number"] %></div><% end %>
+                  <% if method["routing_number"].present? %><div><%= t("invoices.payment_methods.fields.routing_number") %>: <%= method["routing_number"] %></div><% end %>
+                <% when "paypal", "zelle" %>
+                  <% if method["email"].present? %><div><%= method["email"] %></div><% end %>
+                <% when "venmo", "cashapp" %>
+                  <% if method["handle"].present? %><div><%= method["handle"] %></div><% end %>
+                <% when "crypto" %>
+                  <% if method["address"].present? %><div style="font-family: monospace; font-size: 12px; word-break: break-all;"><%= method["address"] %></div><% end %>
+                  <% if method["instructions"].present? %><div><%= method["instructions"] %></div><% end %>
+                <% else %>
+                  <% if method["instructions"].present? %><div><%= method["instructions"] %></div><% end %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div style="text-align: center;">
+        <a href="<%= @invoice_url %>" class="button"><%= t("mailers.invoice_sent.view_invoice") %></a>
+      </div>
+
+      <p style="color: #6b7280; font-size: 14px;">
+        <%= t("mailers.invoice_sent.contact_note", email: @user.email) %>
+      </p>
+    </div>
+
+    <div class="footer">
+      <p><%= t("mailers.invoice_sent.do_not_reply") %></p>
+    </div>
+  </div>
+</body>
+</html>

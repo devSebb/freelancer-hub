@@ -1,0 +1,127 @@
+<div>
+  <!-- Header -->
+  <div class="bg-white/5 border border-white/10 rounded-2xl p-6 mb-6">
+    <div class="flex items-start justify-between">
+      <div>
+        <h1 class="text-2xl font-bold text-white"><%= @invoice.invoice_number %></h1>
+        <p class="mt-1 text-sm text-white/50">
+          <%= t("public_invoices.from") %>: <%= @invoice.user.business_name.presence || @invoice.user.name %>
+        </p>
+      </div>
+      <div class="text-right">
+        <% if @invoice.due_date.present? %>
+          <span class="text-sm text-white/50"><%= t("invoices.due_date") %></span>
+          <p class="text-sm font-medium text-white"><%= @invoice.due_date.strftime("%B %d, %Y") %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Line Items -->
+  <div class="bg-white/5 border border-white/10 rounded-2xl overflow-hidden mb-6">
+    <table class="min-w-full">
+      <thead>
+        <tr class="border-b border-white/10">
+          <th class="px-6 py-4 text-left text-xs font-medium text-white/40 uppercase tracking-wider"><%= t("invoices.description") %></th>
+          <th class="px-6 py-4 text-right text-xs font-medium text-white/40 uppercase tracking-wider"><%= t("invoices.quantity") %></th>
+          <th class="px-6 py-4 text-right text-xs font-medium text-white/40 uppercase tracking-wider"><%= t("invoices.rate") %></th>
+          <th class="px-6 py-4 text-right text-xs font-medium text-white/40 uppercase tracking-wider"><%= t("invoices.amount") %></th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-white/5">
+        <% @invoice.invoice_items.each do |item| %>
+          <tr>
+            <td class="px-6 py-4 text-sm text-white"><%= item.description %></td>
+            <td class="px-6 py-4 text-sm text-white/70 text-right"><%= number_with_precision(item.quantity, precision: 2) %></td>
+            <td class="px-6 py-4 text-sm text-white/70 text-right"><%= number_to_currency(item.rate) %></td>
+            <td class="px-6 py-4 text-sm text-white text-right"><%= number_to_currency(item.amount) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+      <tfoot class="border-t border-white/10">
+        <tr>
+          <td colspan="3" class="px-6 py-3 text-sm font-medium text-white text-right"><%= t("invoices.subtotal") %></td>
+          <td class="px-6 py-3 text-sm text-white text-right"><%= number_to_currency(@invoice.subtotal) %></td>
+        </tr>
+        <% if @invoice.discount_amount > 0 %>
+          <tr>
+            <td colspan="3" class="px-6 py-3 text-sm text-white/50 text-right">
+              <%= t("invoices.discount") %>
+              <% if @invoice.discount_percent? %>
+                (<%= number_with_precision(@invoice.discount_value, precision: 0) %>%)
+              <% end %>
+            </td>
+            <td class="px-6 py-3 text-sm text-red-400 text-right">-<%= number_to_currency(@invoice.discount_amount) %></td>
+          </tr>
+        <% end %>
+        <tr class="border-t border-white/20">
+          <td colspan="3" class="px-6 py-4 text-lg font-bold text-white text-right"><%= t("invoices.total") %></td>
+          <td class="px-6 py-4 text-lg font-bold text-emerald-400 text-right"><%= number_to_currency(@invoice.total) %></td>
+        </tr>
+        <% if @invoice.has_deposit? %>
+          <tr>
+            <td colspan="3" class="px-6 py-3 text-sm text-white/50 text-right">
+              <%= t("invoices.deposit") %> (<%= number_with_precision(@invoice.deposit_percent, precision: 0) %>%)
+            </td>
+            <td class="px-6 py-3 text-sm text-white text-right"><%= number_to_currency(@invoice.deposit_amount) %></td>
+          </tr>
+          <tr>
+            <td colspan="3" class="px-6 py-3 text-sm font-medium text-white text-right"><%= t("invoices.balance_due") %></td>
+            <td class="px-6 py-3 text-sm font-semibold text-emerald-400 text-right"><%= number_to_currency(@invoice.final_amount) %></td>
+          </tr>
+        <% end %>
+      </tfoot>
+    </table>
+  </div>
+
+  <!-- Tax Notes -->
+  <% if @invoice.tax_notes.present? %>
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-6 mb-6">
+      <h3 class="text-sm font-medium text-white"><%= t("invoices.tax_notes") %></h3>
+      <p class="mt-1 text-sm text-white/60"><%= @invoice.tax_notes %></p>
+    </div>
+  <% end %>
+
+  <!-- Notes -->
+  <% if @invoice.notes.present? %>
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-6 mb-6">
+      <h3 class="text-sm font-medium text-white"><%= t("invoices.notes") %></h3>
+      <div class="mt-1 text-sm text-white/60 prose prose-invert prose-sm max-w-none">
+        <%= simple_format(@invoice.notes) %>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- Payment Methods -->
+  <% if @invoice.has_payment_methods? && !@invoice.paid? %>
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-6 mb-6">
+      <h3 class="text-lg font-semibold text-white mb-4"><%= t("invoices.payment_methods.title") %></h3>
+      <%= render "invoices/payment_methods_display", invoice: @invoice %>
+    </div>
+  <% end %>
+
+  <!-- Status / Payment Info -->
+  <% if @invoice.paid? %>
+    <div class="bg-emerald-400/10 border border-emerald-400/20 rounded-2xl p-6 mb-6 text-center">
+      <svg class="mx-auto h-12 w-12 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <h3 class="mt-2 text-lg font-semibold text-emerald-400"><%= t("public_invoices.paid") %></h3>
+      <p class="mt-1 text-sm text-emerald-400/70"><%= t("public_invoices.paid_message") %></p>
+    </div>
+  <% elsif !@invoice.has_payment_methods? %>
+    <div class="bg-blue-400/10 border border-blue-400/20 rounded-2xl p-6 mb-6 text-center">
+      <p class="text-sm text-blue-400"><%= t("public_invoices.payment_info") %></p>
+      <p class="mt-2 text-sm text-blue-400/70">
+        <%= t("public_invoices.contact") %>:
+        <a href="mailto:<%= @invoice.user.email %>" class="font-medium underline hover:text-blue-300 transition-colors"><%= @invoice.user.email %></a>
+      </p>
+    </div>
+  <% end %>
+
+  <!-- Contact -->
+  <div class="text-center text-sm text-white/50">
+    <p><%= t("public_invoices.questions") %></p>
+    <a href="mailto:<%= @invoice.user.email %>" class="text-emerald-400 hover:text-emerald-300 transition-colors"><%= @invoice.user.email %></a>
+  </div>
+</div>

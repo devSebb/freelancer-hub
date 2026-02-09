@@ -1,0 +1,66 @@
+<div class="min-h-screen flex">
+  <!-- Left Side - Branding -->
+  <div class="hidden lg:flex lg:w-1/2 bg-black flex-col justify-between p-12 relative overflow-hidden">
+    <!-- Subtle grid pattern -->
+    <div class="absolute inset-0 opacity-30" style="background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+    <!-- Gradient orbs -->
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-teal-500/5 rounded-full blur-3xl"></div>
+
+    <div class="relative z-10">
+      <%= link_to root_path, class: "inline-block" do %>
+        <span class="text-2xl font-bold text-white tracking-tight">Freeland</span>
+      <% end %>
+    </div>
+
+    <div class="max-w-lg relative z-10">
+      <h1 class="text-6xl font-black text-white leading-none tracking-tight mb-6">
+        <span class="block">CLIENT</span>
+        <span class="block">PROPOSAL</span>
+        <span class="block text-white/40">INVOICE</span>
+      </h1>
+      <p class="text-xl text-white/50 leading-relaxed">
+        A simple hub for freelancers. Nothing more, nothing less.
+      </p>
+    </div>
+
+    <div class="relative z-10">
+      <p class="text-sm text-white/30">
+        Manage clients. Send proposals. Create invoices.
+      </p>
+    </div>
+  </div>
+
+  <!-- Right Side - Auth Form -->
+  <div class="w-full lg:w-1/2 bg-black lg:bg-zinc-950 flex flex-col justify-center px-6 py-12">
+    <div class="mx-auto w-full max-w-sm">
+      <!-- Mobile Logo -->
+      <div class="lg:hidden text-center mb-12">
+        <%= link_to root_path do %>
+          <span class="text-2xl font-bold text-white tracking-tight">Freeland</span>
+        <% end %>
+        <p class="mt-2 text-white/50">A simple hub for freelancers.</p>
+      </div>
+
+      <!-- Flash messages -->
+      <% if notice.present? %>
+        <div class="mb-6">
+          <div class="bg-emerald-400/10 border border-emerald-400/20 rounded-xl px-4 py-3">
+            <p class="text-sm text-emerald-400"><%= notice %></p>
+          </div>
+        </div>
+      <% end %>
+      <% if alert.present? %>
+        <div class="mb-6">
+          <div class="bg-red-400/10 border border-red-400/20 rounded-xl px-4 py-3">
+            <p class="text-sm text-red-400"><%= alert %></p>
+          </div>
+        </div>
+      <% end %>
+
+      <!-- Auth Form Content -->
+      <%= yield %>
+    </div>
+  </div>
+</div>

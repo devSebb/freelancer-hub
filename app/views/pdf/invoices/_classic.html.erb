@@ -1,0 +1,94 @@
+<% if client.present? %>
+  <div class="pdf-recipient">
+    <h3><%= t("invoices.client") %></h3>
+    <p class="client-name"><%= client.name %></p>
+    <% if client.company.present? %>
+      <p><%= client.company %></p>
+    <% end %>
+    <p><%= client.email %></p>
+  </div>
+<% end %>
+
+<% if invoice.invoice_items.any? %>
+  <div class="pdf-section pdf-line-items">
+    <h2 class="pdf-section-title"><%= t("invoices.line_items") %></h2>
+    <table class="pdf-table">
+      <thead>
+        <tr>
+          <th style="width: 50%"><%= t("invoices.description") %></th>
+          <th class="text-center" style="width: 15%"><%= t("invoices.qty") %></th>
+          <th class="text-right" style="width: 15%"><%= t("invoices.rate") %></th>
+          <th class="text-right" style="width: 20%"><%= t("invoices.amount") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% invoice.invoice_items.each do |item| %>
+          <tr>
+            <td><%= item.description %></td>
+            <td class="text-center"><%= item.quantity %></td>
+            <td class="text-right"><%= number_to_currency(item.rate) %></td>
+            <td class="text-right"><%= number_to_currency(item.amount) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="pdf-totals">
+      <div class="pdf-totals-row">
+        <span class="label"><%= t("invoices.subtotal") %></span>
+        <span class="value"><%= number_to_currency(invoice.subtotal) %></span>
+      </div>
+
+      <% unless invoice.discount_no_discount? %>
+        <div class="pdf-totals-row discount">
+          <span class="label">
+            <%= t("invoices.discount") %>
+            <% if invoice.discount_percent? %>
+              (<%= invoice.discount_value %>%)
+            <% end %>
+          </span>
+          <span class="value">-<%= number_to_currency(invoice.discount_amount) %></span>
+        </div>
+      <% end %>
+
+      <div class="pdf-totals-row total">
+        <span class="label"><%= t("invoices.total") %></span>
+        <span class="value"><%= number_to_currency(invoice.total) %></span>
+      </div>
+
+      <% if invoice.has_deposit? %>
+        <div class="pdf-totals-row">
+          <span class="label"><%= t("invoices.deposit") %> (<%= invoice.deposit_percent %>%)</span>
+          <span class="value"><%= number_to_currency(invoice.deposit_amount) %></span>
+        </div>
+        <div class="pdf-totals-row">
+          <span class="label"><%= t("invoices.balance_due") %></span>
+          <span class="value"><%= number_to_currency(invoice.final_amount) %></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% if invoice.tax_notes.present? %>
+  <div class="pdf-section">
+    <h2 class="pdf-section-title"><%= t("invoices.tax_notes") %></h2>
+    <div class="pdf-prose"><%= simple_format(invoice.tax_notes) %></div>
+  </div>
+<% end %>
+
+<% if invoice.notes.present? %>
+  <div class="pdf-notes">
+    <h3><%= t("invoices.notes") %></h3>
+    <p><%= simple_format(invoice.notes) %></p>
+  </div>
+<% end %>
+
+<%= render "pdf/shared/payment_methods", invoice: invoice %>
+
+<% if invoice.paid? %>
+  <div class="pdf-signature">
+    <h2><%= t("invoices.statuses.paid") %></h2>
+    <p><%= t("public_invoices.paid_message") %></p>
+  </div>
+<% end %>

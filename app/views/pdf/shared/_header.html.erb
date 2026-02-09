@@ -1,0 +1,16 @@
+<div class="pdf-header">
+  <div class="business-info">
+    <% if user.logo.attached? %>
+      <%= pdf_image_tag user.logo, class: "logo", alt: user.business_name.presence || user.name %>
+    <% end %>
+    <h1><%= user.business_name.presence || user.name %></h1>
+    <% if user.address.present? %>
+      <p class="address"><%= user.address %></p>
+    <% end %>
+    <p class="email"><%= user.email %></p>
+  </div>
+
+  <div class="document-info">
+    <%= yield %>
+  </div>
+</div>

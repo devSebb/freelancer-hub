@@ -1,0 +1,28 @@
+<h2 class="text-3xl font-bold text-white mb-2"><%= t("auth.change_password") %></h2>
+<p class="text-white/50 mb-8">Enter your new password below.</p>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }, class: "space-y-5") do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= f.hidden_field :reset_password_token %>
+
+  <div>
+    <%= f.label :password, t("auth.new_password"), class: "block text-sm font-medium text-white/70 mb-2" %>
+    <% if @minimum_password_length %>
+      <p class="text-xs text-white/40 mb-2"><%= @minimum_password_length %> characters minimum</p>
+    <% end %>
+    <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-0 transition-colors" %>
+  </div>
+
+  <div>
+    <%= f.label :password_confirmation, t("auth.password_confirmation"), class: "block text-sm font-medium text-white/70 mb-2" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-0 transition-colors" %>
+  </div>
+
+  <div class="pt-2">
+    <%= f.submit t("auth.change_password"), class: "w-full py-3 px-4 bg-white text-black font-semibold rounded-full hover:bg-white/90 transition-all duration-200 cursor-pointer" %>
+  </div>
+<% end %>
+
+<p class="mt-8 text-center text-sm text-white/50">
+  <%= link_to t("auth.sign_in"), new_session_path(resource_name), class: "text-emerald-400 hover:text-emerald-300 font-medium transition-colors" %>
+</p>

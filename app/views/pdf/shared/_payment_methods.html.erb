@@ -1,0 +1,50 @@
+<%# PDF Payment Methods Partial %>
+<%# Usage: render "pdf/shared/payment_methods", invoice: invoice %>
+
+<% if invoice.has_payment_methods? %>
+  <div class="pdf-section pdf-payment-methods">
+    <h2 class="pdf-section-title"><%= t("invoices.payment_methods.title") %></h2>
+    <div class="payment-methods-grid">
+      <% invoice.payment_methods.each do |method| %>
+        <div class="payment-method-card">
+          <div class="payment-method-header">
+            <strong><%= method["label"] || t("invoices.payment_methods.types.#{method['type']}") %></strong>
+          </div>
+          <div class="payment-method-details">
+            <% case method["type"] %>
+            <% when "bank_transfer" %>
+              <% if method["bank_name"].present? %>
+                <p><%= method["bank_name"] %></p>
+              <% end %>
+              <% if method["account_number"].present? %>
+                <p><%= t("invoices.payment_methods.fields.account_number") %>: <%= method["account_number"] %></p>
+              <% end %>
+              <% if method["routing_number"].present? %>
+                <p><%= t("invoices.payment_methods.fields.routing_number") %>: <%= method["routing_number"] %></p>
+              <% end %>
+            <% when "paypal", "zelle" %>
+              <% if method["email"].present? %>
+                <p><%= method["email"] %></p>
+              <% end %>
+            <% when "venmo", "cashapp" %>
+              <% if method["handle"].present? %>
+                <p><%= method["handle"] %></p>
+              <% end %>
+            <% when "crypto" %>
+              <% if method["address"].present? %>
+                <p class="wallet-address"><%= method["address"] %></p>
+              <% end %>
+              <% if method["instructions"].present? %>
+                <p class="instructions"><%= method["instructions"] %></p>
+              <% end %>
+            <% else %>
+              <% if method["instructions"].present? %>
+                <p><%= method["instructions"] %></p>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

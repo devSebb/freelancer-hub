@@ -1,0 +1,15 @@
+<%= t("mailers.proposal_sent.greeting", name: @client.name) %>
+
+<%= t("mailers.proposal_sent.intro", business_name: @user.business_name || @user.name) %>
+
+<%= @proposal.title %>
+
+<%= t("mailers.proposal_sent.view_proposal") %>: <%= @proposal_url %>
+
+<% if @proposal.expires_at.present? %>
+<%= t("mailers.proposal_sent.expires_note") %>
+<% end %>
+
+---
+<%= t("mailers.proposal_sent.contact_note", email: @user.email) %>
+<%= t("mailers.proposal_sent.do_not_reply") %>

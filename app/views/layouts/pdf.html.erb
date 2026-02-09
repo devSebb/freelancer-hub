@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for(:title) || "Document" %></title>
+  <style>
+    <%= Rails.application.assets["pdf.css"]&.source || File.read(Rails.root.join("app/assets/stylesheets/pdf.css")) %>
+  </style>
+  <% if @template_style.present? %>
+    <style>
+      <%= begin
+            Rails.application.assets["pdf/#{@template_style}.css"]&.source ||
+            File.read(Rails.root.join("app/assets/stylesheets/pdf/#{@template_style}.css"))
+          rescue
+            ""
+          end %>
+    </style>
+  <% end %>
+</head>
+<body class="pdf-document pdf-<%= @template_style %>">
+  <%= yield %>
+</body>
+</html>

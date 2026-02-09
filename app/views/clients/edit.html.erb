@@ -1,0 +1,19 @@
+<div>
+  <!-- Back Link -->
+  <div class="mb-6">
+    <%= link_to @client, class: "inline-flex items-center text-sm text-white/50 hover:text-white transition-colors" do %>
+      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/>
+      </svg>
+      <%= t("common.back") %>
+    <% end %>
+  </div>
+
+  <!-- Page Header -->
+  <div class="mb-10">
+    <h1 class="text-4xl font-bold text-white tracking-tight"><%= t("clients.edit_client") %></h1>
+    <p class="mt-2 text-white/50">Update client information</p>
+  </div>
+
+  <%= render "form", client: @client %>
+</div>

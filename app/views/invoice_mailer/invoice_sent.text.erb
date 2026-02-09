@@ -1,0 +1,41 @@
+<%= t("mailers.invoice_sent.greeting", name: @client.name) %>
+
+<%= t("mailers.invoice_sent.intro") %>
+
+<%= t("invoices.invoice_number") %>: <%= @invoice.invoice_number %>
+<% if @invoice.due_date.present? %>
+<%= t("invoices.due_date") %>: <%= @invoice.due_date.strftime("%B %d, %Y") %>
+<% end %>
+<%= t("invoices.total") %>: <%= number_to_currency(@invoice.total) %>
+<% if @invoice.has_deposit? %>
+<%= t("invoices.deposit") %>: <%= number_to_currency(@invoice.deposit_amount) %>
+<% end %>
+<% if @invoice.has_payment_methods? %>
+
+<%= t("invoices.payment_methods.title") %>:
+<% @invoice.payment_methods.each do |method| %>
+- <%= method["label"] || t("invoices.payment_methods.types.#{method['type']}") %>
+<% case method["type"] %>
+<% when "bank_transfer" %>
+<% if method["bank_name"].present? %>  <%= method["bank_name"] %><% end %>
+<% if method["account_number"].present? %>  <%= t("invoices.payment_methods.fields.account_number") %>: <%= method["account_number"] %><% end %>
+<% if method["routing_number"].present? %>  <%= t("invoices.payment_methods.fields.routing_number") %>: <%= method["routing_number"] %><% end %>
+<% when "paypal", "zelle" %>
+<% if method["email"].present? %>  <%= method["email"] %><% end %>
+<% when "venmo", "cashapp" %>
+<% if method["handle"].present? %>  <%= method["handle"] %><% end %>
+<% when "crypto" %>
+<% if method["address"].present? %>  <%= method["address"] %><% end %>
+<% if method["instructions"].present? %>  <%= method["instructions"] %><% end %>
+<% else %>
+<% if method["instructions"].present? %>  <%= method["instructions"] %><% end %>
+<% end %>
+<% end %>
+<% end %>
+
+<%= t("mailers.invoice_sent.view_invoice") %>: <%= @invoice_url %>
+
+<%= t("mailers.invoice_sent.contact_note", email: @user.email) %>
+
+--
+<%= t("mailers.invoice_sent.do_not_reply") %>

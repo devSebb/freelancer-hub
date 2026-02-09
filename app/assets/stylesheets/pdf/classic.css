@@ -1,0 +1,94 @@
+/* Classic theme - Traditional, formal, serif fonts */
+body.pdf-classic {
+  font-family: "Georgia", "Times New Roman", Times, serif;
+}
+
+body.pdf-classic .pdf-header {
+  border-bottom-color: #78716c;
+  border-bottom-style: double;
+  border-bottom-width: 4px;
+}
+
+body.pdf-classic .pdf-header .business-info h1 {
+  font-family: "Georgia", serif;
+  font-weight: 400;
+  font-size: 18pt;
+  color: #292524;
+  letter-spacing: 0.02em;
+}
+
+body.pdf-classic .pdf-header .document-type {
+  font-family: "Georgia", serif;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  font-size: 11pt;
+  color: #57534e;
+  border-bottom: 1px solid #a8a29e;
+  padding-bottom: 0.25rem;
+}
+
+body.pdf-classic .pdf-title {
+  font-family: "Georgia", serif;
+  font-weight: 400;
+  font-size: 22pt;
+  color: #292524;
+  border-bottom: 1px solid #d6d3d1;
+  padding-bottom: 0.5rem;
+}
+
+body.pdf-classic .pdf-section-title {
+  font-family: "Georgia", serif;
+  font-weight: 400;
+  font-size: 13pt;
+  color: #44403c;
+  border-bottom-style: dotted;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+body.pdf-classic .pdf-recipient {
+  background: #fafaf9;
+  border: 1px solid #d6d3d1;
+  border-radius: 0;
+}
+
+body.pdf-classic .pdf-table th {
+  background: #f5f5f4;
+  border-bottom: 2px solid #78716c;
+  font-family: "Georgia", serif;
+  text-transform: uppercase;
+  font-size: 9pt;
+  letter-spacing: 0.05em;
+}
+
+body.pdf-classic .pdf-table td {
+  border-bottom-color: #e7e5e4;
+}
+
+body.pdf-classic .pdf-totals-row.total {
+  border-top-color: #78716c;
+  border-top-style: double;
+}
+
+body.pdf-classic .pdf-signature {
+  background: #fefce8;
+  border-color: #ca8a04;
+  border-radius: 0;
+}
+
+body.pdf-classic .pdf-signature h2 {
+  font-family: "Georgia", serif;
+  font-weight: 400;
+  color: #854d0e;
+}
+
+body.pdf-classic .pdf-notes {
+  background: #fefce8;
+  border-color: #d97706;
+  border-radius: 0;
+}
+
+body.pdf-classic .pdf-footer {
+  border-top-style: double;
+  border-top-color: #a8a29e;
+}

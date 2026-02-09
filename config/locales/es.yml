@@ -1,0 +1,358 @@
+es:
+  app_name: "Freeland"
+
+  # Navigation
+  nav:
+    dashboard: "Panel"
+    proposals: "Propuestas"
+    templates: "Plantillas"
+    clients: "Clientes"
+    invoices: "Facturas"
+    settings: "Ajustes"
+    sign_out: "Cerrar sesion"
+    toggle_theme: "Cambiar tema"
+
+  # Dashboard
+  dashboard:
+    title: "Panel"
+    welcome: "Bienvenido, %{name}!"
+    coming_soon: "Proximamente"
+    outstanding_invoices: "Facturas pendientes"
+    pending_proposals: "Propuestas pendientes"
+    revenue_this_month: "Ingresos este mes"
+
+  # Settings
+  settings:
+    title: "Ajustes"
+    profile: "Perfil"
+    profile_description: "Actualiza tu informacion personal y de negocio."
+    name: "Nombre"
+    email: "Correo electronico"
+    business_name: "Nombre del negocio"
+    address: "Direccion"
+    language: "Idioma"
+    language_description: "Elige tu idioma preferido para la interfaz."
+    logo: "Logo"
+    logo_description: "Sube el logo de tu negocio (PNG, JPG o WebP, max 2MB)."
+    current_logo: "Logo actual"
+    remove_logo: "Eliminar logo"
+    save_changes: "Guardar cambios"
+    saved: "Ajustes guardados correctamente."
+    languages:
+      en: "Ingles"
+      es: "Espanol"
+
+  # Auth
+  auth:
+    sign_in: "Iniciar sesion"
+    sign_up: "Registrarse"
+    email: "Correo electronico"
+    password: "Contrasena"
+    password_confirmation: "Confirmar contrasena"
+    new_password: "Nueva contrasena"
+    remember_me: "Recordarme"
+    forgot_password: "Olvidaste tu contrasena?"
+    no_account: "No tienes cuenta?"
+    have_account: "Ya tienes cuenta?"
+    create_account: "Crear cuenta"
+    send_reset_instructions: "Enviar instrucciones"
+    change_password: "Cambiar contrasena"
+    resend_confirmation: "No recibiste las instrucciones de confirmacion?"
+    resend_unlock: "No recibiste las instrucciones de desbloqueo?"
+
+  # Proposals
+  proposals:
+    title: "Propuestas"
+    new_proposal: "Nueva Propuesta"
+    edit_proposal: "Editar Propuesta"
+    no_proposals: "Aun no tienes propuestas"
+    no_proposals_description: "Crea tu primera propuesta para comenzar."
+    create_first: "Crear tu primera propuesta"
+    created: "Propuesta creada correctamente."
+    updated: "Propuesta actualizada correctamente."
+    deleted: "Propuesta eliminada correctamente."
+    sent: "Propuesta enviada correctamente."
+    already_sent: "Esta propuesta ya ha sido enviada."
+    cannot_edit: "No se puede editar una propuesta que ya fue enviada."
+    select_client_first: "Por favor selecciona un cliente antes de enviar."
+    confirm_delete: "Estas seguro de que quieres eliminar esta propuesta?"
+    send_proposal: "Enviar Propuesta"
+    view_public: "Ver Enlace Publico"
+    copy_link: "Copiar Enlace"
+    # Form fields
+    client: "Cliente"
+    select_client: "Seleccionar cliente..."
+    title_field: "Titulo"
+    title_placeholder: "Proyecto de Rediseno Web"
+    scope: "Alcance"
+    scope_placeholder: "Describe el alcance del proyecto..."
+    deliverables: "Entregables"
+    deliverables_placeholder: "Lista los entregables..."
+    timeline: "Cronograma"
+    timeline_start: "Fecha de Inicio"
+    timeline_end: "Fecha de Fin"
+    pricing: "Precio"
+    pricing_type: "Tipo de Precio"
+    pricing_types:
+      fixed: "Precio Fijo"
+      hourly: "Tarifa por Hora"
+    amount: "Monto"
+    hourly_rate: "Tarifa por Hora"
+    estimated_hours: "Horas Estimadas"
+    terms: "Terminos y Condiciones"
+    terms_placeholder: "Ingresa tus terminos y condiciones..."
+    expires_at: "Expira el"
+    expires_at_hint: "Opcional. Deja en blanco si no expira."
+    # Status
+    status: "Estado"
+    statuses:
+      draft: "Borrador"
+      sent: "Enviada"
+      viewed: "Vista"
+      accepted: "Aceptada"
+      declined: "Rechazada"
+      expired: "Expirada"
+    # Public view
+    public:
+      proposal_for: "Propuesta para"
+      from: "De"
+      total: "Total"
+      estimated_total: "Total Estimado"
+      valid_until: "Valida hasta"
+      expired_message: "Esta propuesta ha expirado."
+      not_found: "Propuesta no encontrada."
+
+  # Mailers
+  mailers:
+    proposal_sent:
+      subject: "Propuesta: %{title}"
+      greeting: "Hola %{name},"
+      intro: "%{business_name} te ha enviado una propuesta."
+      view_proposal: "Ver Propuesta"
+      expires_note: "Ten en cuenta que esta propuesta tiene fecha de expiracion."
+      contact_note: "Preguntas? Contactanos en %{email}"
+      do_not_reply: "Este es un mensaje automatico. Por favor no respondas directamente a este correo."
+    proposal_accepted:
+      subject: "Propuesta Aceptada: %{title}"
+      greeting: "Buenas noticias!"
+      intro: "Tu propuesta \"%{title}\" ha sido aceptada."
+      signed_by: "Firmada por"
+      signed_at: "Firmada el"
+      next_steps: "Ahora puedes proceder a crear una factura para este cliente."
+      view_proposal: "Ver Propuesta"
+    proposal_viewed:
+      subject: "Propuesta Vista: %{title}"
+      greeting: "Aviso!"
+      intro: "Tu propuesta \"%{title}\" ha sido vista."
+      viewed_at: "Vista el"
+      client_name: "Cliente"
+    invoice_sent:
+      subject: "Factura %{invoice_number}"
+      greeting: "Hola %{name},"
+      intro: "Has recibido una nueva factura."
+      view_invoice: "Ver Factura"
+      contact_note: "Preguntas? Contactanos en %{email}"
+      do_not_reply: "Este es un mensaje automatico. Por favor no respondas directamente a este correo."
+    invoice_paid:
+      subject: "Factura Pagada: %{invoice_number}"
+      greeting: "Buenas noticias!"
+      intro: "Tu factura %{invoice_number} ha sido pagada."
+
+  # Public Proposals
+  public_proposals:
+    from: "De"
+    expires: "Expira"
+    estimated_total: "Total Estimado"
+    accept_proposal: "Aceptar Propuesta"
+    accept_instructions: "Al firmar abajo, aceptas los terminos descritos en esta propuesta."
+    signature_name: "Tu Nombre Completo"
+    signature_placeholder: "Escribe tu nombre legal completo"
+    agree_to_terms: "Acepto los terminos y condiciones de esta propuesta"
+    accept_button: "Aceptar y Firmar Propuesta"
+    legal_notice: "Tu firma, direccion IP y fecha/hora seran registrados como prueba de aceptacion."
+    questions: "Preguntas sobre esta propuesta?"
+    already_accepted: "Propuesta Aceptada"
+    accepted_on: "Esta propuesta fue aceptada el %{date}"
+    accepted_success: "Propuesta aceptada correctamente. Gracias!"
+    signature_required: "Por favor ingresa tu nombre para firmar la propuesta."
+    cannot_accept: "Esta propuesta no puede ser aceptada en este momento."
+    expired_title: "Propuesta Expirada"
+    expired_message: "Esta propuesta ha expirado y ya no esta disponible para ver o aceptar."
+    contact_sender: "Si necesitas una nueva propuesta, por favor contacta a:"
+
+  # Clients
+  clients:
+    title: "Clientes"
+    new_client: "Nuevo Cliente"
+    edit_client: "Editar Cliente"
+    no_clients: "Aun no tienes clientes"
+    no_clients_description: "Comienza agregando tu primer cliente."
+    add_first_client: "Agregar tu primer cliente"
+    created: "Cliente creado correctamente."
+    updated: "Cliente actualizado correctamente."
+    deleted: "Cliente eliminado correctamente."
+    name: "Nombre"
+    email: "Correo electronico"
+    phone: "Telefono"
+    company: "Empresa"
+    language: "Idioma preferido"
+    language_description: "Idioma para correos, facturas y portal."
+    details: "Detalles del Cliente"
+    contact_info: "Informacion de Contacto"
+    confirm_delete: "Estas seguro de que quieres eliminar este cliente? Esta accion no se puede deshacer."
+    proposals_count: "Propuestas"
+    invoices_count: "Facturas"
+
+  # Common
+  common:
+    save: "Guardar"
+    cancel: "Cancelar"
+    edit: "Editar"
+    delete: "Eliminar"
+    back: "Volver"
+    loading: "Cargando..."
+    coming_soon: "Proximamente"
+    actions: "Acciones"
+    view: "Ver"
+    add_new: "Agregar Nuevo"
+    export_pdf: "Exportar PDF"
+
+  # PDF Export
+  pdf:
+    powered_by: "Creado con Freelancer Hub"
+    generated_on: "Generado el %{date}"
+    templates:
+      modern: "Moderno"
+      classic: "Clasico"
+      minimal: "Minimalista"
+
+  # Invoices
+  invoices:
+    title: "Facturas"
+    new_invoice: "Nueva Factura"
+    edit_invoice: "Editar Factura"
+    no_invoices: "Aun no tienes facturas"
+    no_invoices_description: "Crea tu primera factura para comenzar."
+    create_first: "Crear tu primera factura"
+    created: "Factura creada correctamente."
+    updated: "Factura actualizada correctamente."
+    deleted: "Factura eliminada correctamente."
+    sent: "Factura enviada correctamente."
+    already_sent: "Esta factura ya ha sido enviada."
+    cannot_edit: "No se puede editar una factura que ya fue enviada."
+    select_client_first: "Por favor selecciona un cliente antes de enviar."
+    add_items_first: "Por favor agrega al menos un item antes de enviar."
+    confirm_delete: "Estas seguro de que quieres eliminar esta factura?"
+    send_invoice: "Enviar Factura"
+    view_public: "Ver Enlace Publico"
+    # Fields
+    invoice_number: "Factura #"
+    client: "Cliente"
+    select_client: "Seleccionar cliente..."
+    due_date: "Fecha de Vencimiento"
+    sent_at: "Enviada"
+    amount: "Monto"
+    status: "Estado"
+    statuses:
+      draft: "Borrador"
+      sent: "Enviada"
+      partially_paid: "Parcialmente Pagada"
+      paid: "Pagada"
+      overdue: "Vencida"
+    # Line Items
+    line_items: "Items"
+    add_line_item: "Agregar Item"
+    description: "Descripcion"
+    quantity: "Cant"
+    rate: "Tarifa"
+    qty: "Cant"
+    # Totals
+    subtotal: "Subtotal"
+    discount: "Descuento"
+    total: "Total"
+    deposit: "Deposito"
+    balance_due: "Saldo Pendiente"
+    # Discounts & Deposits
+    discounts_deposits: "Descuentos y Deposito"
+    discount_type: "Tipo de Descuento"
+    discount_types:
+      no_discount: "Sin Descuento"
+      percent: "Porcentaje"
+      fixed: "Monto Fijo"
+    discount_value: "Valor del Descuento"
+    deposit_percent: "Deposito Requerido"
+    deposit_hint: "Deja en blanco si no se requiere deposito."
+    # Notes
+    tax_notes: "Notas de Impuestos"
+    tax_notes_placeholder: "ej., RFC: ABC123456789"
+    tax_notes_hint: "Campo de solo visualizacion para informacion fiscal."
+    notes: "Notas"
+    notes_placeholder: "Notas adicionales para el cliente..."
+    details: "Detalles"
+    proposal: "Propuesta Relacionada"
+    # Payment Methods
+    payment_methods:
+      title: "Métodos de Pago"
+      description: "Agrega tus opciones de pago preferidas (opcional)"
+      empty_state: "No hay métodos de pago agregados. Haz clic en un botón para agregar uno."
+      add_method: "Agregar Método de Pago"
+      types:
+        bank_transfer: "Transferencia Bancaria"
+        paypal: "PayPal"
+        venmo: "Venmo"
+        zelle: "Zelle"
+        cashapp: "Cash App"
+        crypto: "Criptomoneda"
+        other: "Otro"
+      fields:
+        bank_name: "Nombre del Banco"
+        account_number: "Número de Cuenta"
+        routing_number: "Número de Ruta"
+        email: "Correo Electrónico"
+        handle: "Usuario"
+        wallet_address: "Dirección de Billetera"
+        instructions: "Instrucciones"
+      pay_via: "Pagar vía"
+
+  # Public Invoices
+  public_invoices:
+    from: "De"
+    paid: "Pagada"
+    paid_message: "Esta factura ha sido pagada en su totalidad. Gracias!"
+    payment_info: "Las instrucciones de pago se proporcionaran a traves de Stripe."
+    contact: "Contacto"
+    questions: "Preguntas sobre esta factura?"
+
+  # Proposal Templates
+  proposal_templates:
+    title: "Plantillas de Propuestas"
+    new_template: "Nueva Plantilla"
+    edit_template: "Editar Plantilla"
+    no_templates: "Aun no tienes plantillas"
+    no_templates_description: "Crea plantillas para agilizar la creacion de propuestas."
+    create_first: "Crear tu primera plantilla"
+    created: "Plantilla creada correctamente."
+    updated: "Plantilla actualizada correctamente."
+    deleted: "Plantilla eliminada correctamente."
+    created_from_proposal: "Plantilla guardada desde la propuesta."
+    confirm_delete: "Estas seguro de que quieres eliminar esta plantilla?"
+    name: "Nombre de la Plantilla"
+    name_placeholder: "ej., Proyecto de Desarrollo Web"
+    content: "Contenido de la Plantilla"
+    pricing_type: "Tipo de Precio"
+    use_template: "Usar"
+    save_as_template: "Guardar como Plantilla"
+    start_from_template: "Comenzar desde una plantilla:"
+    start_blank: "Comenzar en blanco"
+
+  # Pagination
+  pagination:
+    previous: "Anterior"
+    next: "Siguiente"
+    show_more: "Mostrar más"
+    showing: "Mostrando %{from}-%{to} de %{count}"
+
+  # Errors
+  errors:
+    not_found: "No encontrado"
+    unauthorized: "Debes iniciar sesion primero."

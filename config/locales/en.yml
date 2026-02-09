@@ -1,0 +1,359 @@
+en:
+  app_name: "Freeland"
+
+  # Navigation
+  nav:
+    dashboard: "Dashboard"
+    proposals: "Proposals"
+    templates: "Templates"
+    clients: "Clients"
+    invoices: "Invoices"
+    settings: "Settings"
+    sign_out: "Sign out"
+    toggle_theme: "Toggle theme"
+
+  # Dashboard
+  dashboard:
+    title: "Dashboard"
+    welcome: "Welcome back, %{name}!"
+    coming_soon: "Coming soon"
+    outstanding_invoices: "Outstanding Invoices"
+    pending_proposals: "Pending Proposals"
+    revenue_this_month: "Revenue This Month"
+
+  # Settings
+  settings:
+    title: "Settings"
+    profile: "Profile"
+    profile_description: "Update your personal and business information."
+    name: "Name"
+    email: "Email"
+    business_name: "Business Name"
+    address: "Address"
+    language: "Language"
+    language_description: "Choose your preferred language for the interface."
+    logo: "Logo"
+    logo_description: "Upload your business logo (PNG, JPG, or WebP, max 2MB)."
+    current_logo: "Current logo"
+    remove_logo: "Remove logo"
+    save_changes: "Save changes"
+    saved: "Settings saved successfully."
+    languages:
+      en: "English"
+      es: "Spanish"
+
+  # Auth
+  auth:
+    sign_in: "Sign in"
+    sign_up: "Sign up"
+    email: "Email"
+    password: "Password"
+    password_confirmation: "Confirm password"
+    new_password: "New password"
+    remember_me: "Remember me"
+    forgot_password: "Forgot your password?"
+    no_account: "Don't have an account?"
+    have_account: "Already have an account?"
+    create_account: "Create account"
+    send_reset_instructions: "Send reset instructions"
+    change_password: "Change password"
+    resend_confirmation: "Didn't receive confirmation instructions?"
+    resend_unlock: "Didn't receive unlock instructions?"
+
+  # Proposals
+  proposals:
+    title: "Proposals"
+    new_proposal: "New Proposal"
+    edit_proposal: "Edit Proposal"
+    no_proposals: "No proposals yet"
+    no_proposals_description: "Create your first proposal to get started."
+    create_first: "Create your first proposal"
+    created: "Proposal created successfully."
+    updated: "Proposal updated successfully."
+    deleted: "Proposal deleted successfully."
+    sent: "Proposal sent successfully."
+    already_sent: "This proposal has already been sent."
+    cannot_edit: "Cannot edit a proposal that has been sent."
+    select_client_first: "Please select a client before sending."
+    confirm_delete: "Are you sure you want to delete this proposal?"
+    send_proposal: "Send Proposal"
+    view_public: "View Public Link"
+    copy_link: "Copy Link"
+    # Form fields
+    client: "Client"
+    select_client: "Select a client..."
+    title_field: "Title"
+    title_placeholder: "Website Redesign Project"
+    scope: "Scope"
+    scope_placeholder: "Describe the project scope..."
+    deliverables: "Deliverables"
+    deliverables_placeholder: "List the deliverables..."
+    timeline: "Timeline"
+    timeline_start: "Start Date"
+    timeline_end: "End Date"
+    pricing: "Pricing"
+    pricing_type: "Pricing Type"
+    pricing_types:
+      fixed: "Fixed Price"
+      hourly: "Hourly Rate"
+    amount: "Amount"
+    hourly_rate: "Hourly Rate"
+    estimated_hours: "Estimated Hours"
+    terms: "Terms & Conditions"
+    terms_placeholder: "Enter your terms and conditions..."
+    expires_at: "Expires On"
+    expires_at_hint: "Optional. Leave blank for no expiration."
+    # Status
+    status: "Status"
+    statuses:
+      draft: "Draft"
+      sent: "Sent"
+      viewed: "Viewed"
+      accepted: "Accepted"
+      declined: "Declined"
+      expired: "Expired"
+    # Public view
+    public:
+      proposal_for: "Proposal for"
+      from: "From"
+      total: "Total"
+      estimated_total: "Estimated Total"
+      valid_until: "Valid until"
+      expired_message: "This proposal has expired."
+      not_found: "Proposal not found."
+
+  # Mailers
+  mailers:
+    proposal_sent:
+      subject: "Proposal: %{title}"
+      greeting: "Hello %{name},"
+      intro: "%{business_name} has sent you a proposal."
+      view_proposal: "View Proposal"
+      expires_note: "Please note this proposal has an expiration date."
+      contact_note: "Questions? Contact us at %{email}"
+      do_not_reply: "This is an automated message. Please do not reply directly to this email."
+    proposal_accepted:
+      subject: "Proposal Accepted: %{title}"
+      greeting: "Great news!"
+      intro: "Your proposal \"%{title}\" has been accepted."
+      signed_by: "Signed by"
+      signed_at: "Signed on"
+      next_steps: "You can now proceed to create an invoice for this client."
+      view_proposal: "View Proposal"
+    proposal_viewed:
+      subject: "Proposal Viewed: %{title}"
+      greeting: "Heads up!"
+      intro: "Your proposal \"%{title}\" has been viewed."
+      viewed_at: "Viewed on"
+      client_name: "Client"
+    invoice_sent:
+      subject: "Invoice %{invoice_number}"
+      greeting: "Hello %{name},"
+      intro: "You have received a new invoice."
+      view_invoice: "View Invoice"
+      contact_note: "Questions? Contact us at %{email}"
+      do_not_reply: "This is an automated message. Please do not reply directly to this email."
+    invoice_paid:
+      subject: "Invoice Paid: %{invoice_number}"
+      greeting: "Great news!"
+      intro: "Your invoice %{invoice_number} has been paid."
+
+  # Public Proposals
+  public_proposals:
+    from: "From"
+    expires: "Expires"
+    estimated_total: "Estimated Total"
+    accept_proposal: "Accept Proposal"
+    accept_instructions: "By signing below, you agree to the terms outlined in this proposal."
+    signature_name: "Your Full Name"
+    signature_placeholder: "Type your full legal name"
+    agree_to_terms: "I agree to the terms and conditions of this proposal"
+    accept_button: "Accept & Sign Proposal"
+    legal_notice: "Your signature, IP address, and timestamp will be recorded as proof of acceptance."
+    questions: "Questions about this proposal?"
+    already_accepted: "Proposal Accepted"
+    accepted_on: "This proposal was accepted on %{date}"
+    accepted_success: "Proposal accepted successfully. Thank you!"
+    signature_required: "Please enter your name to sign the proposal."
+    cannot_accept: "This proposal cannot be accepted at this time."
+    expired_title: "Proposal Expired"
+    expired_message: "This proposal has expired and is no longer available for viewing or acceptance."
+    contact_sender: "If you need a new proposal, please contact:"
+
+  # Clients
+  clients:
+    title: "Clients"
+    new_client: "New Client"
+    edit_client: "Edit Client"
+    no_clients: "No clients yet"
+    no_clients_description: "Get started by adding your first client."
+    add_first_client: "Add your first client"
+    created: "Client created successfully."
+    updated: "Client updated successfully."
+    deleted: "Client deleted successfully."
+    name: "Name"
+    email: "Email"
+    phone: "Phone"
+    company: "Company"
+    language: "Preferred Language"
+    language_description: "Language for emails, invoices, and portal."
+    details: "Client Details"
+    contact_info: "Contact Information"
+    confirm_delete: "Are you sure you want to delete this client? This action cannot be undone."
+    proposals_count: "Proposals"
+    invoices_count: "Invoices"
+
+  # Common
+  common:
+    save: "Save"
+    cancel: "Cancel"
+    edit: "Edit"
+    delete: "Delete"
+    back: "Back"
+    loading: "Loading..."
+    coming_soon: "Coming soon"
+    actions: "Actions"
+    view: "View"
+    add_new: "Add New"
+    export_pdf: "Export PDF"
+
+  # PDF Export
+  pdf:
+    powered_by: "Powered by Freelancer Hub"
+    generated_on: "Generated on %{date}"
+    templates:
+      modern: "Modern"
+      classic: "Classic"
+      minimal: "Minimal"
+
+  # Invoices
+  invoices:
+    title: "Invoices"
+    new_invoice: "New Invoice"
+    edit_invoice: "Edit Invoice"
+    no_invoices: "No invoices yet"
+    no_invoices_description: "Create your first invoice to get started."
+    create_first: "Create your first invoice"
+    created: "Invoice created successfully."
+    updated: "Invoice updated successfully."
+    deleted: "Invoice deleted successfully."
+    sent: "Invoice sent successfully."
+    already_sent: "This invoice has already been sent."
+    cannot_edit: "Cannot edit an invoice that has been sent."
+    select_client_first: "Please select a client before sending."
+    add_items_first: "Please add at least one line item before sending."
+    confirm_delete: "Are you sure you want to delete this invoice?"
+    send_invoice: "Send Invoice"
+    view_public: "View Public Link"
+    # Fields
+    invoice_number: "Invoice #"
+    client: "Client"
+    select_client: "Select a client..."
+    due_date: "Due Date"
+    sent_at: "Sent"
+    amount: "Amount"
+    status: "Status"
+    statuses:
+      draft: "Draft"
+      sent: "Sent"
+      partially_paid: "Partially Paid"
+      paid: "Paid"
+      overdue: "Overdue"
+    # Line Items
+    line_items: "Line Items"
+    add_line_item: "Add Line Item"
+    description: "Description"
+    quantity: "Qty"
+    rate: "Rate"
+    qty: "Qty"
+    # Totals
+    subtotal: "Subtotal"
+    discount: "Discount"
+    total: "Total"
+    deposit: "Deposit"
+    balance_due: "Balance Due"
+    # Discounts & Deposits
+    discounts_deposits: "Discounts & Deposit"
+    discount_type: "Discount Type"
+    discount_types:
+      no_discount: "No Discount"
+      percent: "Percentage"
+      fixed: "Fixed Amount"
+    discount_value: "Discount Value"
+    deposit_percent: "Deposit Required"
+    deposit_hint: "Leave blank for no deposit requirement."
+    # Notes
+    tax_notes: "Tax Notes"
+    tax_notes_placeholder: "e.g., Tax ID: 123-456-789"
+    tax_notes_hint: "Display-only field for tax information."
+    notes: "Notes"
+    notes_placeholder: "Additional notes for the client..."
+    details: "Details"
+    proposal: "Related Proposal"
+    # Payment Methods
+    payment_methods:
+      title: "Payment Methods"
+      description: "Add your preferred payment options (optional)"
+      empty_state: "No payment methods added. Click a button below to add one."
+      add_method: "Add Payment Method"
+      types:
+        bank_transfer: "Bank Transfer"
+        paypal: "PayPal"
+        venmo: "Venmo"
+        zelle: "Zelle"
+        cashapp: "Cash App"
+        crypto: "Cryptocurrency"
+        other: "Other"
+      fields:
+        bank_name: "Bank Name"
+        account_number: "Account Number"
+        routing_number: "Routing Number"
+        email: "Email Address"
+        handle: "Handle"
+        wallet_address: "Wallet Address"
+        instructions: "Instructions"
+      pay_via: "Pay via"
+
+  # Public Invoices
+  public_invoices:
+    from: "From"
+    paid: "Paid"
+    paid_message: "This invoice has been paid in full. Thank you!"
+    payment_info: "Payment instructions will be provided via Stripe."
+    contact: "Contact"
+    questions: "Questions about this invoice?"
+
+
+  # Proposal Templates
+  proposal_templates:
+    title: "Proposal Templates"
+    new_template: "New Template"
+    edit_template: "Edit Template"
+    no_templates: "No templates yet"
+    no_templates_description: "Create templates to speed up your proposal creation."
+    create_first: "Create your first template"
+    created: "Template created successfully."
+    updated: "Template updated successfully."
+    deleted: "Template deleted successfully."
+    created_from_proposal: "Template saved from proposal."
+    confirm_delete: "Are you sure you want to delete this template?"
+    name: "Template Name"
+    name_placeholder: "e.g., Web Development Project"
+    content: "Template Content"
+    pricing_type: "Pricing Type"
+    use_template: "Use"
+    save_as_template: "Save as Template"
+    start_from_template: "Start from a template:"
+    start_blank: "Start blank"
+
+  # Pagination
+  pagination:
+    previous: "Previous"
+    next: "Next"
+    show_more: "Show more"
+    showing: "Showing %{from}-%{to} of %{count}"
+
+  # Errors
+  errors:
+    not_found: "Not found"
+    unauthorized: "You need to sign in first."

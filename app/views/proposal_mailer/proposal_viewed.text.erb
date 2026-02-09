@@ -1,0 +1,11 @@
+<%= t("mailers.proposal_viewed.greeting") %>
+
+<%= t("mailers.proposal_viewed.intro", title: @proposal.title) %>
+
+<%= t("mailers.proposal_viewed.client_name") %>: <%= @client&.name || "—" %>
+<%= t("mailers.proposal_viewed.viewed_at") %>: <%= @proposal.viewed_at&.strftime("%B %d, %Y at %I:%M %p") %>
+
+<%= t("mailers.proposal_accepted.view_proposal") %>: <%= proposal_url(@proposal) %>
+
+--
+<%= t("app_name") %>

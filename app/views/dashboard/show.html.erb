@@ -1,0 +1,97 @@
+<div>
+  <!-- Page Header -->
+  <div class="mb-10">
+    <h1 class="text-4xl font-bold text-white tracking-tight"><%= t("dashboard.title") %></h1>
+    <p class="mt-2 text-white/50"><%= t("dashboard.welcome", name: current_user.name || current_user.email) %></p>
+  </div>
+
+  <!-- Stats Grid -->
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 mb-10">
+    <!-- Outstanding Invoices -->
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 bg-blue-400/20 rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/>
+          </svg>
+        </div>
+        <div>
+          <p class="text-sm text-white/50"><%= t("dashboard.outstanding_invoices") %></p>
+          <p class="text-2xl font-bold text-white">$0.00</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pending Proposals -->
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 bg-amber-400/20 rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
+          </svg>
+        </div>
+        <div>
+          <p class="text-sm text-white/50"><%= t("dashboard.pending_proposals") %></p>
+          <p class="text-2xl font-bold text-white">0</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Revenue This Month -->
+    <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 bg-emerald-400/20 rounded-xl flex items-center justify-center">
+          <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"/>
+          </svg>
+        </div>
+        <div>
+          <p class="text-sm text-white/50"><%= t("dashboard.revenue_this_month") %></p>
+          <p class="text-2xl font-bold text-white">$0.00</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="bg-white/5 border border-white/10 rounded-2xl p-8">
+    <h2 class="text-xl font-semibold text-white mb-6">Quick Actions</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <%= link_to new_proposal_path, class: "group flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-200" do %>
+        <div class="w-10 h-10 bg-emerald-400/20 rounded-lg flex items-center justify-center group-hover:bg-emerald-400/30 transition-colors">
+          <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+          </svg>
+        </div>
+        <div>
+          <p class="font-medium text-white group-hover:text-emerald-400 transition-colors">New Proposal</p>
+          <p class="text-sm text-white/40">Create a new proposal</p>
+        </div>
+      <% end %>
+
+      <%= link_to new_invoice_path, class: "group flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-200" do %>
+        <div class="w-10 h-10 bg-blue-400/20 rounded-lg flex items-center justify-center group-hover:bg-blue-400/30 transition-colors">
+          <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+          </svg>
+        </div>
+        <div>
+          <p class="font-medium text-white group-hover:text-blue-400 transition-colors">New Invoice</p>
+          <p class="text-sm text-white/40">Bill your clients</p>
+        </div>
+      <% end %>
+
+      <%= link_to new_client_path, class: "group flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-200" do %>
+        <div class="w-10 h-10 bg-purple-400/20 rounded-lg flex items-center justify-center group-hover:bg-purple-400/30 transition-colors">
+          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+          </svg>
+        </div>
+        <div>
+          <p class="font-medium text-white group-hover:text-purple-400 transition-colors">Add Client</p>
+          <p class="text-sm text-white/40">Add a new client</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

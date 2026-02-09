@@ -1,0 +1,14 @@
+<% content_for(:title) { invoice.invoice_number } %>
+<% @template_style = template_style %>
+
+<%= render "pdf/shared/header", user: user do %>
+  <p class="document-type"><%= t("invoices.title").singularize.upcase %></p>
+  <p class="document-date"><%= invoice.invoice_number %></p>
+  <% if invoice.due_date.present? %>
+    <p class="expires"><%= t("invoices.due_date") %>: <%= l(invoice.due_date, format: :long) %></p>
+  <% end %>
+<% end %>
+
+<%= render "pdf/invoices/#{template_style}", invoice: invoice, client: client, user: user %>
+
+<%= render "pdf/shared/footer", show_powered_by: show_powered_by %>

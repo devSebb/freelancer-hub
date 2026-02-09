@@ -1,0 +1,14 @@
+<%
+  colors = {
+    "draft" => "bg-white/10 text-white/60",
+    "sent" => "bg-blue-400/20 text-blue-400",
+    "viewed" => "bg-amber-400/20 text-amber-400",
+    "accepted" => "bg-emerald-400/20 text-emerald-400",
+    "declined" => "bg-red-400/20 text-red-400",
+    "expired" => "bg-white/10 text-white/40"
+  }
+  color_class = colors[proposal.status] || "bg-white/10 text-white/60"
+%>
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium <%= color_class %>">
+  <%= t("proposals.statuses.#{proposal.status}") %>
+</span>
