@@ -1,58 +1,166 @@
-<div class="min-h-screen flex">
-  <!-- Left Side - Branding -->
-  <div class="hidden lg:flex lg:w-1/2 bg-black flex-col justify-between p-12 relative overflow-hidden">
-    <!-- Subtle grid pattern -->
-    <div class="absolute inset-0 opacity-30" style="background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px;"></div>
+<style>
+  .auth-wrap { font-family: 'Poppins', sans-serif; }
+  .auth-wrap .font-special { font-family: 'Yellowtail', cursive; }
+  .auth-wrap .text-accent { color: #94F7AD; }
+  .auth-wrap .bg-accent { background-color: #94F7AD; }
 
-    <!-- Gradient orbs -->
-    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-teal-500/5 rounded-full blur-3xl"></div>
+  /* Noise grain for auth branding panel */
+  .auth-brand-panel::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.3;
+    z-index: 1;
+  }
 
+  /* Dot pattern for auth */
+  .auth-dot-pattern {
+    background-image: radial-gradient(rgba(148,247,173,0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Auth input focus glow */
+  .auth-input:focus {
+    border-color: rgba(148,247,173,0.3) !important;
+    box-shadow: 0 0 0 3px rgba(148,247,173,0.08), 0 0 20px rgba(148,247,173,0.05);
+  }
+
+  /* Auth button */
+  .auth-btn {
+    border-radius: 13px;
+    transition: all 0.3s ease;
+  }
+  .auth-btn:hover {
+    box-shadow: 0 0 20px rgba(148,247,173,0.15), 0 0 60px rgba(148,247,173,0.05);
+  }
+
+  /* Auth glass card */
+  .auth-glass {
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* Floating animation */
+  @keyframes authFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  .auth-float { animation: authFloat 6s ease-in-out infinite; }
+
+  /* Fade in */
+  @keyframes authFadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .auth-fade-in {
+    animation: authFadeIn 0.6s ease-out forwards;
+  }
+  .auth-fade-delay-1 { animation-delay: 0.1s; opacity: 0; }
+  .auth-fade-delay-2 { animation-delay: 0.2s; opacity: 0; }
+  .auth-fade-delay-3 { animation-delay: 0.3s; opacity: 0; }
+  .auth-fade-delay-4 { animation-delay: 0.4s; opacity: 0; }
+
+  /* Pulse slow for orbs */
+  @keyframes authPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.03); }
+  }
+  .auth-pulse { animation: authPulse 5s ease-in-out infinite; }
+</style>
+
+<div class="auth-wrap min-h-screen flex">
+  <!-- Left Side — Billdeck Branding Panel -->
+  <div class="hidden lg:flex lg:w-1/2 bg-black flex-col justify-between p-12 relative overflow-hidden auth-brand-panel">
+    <!-- Grid pattern -->
+    <div class="absolute inset-0 opacity-40" style="background-image: linear-gradient(rgba(148,247,173,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(148,247,173,0.04) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+    <!-- Gradient mesh orbs -->
+    <div class="absolute top-[15%] left-[10%] w-80 h-80 rounded-full auth-pulse" style="background: radial-gradient(circle, rgba(148,247,173,0.1) 0%, rgba(148,247,173,0.02) 40%, transparent 70%);"></div>
+    <div class="absolute bottom-[20%] right-[10%] w-64 h-64 rounded-full auth-pulse" style="animation-delay: 2s; background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 60%);"></div>
+    <div class="absolute top-[60%] left-[40%] w-96 h-96 rounded-full auth-pulse" style="animation-delay: 1s; background: radial-gradient(circle, rgba(148,247,173,0.05) 0%, transparent 50%);"></div>
+
+    <!-- Logo -->
     <div class="relative z-10">
-      <%= link_to root_path, class: "inline-block" do %>
-        <span class="text-2xl font-bold text-white tracking-tight">Freeland</span>
+      <%= link_to root_path, class: "inline-flex items-center gap-2" do %>
+        <span class="font-special text-accent text-3xl">B</span>
+        <span class="text-xl font-semibold text-white tracking-tight">Billdeck</span>
       <% end %>
     </div>
 
+    <!-- Editorial headline -->
     <div class="max-w-lg relative z-10">
-      <h1 class="text-6xl font-black text-white leading-none tracking-tight mb-6">
-        <span class="block">CLIENT</span>
-        <span class="block">PROPOSAL</span>
-        <span class="block text-white/40">INVOICE</span>
+      <h1 class="text-white leading-none tracking-tight mb-8">
+        <span class="block text-6xl xl:text-7xl font-black" style="line-height: 0.9; letter-spacing: -0.04em;">BILL</span>
+        <span class="block text-6xl xl:text-7xl font-black relative" style="line-height: 0.9; letter-spacing: -0.04em;">
+          DECK
+          <span class="absolute bottom-[0.08em] left-0 w-full h-[0.07em] rounded-full" style="background: rgba(148,247,173,0.25);"></span>
+        </span>
+        <span class="font-special text-accent text-2xl xl:text-3xl inline-block mt-2">your production lab</span>
       </h1>
-      <p class="text-xl text-white/50 leading-relaxed">
-        A simple hub for freelancers. Nothing more, nothing less.
+      <p class="text-base text-white/40 leading-relaxed">
+        A bold hub for freelancers. Manage clients, send proposals, create invoices.
       </p>
     </div>
 
+    <!-- Bottom info with CSS illustration cards -->
     <div class="relative z-10">
-      <p class="text-sm text-white/30">
-        Manage clients. Send proposals. Create invoices.
+      <div class="flex items-center gap-4 mb-6">
+        <!-- Mini floating card -->
+        <div class="auth-glass rounded-xl px-4 py-3 auth-float">
+          <div class="flex items-center gap-2 mb-1">
+            <div class="w-2 h-2 rounded-full" style="background: #94F7AD;"></div>
+            <span class="text-[10px] text-white/50 uppercase tracking-wider font-medium">Invoice</span>
+          </div>
+          <div class="text-white text-sm font-bold">$4,200</div>
+        </div>
+        <!-- Mini floating card -->
+        <div class="auth-glass rounded-xl px-4 py-3 auth-float" style="animation-delay: 1.5s;">
+          <div class="flex items-center gap-2 mb-1">
+            <svg class="w-3 h-3" style="color: #94F7AD;" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span class="text-[10px] text-white/50 uppercase tracking-wider font-medium">Proposal</span>
+          </div>
+          <div class="text-white/70 text-xs">Accepted</div>
+        </div>
+      </div>
+      <p class="text-xs text-white/20">
+        Clients &middot; Proposals &middot; Invoices
       </p>
     </div>
   </div>
 
-  <!-- Right Side - Auth Form -->
-  <div class="w-full lg:w-1/2 bg-black lg:bg-zinc-950 flex flex-col justify-center px-6 py-12">
-    <div class="mx-auto w-full max-w-sm">
+  <!-- Right Side — Auth Form -->
+  <div class="w-full lg:w-1/2 bg-black flex flex-col justify-center px-6 py-12 relative overflow-hidden">
+    <!-- Subtle dot pattern on form side -->
+    <div class="absolute inset-0 auth-dot-pattern opacity-30"></div>
+    <!-- Subtle radial glow -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full" style="background: radial-gradient(circle, rgba(148,247,173,0.04) 0%, transparent 60%);"></div>
+
+    <div class="relative mx-auto w-full max-w-sm">
       <!-- Mobile Logo -->
-      <div class="lg:hidden text-center mb-12">
-        <%= link_to root_path do %>
-          <span class="text-2xl font-bold text-white tracking-tight">Freeland</span>
+      <div class="lg:hidden text-center mb-10 auth-fade-in">
+        <%= link_to root_path, class: "inline-flex items-center gap-2 justify-center" do %>
+          <span class="font-special text-accent text-3xl">B</span>
+          <span class="text-xl font-semibold text-white tracking-tight">Billdeck</span>
         <% end %>
-        <p class="mt-2 text-white/50">A simple hub for freelancers.</p>
+        <p class="mt-2 text-white/40 text-sm">A bold hub for freelancers.</p>
       </div>
 
       <!-- Flash messages -->
       <% if notice.present? %>
-        <div class="mb-6">
-          <div class="bg-emerald-400/10 border border-emerald-400/20 rounded-xl px-4 py-3">
-            <p class="text-sm text-emerald-400"><%= notice %></p>
+        <div class="mb-6 auth-fade-in">
+          <div class="rounded-xl px-4 py-3" style="background: rgba(148,247,173,0.08); border: 1px solid rgba(148,247,173,0.15);">
+            <p class="text-sm text-accent"><%= notice %></p>
           </div>
         </div>
       <% end %>
       <% if alert.present? %>
-        <div class="mb-6">
+        <div class="mb-6 auth-fade-in">
           <div class="bg-red-400/10 border border-red-400/20 rounded-xl px-4 py-3">
             <p class="text-sm text-red-400"><%= alert %></p>
           </div>

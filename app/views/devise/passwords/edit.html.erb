@@ -1,28 +1,30 @@
-<h2 class="text-3xl font-bold text-white mb-2"><%= t("auth.change_password") %></h2>
-<p class="text-white/50 mb-8">Enter your new password below.</p>
+<div class="auth-fade-in">
+  <h2 class="text-3xl font-bold text-white mb-2"><%= t("auth.change_password") %></h2>
+  <p class="text-white/40 mb-8">Enter your new password below.</p>
+</div>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }, class: "space-y-5") do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <%= f.hidden_field :reset_password_token %>
 
-  <div>
-    <%= f.label :password, t("auth.new_password"), class: "block text-sm font-medium text-white/70 mb-2" %>
+  <div class="auth-fade-in auth-fade-delay-1">
+    <%= f.label :password, t("auth.new_password"), class: "block text-xs font-semibold text-white/50 uppercase tracking-wider mb-2" %>
     <% if @minimum_password_length %>
-      <p class="text-xs text-white/40 mb-2"><%= @minimum_password_length %> characters minimum</p>
+      <p class="text-[11px] text-white/30 mb-2"><%= @minimum_password_length %> characters minimum</p>
     <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-0 transition-colors" %>
+    <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "auth-input w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder-white/20 focus:outline-none transition-all duration-300", style: "border-radius: 13px;" %>
   </div>
 
-  <div>
-    <%= f.label :password_confirmation, t("auth.password_confirmation"), class: "block text-sm font-medium text-white/70 mb-2" %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-0 transition-colors" %>
+  <div class="auth-fade-in auth-fade-delay-2">
+    <%= f.label :password_confirmation, t("auth.password_confirmation"), class: "block text-xs font-semibold text-white/50 uppercase tracking-wider mb-2" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "auth-input w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder-white/20 focus:outline-none transition-all duration-300", style: "border-radius: 13px;" %>
   </div>
 
-  <div class="pt-2">
-    <%= f.submit t("auth.change_password"), class: "w-full py-3 px-4 bg-white text-black font-semibold rounded-full hover:bg-white/90 transition-all duration-200 cursor-pointer" %>
+  <div class="pt-2 auth-fade-in auth-fade-delay-3">
+    <%= f.submit t("auth.change_password"), class: "auth-btn w-full py-3.5 px-4 text-black font-semibold hover:opacity-90 cursor-pointer", style: "background-color: #94F7AD; border-radius: 13px;" %>
   </div>
 <% end %>
 
-<p class="mt-8 text-center text-sm text-white/50">
-  <%= link_to t("auth.sign_in"), new_session_path(resource_name), class: "text-emerald-400 hover:text-emerald-300 font-medium transition-colors" %>
+<p class="mt-8 text-center text-sm text-white/40 auth-fade-in auth-fade-delay-3">
+  <%= link_to t("auth.sign_in"), new_session_path(resource_name), class: "font-semibold transition-colors duration-300 hover:opacity-80", style: "color: #94F7AD;" %>
 </p>

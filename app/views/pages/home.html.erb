@@ -1,137 +1,328 @@
-<!-- Floating Navbar -->
-<nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-3rem)] max-w-6xl">
-  <div class="bg-zinc-900/80 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 flex items-center justify-between">
-    <div class="w-10"></div>
-    <div class="flex items-center gap-1">
-      <span class="text-white/60 text-sm font-medium">Clients</span>
-      <span class="text-white/30 mx-2">·</span>
-      <span class="text-white/60 text-sm font-medium">Proposals</span>
-      <span class="text-white/30 mx-2">·</span>
-      <span class="text-white/60 text-sm font-medium">Invoices</span>
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- Floating Navbar                                          -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-5xl opacity-0 animate-fade-in">
+  <div class="glass-card shadow-layered rounded-2xl px-5 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span class="font-special text-accent text-xl">B</span>
+      <span class="text-white text-sm font-semibold tracking-tight hidden sm:inline">Billdeck</span>
     </div>
-    <%= link_to new_user_session_path, class: "w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors" do %>
-      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+    <div class="flex items-center gap-1">
+      <span class="text-white/50 text-xs font-medium uppercase tracking-widest">Clients</span>
+      <span class="text-accent/40 mx-1.5">/</span>
+      <span class="text-white/50 text-xs font-medium uppercase tracking-widest">Proposals</span>
+      <span class="text-accent/40 mx-1.5">/</span>
+      <span class="text-white/50 text-xs font-medium uppercase tracking-widest">Invoices</span>
+    </div>
+    <%= link_to new_user_session_path, class: "flex items-center gap-2 px-4 py-2 btn-radius bg-white/5 border border-white/10 text-white text-xs font-medium hover:bg-white/10 hover:border-accent/30 transition-all duration-300" do %>
+      <svg class="w-3.5 h-3.5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
       </svg>
+      <span class="hidden sm:inline">Log in</span>
     <% end %>
   </div>
 </nav>
 
-<!-- App Name - Right Aligned Below Nav -->
-<div class="fixed top-24 right-8 z-40 opacity-0 animate-fade-in animate-delay-300">
-  <span class="text-xl font-bold text-white tracking-tight">Freeland</span>
-</div>
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- Hero Section — Asymmetric layout                          -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="min-h-screen relative flex items-center overflow-hidden">
+  <!-- Background layers -->
+  <div class="absolute inset-0 grid-pattern"></div>
+  <div class="absolute inset-0 bg-gradient-to-br from-black via-black/90 to-transparent"></div>
 
-<!-- Hero Section -->
-<section class="min-h-screen relative flex flex-col justify-center px-6 lg:px-12 grid-pattern">
-  <!-- Gradient overlay -->
-  <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none"></div>
+  <!-- Gradient mesh orbs -->
+  <div class="absolute top-[10%] left-[5%] w-[500px] h-[500px] rounded-full pulse-slow" style="background: radial-gradient(circle, rgba(148,247,173,0.12) 0%, rgba(148,247,173,0.03) 40%, transparent 70%);"></div>
+  <div class="absolute bottom-[10%] right-[15%] w-[400px] h-[400px] rounded-full pulse-slow" style="animation-delay: 2.5s; background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);"></div>
+  <div class="absolute top-[50%] left-[50%] w-[600px] h-[600px] rounded-full pulse-slow" style="animation-delay: 1.2s; background: radial-gradient(circle, rgba(148,247,173,0.05) 0%, transparent 50%);"></div>
 
-  <!-- Decorative elements -->
-  <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pulse-slow"></div>
-  <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl pulse-slow" style="animation-delay: 2s;"></div>
+  <!-- Content grid — text left, illustration right -->
+  <div class="relative w-full max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-20">
+    <div class="grid lg:grid-cols-12 gap-8 items-center min-h-[70vh]">
 
-  <div class="relative max-w-7xl mx-auto w-full pt-32 pb-20">
-    <!-- Editorial Headlines -->
-    <div class="mb-16">
-      <h1 class="font-black text-white">
-        <span class="headline-word text-[clamp(3rem,12vw,10rem)] opacity-0 animate-fade-in-up">CLIENT</span>
-        <span class="headline-word text-[clamp(3rem,12vw,10rem)] opacity-0 animate-fade-in-up animate-delay-100">PROPOSAL</span>
-        <span class="headline-word text-[clamp(3rem,12vw,10rem)] opacity-0 animate-fade-in-up animate-delay-200">INVOICE</span>
-      </h1>
-    </div>
+      <!-- Left: Editorial text -->
+      <div class="lg:col-span-7 relative z-10">
+        <!-- Accent label -->
+        <div class="opacity-0 animate-fade-in-up mb-6">
+          <span class="inline-flex items-center gap-2 px-3 py-1 btn-radius glass-card-accent text-accent text-xs font-medium uppercase tracking-widest">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+            The freelancer's command deck
+          </span>
+        </div>
 
-    <!-- Supporting Copy -->
-    <div class="max-w-xl opacity-0 animate-fade-in-up animate-delay-400">
-      <p class="text-xl lg:text-2xl text-white/60 leading-relaxed mb-8">
-        A simple hub for freelancers.<br>
-        Manage your clients. Send proposals. Create invoices.<br>
-        <span class="text-white/40">Nothing more. Nothing less.</span>
-      </p>
+        <!-- Giant headline -->
+        <div class="mb-10">
+          <h1 class="font-black text-white">
+            <span class="headline-word text-[clamp(2.8rem,10vw,8rem)] opacity-0 animate-fade-in-up">BILL</span>
+            <span class="headline-word text-[clamp(2.8rem,10vw,8rem)] opacity-0 animate-fade-in-up animate-delay-100 relative">
+              <span class="relative z-10">DECK</span>
+              <!-- Accent underline that overlaps -->
+              <span class="absolute bottom-[0.1em] left-0 w-full h-[0.08em] bg-accent/30 -z-0 rounded-full"></span>
+            </span>
+          </h1>
+          <!-- Script tagline overlapping the headline -->
+          <span class="font-special text-accent text-2xl lg:text-4xl opacity-0 animate-fade-in animate-delay-300 inline-block -mt-2 lg:-mt-4 ml-2">your production lab</span>
+        </div>
 
-      <div class="flex flex-wrap gap-4">
-        <%= link_to new_user_registration_path, class: "inline-flex items-center px-8 py-4 bg-white text-black text-sm font-semibold rounded-full hover:bg-white/90 transition-all duration-200" do %>
-          Start for free
-          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
-          </svg>
-        <% end %>
-        <%= link_to new_user_session_path, class: "inline-flex items-center px-8 py-4 bg-white/10 text-white text-sm font-medium rounded-full hover:bg-white/20 transition-all duration-200" do %>
-          Sign in
-        <% end %>
+        <!-- Supporting copy -->
+        <div class="max-w-lg opacity-0 animate-fade-in-up animate-delay-400">
+          <p class="text-base lg:text-lg text-white/55 leading-relaxed mb-8">
+            Manage clients. Send proposals. Create invoices.<br>
+            <span class="text-white/30">Nothing more. Nothing less.</span>
+          </p>
+
+          <div class="flex flex-wrap gap-3">
+            <%= link_to new_user_registration_path, class: "group inline-flex items-center px-7 py-3.5 bg-accent text-black text-sm font-semibold btn-radius shadow-glow hover:shadow-[0_0_30px_rgba(148,247,173,0.2),0_0_80px_rgba(148,247,173,0.1)] transition-all duration-300" do %>
+              Start for free
+              <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+              </svg>
+            <% end %>
+            <%= link_to new_user_session_path, class: "inline-flex items-center px-7 py-3.5 glass-card text-white text-sm font-medium btn-radius hover:bg-white/10 hover:border-accent/20 transition-all duration-300" do %>
+              Sign in
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: CSS Illustration — dashboard mockup bleeding off-screen -->
+      <div class="lg:col-span-5 relative hidden lg:block">
+        <div class="opacity-0 animate-fade-in-right animate-delay-300 relative">
+          <!-- Glow behind the illustration -->
+          <div class="absolute inset-0 accent-glow scale-150 -z-10"></div>
+
+          <!-- Dashboard mockup card — bleeding off right edge -->
+          <div class="relative ml-8 -mr-24 xl:-mr-40">
+            <!-- Main card -->
+            <div class="glass-card rounded-2xl p-6 shadow-layered border border-white/10 relative overflow-hidden">
+              <!-- Dot grid inside -->
+              <div class="absolute inset-0 dot-pattern opacity-40"></div>
+
+              <!-- Fake dashboard header -->
+              <div class="relative flex items-center justify-between mb-6">
+                <div class="flex items-center gap-2">
+                  <div class="w-3 h-3 rounded-full bg-accent/60"></div>
+                  <div class="w-3 h-3 rounded-full bg-white/20"></div>
+                  <div class="w-3 h-3 rounded-full bg-white/10"></div>
+                </div>
+                <div class="h-2 w-20 rounded-full bg-white/10"></div>
+              </div>
+
+              <!-- Fake stats row -->
+              <div class="relative grid grid-cols-3 gap-3 mb-5">
+                <div class="bg-white/5 rounded-xl p-3 border border-white/5">
+                  <div class="text-accent text-xs font-medium mb-1">Clients</div>
+                  <div class="text-white text-xl font-bold">24</div>
+                </div>
+                <div class="bg-white/5 rounded-xl p-3 border border-white/5">
+                  <div class="text-accent text-xs font-medium mb-1">Proposals</div>
+                  <div class="text-white text-xl font-bold">18</div>
+                </div>
+                <div class="bg-white/5 rounded-xl p-3 border border-white/5">
+                  <div class="text-accent text-xs font-medium mb-1">Revenue</div>
+                  <div class="text-white text-xl font-bold">$12k</div>
+                </div>
+              </div>
+
+              <!-- Fake chart bars -->
+              <div class="relative flex items-end gap-2 h-24 mb-4">
+                <div class="flex-1 rounded-t-md bg-accent/20 h-[40%]"></div>
+                <div class="flex-1 rounded-t-md bg-accent/30 h-[60%]"></div>
+                <div class="flex-1 rounded-t-md bg-accent/40 h-[45%]"></div>
+                <div class="flex-1 rounded-t-md bg-accent/50 h-[80%]"></div>
+                <div class="flex-1 rounded-t-md bg-accent/60 h-[65%]"></div>
+                <div class="flex-1 rounded-t-md bg-accent/40 h-[90%]"></div>
+                <div class="flex-1 rounded-t-md bg-accent/70 h-[75%]"></div>
+                <div class="flex-1 rounded-t-md bg-accent h-full"></div>
+              </div>
+
+              <!-- Fake list items -->
+              <div class="relative space-y-2">
+                <div class="flex items-center justify-between py-2 border-b border-white/5">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-accent/20"></div>
+                    <div class="h-2 w-24 rounded-full bg-white/15"></div>
+                  </div>
+                  <div class="h-2 w-12 rounded-full bg-accent/30"></div>
+                </div>
+                <div class="flex items-center justify-between py-2 border-b border-white/5">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-white/10"></div>
+                    <div class="h-2 w-20 rounded-full bg-white/10"></div>
+                  </div>
+                  <div class="h-2 w-16 rounded-full bg-white/10"></div>
+                </div>
+                <div class="flex items-center justify-between py-2">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-accent/10"></div>
+                    <div class="h-2 w-28 rounded-full bg-white/10"></div>
+                  </div>
+                  <div class="h-2 w-10 rounded-full bg-accent/20"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Overlapping floating card — invoice snippet -->
+            <div class="absolute -bottom-6 -left-8 glass-card-accent rounded-xl p-4 shadow-glow animate-float w-48 z-20">
+              <div class="flex items-center gap-2 mb-2">
+                <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span class="text-accent text-xs font-semibold">Invoice Paid</span>
+              </div>
+              <div class="text-white text-lg font-bold">$2,400</div>
+              <div class="text-white/40 text-[10px] mt-0.5">Project Alpha — Feb 2026</div>
+            </div>
+
+            <!-- Overlapping floating card — proposal -->
+            <div class="absolute -top-4 -left-12 glass-card rounded-xl p-3 shadow-layered animate-float w-40 z-20" style="animation-delay: 1.5s;">
+              <div class="text-white/60 text-[10px] uppercase tracking-wider mb-1">New Proposal</div>
+              <div class="h-1.5 w-full rounded-full bg-white/10 mb-1.5">
+                <div class="h-full w-3/4 rounded-full bg-accent/50"></div>
+              </div>
+              <div class="text-white/40 text-[10px]">75% complete</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animate-delay-600">
-      <div class="flex flex-col items-center gap-2 text-white/30">
-        <span class="text-xs uppercase tracking-widest">Scroll</span>
-        <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"/>
-        </svg>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in animate-delay-700">
+      <div class="flex flex-col items-center gap-2 text-white/25">
+        <span class="text-[10px] uppercase tracking-[0.2em] font-medium">Explore</span>
+        <div class="w-5 h-8 rounded-full border border-white/15 flex items-start justify-center p-1">
+          <div class="w-1 h-2 rounded-full bg-accent/50 animate-bounce"></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Section 1: What Freeland Is -->
-<section class="py-32 px-6 lg:px-12 relative">
-  <div class="max-w-6xl mx-auto">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-      <div>
-        <span class="text-emerald-400 text-sm font-medium uppercase tracking-widest mb-4 block">What it is</span>
-        <h2 class="text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
-          Your freelance work,<br>
-          <span class="text-white/40">organized.</span>
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- Section 1: What Billdeck Is — Bento Grid                  -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="relative py-32 px-6 lg:px-12 overflow-hidden">
+  <!-- Background -->
+  <div class="absolute inset-0 dot-pattern opacity-50"></div>
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent"></div>
+
+  <div class="relative max-w-6xl mx-auto">
+    <!-- Section header — asymmetric -->
+    <div class="grid lg:grid-cols-12 gap-8 mb-16">
+      <div class="lg:col-span-5 reveal-left">
+        <span class="text-accent text-xs font-semibold uppercase tracking-[0.2em] mb-3 block">What it is</span>
+        <h2 class="text-4xl lg:text-6xl font-extrabold text-white leading-[0.95] tracking-tight">
+          Your freelance<br>
+          work,<br>
+          <span class="font-special text-accent font-normal text-3xl lg:text-5xl">organized.</span>
         </h2>
-        <p class="text-lg text-white/50 leading-relaxed">
-          Freeland is a focused tool for independent professionals. No project management. No time tracking. No team features. Just the essentials for running your business.
+      </div>
+      <div class="lg:col-span-5 lg:col-start-8 flex items-end reveal-right" data-reveal-delay="200">
+        <p class="text-base text-white/45 leading-relaxed">
+          Billdeck is a focused tool for independent professionals. No project management. No time tracking. No team features. Just the essentials for running your business.
         </p>
       </div>
+    </div>
 
-      <div class="space-y-6">
-        <!-- Client Card -->
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300">
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 bg-blue-400/20 rounded-xl flex items-center justify-center flex-shrink-0">
-              <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/>
-              </svg>
-            </div>
+    <!-- Bento Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[180px]">
+      <!-- Large cell: Clients (spans 2 cols) -->
+      <div class="sm:col-span-2 row-span-1 bento-cell glass-card rounded-2xl p-6 relative overflow-hidden group reveal-scale" data-reveal-delay="100">
+        <div class="absolute top-0 right-0 w-40 h-40 rounded-full" style="background: radial-gradient(circle, rgba(148,247,173,0.08) 0%, transparent 70%);"></div>
+        <div class="relative flex items-start gap-4 h-full">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors duration-300">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/>
+            </svg>
+          </div>
+          <div class="flex flex-col justify-between h-full">
             <div>
-              <h3 class="text-lg font-semibold text-white mb-1">Track Clients</h3>
-              <p class="text-white/50 text-sm">Keep all your client details in one place. Contact info, history, linked proposals and invoices.</p>
+              <h3 class="text-lg font-bold text-white mb-1">Track Clients</h3>
+              <p class="text-white/40 text-sm leading-relaxed">Keep all your client details in one place. Contact info, history, linked proposals and invoices.</p>
+            </div>
+            <div class="flex items-center gap-3 mt-auto pt-3">
+              <div class="flex -space-x-2">
+                <div class="w-6 h-6 rounded-full bg-accent/30 border-2 border-black"></div>
+                <div class="w-6 h-6 rounded-full bg-white/20 border-2 border-black"></div>
+                <div class="w-6 h-6 rounded-full bg-accent/15 border-2 border-black"></div>
+              </div>
+              <span class="text-white/30 text-xs">24 active</span>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Proposal Card -->
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300">
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 bg-amber-400/20 rounded-xl flex items-center justify-center flex-shrink-0">
-              <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
-              </svg>
+      <!-- Tall cell: Proposals (spans 2 rows) -->
+      <div class="row-span-2 bento-cell glass-card rounded-2xl p-6 relative overflow-hidden group reveal-scale" data-reveal-delay="200">
+        <div class="absolute bottom-0 left-0 w-full h-1/2" style="background: linear-gradient(to top, rgba(148,247,173,0.04), transparent);"></div>
+        <div class="relative flex flex-col h-full">
+          <div class="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center flex-shrink-0 mb-4 group-hover:bg-accent/20 transition-colors duration-300">
+            <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Send Proposals</h3>
+          <p class="text-white/40 text-sm leading-relaxed mb-auto">Create professional proposals. Share a link. Get notified when they view or accept.</p>
+
+          <!-- Mini proposal preview CSS illustration -->
+          <div class="mt-4 bg-white/5 rounded-xl p-3 border border-white/5">
+            <div class="flex justify-between items-center mb-3">
+              <div class="h-2 w-20 rounded bg-white/15"></div>
+              <div class="px-2 py-0.5 rounded-full bg-accent/20 text-accent text-[9px] font-semibold">Sent</div>
             </div>
-            <div>
-              <h3 class="text-lg font-semibold text-white mb-1">Send Proposals</h3>
-              <p class="text-white/50 text-sm">Create professional proposals. Share a link. Get notified when they view or accept.</p>
+            <div class="space-y-1.5">
+              <div class="h-1.5 w-full rounded bg-white/8"></div>
+              <div class="h-1.5 w-3/4 rounded bg-white/5"></div>
+              <div class="h-1.5 w-5/6 rounded bg-white/5"></div>
+            </div>
+            <div class="flex justify-between items-center mt-3 pt-2 border-t border-white/5">
+              <div class="h-2 w-12 rounded bg-white/10"></div>
+              <div class="text-accent text-[10px] font-bold">$3,200</div>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Invoice Card -->
-        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300">
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 bg-emerald-400/20 rounded-xl flex items-center justify-center flex-shrink-0">
-              <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/>
-              </svg>
-            </div>
-            <div>
-              <h3 class="text-lg font-semibold text-white mb-1">Create Invoices</h3>
-              <p class="text-white/50 text-sm">Bill your clients. Export to PDF. Track payment status. Convert proposals with one click.</p>
-            </div>
+      <!-- Small cell: Quick stat -->
+      <div class="bento-cell glass-card-accent rounded-2xl p-6 relative overflow-hidden group flex flex-col justify-between reveal-scale" data-reveal-delay="300">
+        <div class="text-accent text-3xl font-black">PDF</div>
+        <div>
+          <div class="text-white text-sm font-semibold">Export Ready</div>
+          <div class="text-white/35 text-xs">One-click downloads</div>
+        </div>
+      </div>
+
+      <!-- Small cell: Invoices -->
+      <div class="bento-cell glass-card rounded-2xl p-6 relative overflow-hidden group reveal-scale" data-reveal-delay="200">
+        <div class="absolute top-0 right-0 w-24 h-24 rounded-full" style="background: radial-gradient(circle, rgba(148,247,173,0.06) 0%, transparent 70%);"></div>
+        <div class="relative flex flex-col h-full">
+          <div class="w-10 h-10 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center flex-shrink-0 mb-3 group-hover:bg-accent/20 transition-colors duration-300">
+            <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/>
+            </svg>
+          </div>
+          <h3 class="text-sm font-bold text-white mb-1">Create Invoices</h3>
+          <p class="text-white/35 text-xs leading-relaxed">Bill clients. Track payments.</p>
+        </div>
+      </div>
+
+      <!-- Wide cell: Shareable links -->
+      <div class="sm:col-span-2 bento-cell glass-card rounded-2xl p-6 relative overflow-hidden group reveal-scale" data-reveal-delay="350">
+        <div class="absolute inset-0 line-pattern opacity-60"></div>
+        <div class="relative flex items-center gap-6 h-full">
+          <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:border-accent/20 transition-colors duration-300">
+            <svg class="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-white mb-1">Shareable Links</h3>
+            <p class="text-white/40 text-sm">Send clients a link to view and accept proposals online. No account required for them.</p>
+          </div>
+          <!-- Visual: URL mockup -->
+          <div class="hidden lg:flex items-center ml-auto glass-card rounded-lg px-3 py-2 flex-shrink-0">
+            <span class="text-white/20 text-xs font-mono">billdeck.app/p/</span><span class="text-accent text-xs font-mono">x7k2m</span>
           </div>
         </div>
       </div>
@@ -139,212 +330,239 @@
   </div>
 </section>
 
-<!-- Section 2: How It Works -->
-<section class="py-32 px-6 lg:px-12 relative bg-gradient-to-b from-transparent via-white/[0.02] to-transparent">
-  <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-20">
-      <span class="text-emerald-400 text-sm font-medium uppercase tracking-widest mb-4 block">How it works</span>
-      <h2 class="text-4xl lg:text-5xl font-bold text-white">
-        Simple by design
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- Full-width editorial divider                               -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="relative py-24 overflow-hidden">
+  <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(148,247,173,0.03) 0%, transparent 40%, rgba(148,247,173,0.02) 100%);"></div>
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 reveal">
+    <div class="flex items-center gap-6">
+      <div class="h-px flex-1 bg-gradient-to-r from-transparent via-accent/15 to-transparent"></div>
+      <span class="font-special text-accent/60 text-3xl lg:text-5xl">simple by design</span>
+      <div class="h-px flex-1 bg-gradient-to-r from-transparent via-accent/15 to-transparent"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- Section 2: How It Works — Diagonal flow                    -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="relative py-32 px-6 lg:px-12 overflow-hidden">
+  <!-- Radial glow behind -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full" style="background: radial-gradient(circle, rgba(148,247,173,0.06) 0%, transparent 60%);"></div>
+
+  <div class="relative max-w-6xl mx-auto">
+    <div class="text-center mb-20 reveal">
+      <span class="text-accent text-xs font-semibold uppercase tracking-[0.2em] mb-3 block">How it works</span>
+      <h2 class="text-4xl lg:text-6xl font-extrabold text-white tracking-tight">
+        Three moves.<br>
+        <span class="text-white/30">That's it.</span>
       </h2>
     </div>
 
-    <!-- Flow Visualization -->
-    <div class="relative">
-      <!-- Connection Line -->
-      <div class="hidden lg:block absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-y-1/2"></div>
-
-      <div class="grid lg:grid-cols-3 gap-8 lg:gap-12">
-        <!-- Step 1 -->
-        <div class="relative text-center">
-          <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-zinc-900 border border-white/10 mb-6 relative z-10">
-            <span class="text-3xl font-bold text-white">1</span>
+    <!-- Steps — staggered/diagonal layout -->
+    <div class="space-y-6 lg:space-y-0 lg:relative lg:h-[400px]">
+      <!-- Step 1 — top left -->
+      <div class="lg:absolute lg:top-0 lg:left-0 lg:w-[340px] reveal-left" data-reveal-delay="100">
+        <div class="glass-card rounded-2xl p-6 shadow-layered group hover:border-accent/15 transition-all duration-400 relative overflow-hidden">
+          <div class="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-accent/5"></div>
+          <div class="relative">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-accent text-4xl font-black leading-none">01</span>
+              <div class="h-px flex-1 bg-gradient-to-r from-accent/20 to-transparent"></div>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Add a client</h3>
+            <p class="text-white/40 text-sm leading-relaxed">Store their contact details. Everything else links back here.</p>
           </div>
-          <h3 class="text-xl font-semibold text-white mb-3">Add a client</h3>
-          <p class="text-white/50">Store their contact details. Everything else links back here.</p>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="relative text-center">
-          <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-zinc-900 border border-white/10 mb-6 relative z-10">
-            <span class="text-3xl font-bold text-white">2</span>
-          </div>
-          <h3 class="text-xl font-semibold text-white mb-3">Send a proposal</h3>
-          <p class="text-white/50">Define your scope, pricing, and terms. Share a link they can accept online.</p>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="relative text-center">
-          <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-zinc-900 border border-white/10 mb-6 relative z-10">
-            <span class="text-3xl font-bold text-white">3</span>
-          </div>
-          <h3 class="text-xl font-semibold text-white mb-3">Invoice the work</h3>
-          <p class="text-white/50">Create invoices from proposals or scratch. Export PDFs. Get paid.</p>
         </div>
       </div>
+
+      <!-- Step 2 — center -->
+      <div class="lg:absolute lg:top-[80px] lg:left-1/2 lg:-translate-x-1/2 lg:w-[340px] reveal" data-reveal-delay="250">
+        <div class="glass-card-accent rounded-2xl p-6 shadow-glow group relative overflow-hidden">
+          <div class="absolute -bottom-8 -left-8 w-24 h-24 rounded-full bg-accent/5"></div>
+          <div class="relative">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-accent text-4xl font-black leading-none">02</span>
+              <div class="h-px flex-1 bg-gradient-to-r from-accent/20 to-transparent"></div>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Send a proposal</h3>
+            <p class="text-white/40 text-sm leading-relaxed">Define your scope, pricing, and terms. Share a link they can accept online.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 — bottom right -->
+      <div class="lg:absolute lg:bottom-0 lg:right-0 lg:w-[340px] reveal-right" data-reveal-delay="400">
+        <div class="glass-card rounded-2xl p-6 shadow-layered group hover:border-accent/15 transition-all duration-400 relative overflow-hidden">
+          <div class="absolute -top-8 -left-8 w-24 h-24 rounded-full bg-accent/5"></div>
+          <div class="relative">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-accent text-4xl font-black leading-none">03</span>
+              <div class="h-px flex-1 bg-gradient-to-r from-accent/20 to-transparent"></div>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2">Invoice the work</h3>
+            <p class="text-white/40 text-sm leading-relaxed">Create invoices from proposals or scratch. Export PDFs. Get paid.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Connection lines (desktop) -->
+      <svg class="hidden lg:block absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="340" y1="60" x2="48%" y2="120" stroke="rgba(148,247,173,0.12)" stroke-width="1" stroke-dasharray="6 4" style="animation: dash-move 2s linear infinite;"/>
+        <line x1="58%" y1="180" x2="72%" y2="240" stroke="rgba(148,247,173,0.12)" stroke-width="1" stroke-dasharray="6 4" style="animation: dash-move 2s linear infinite; animation-delay: 0.5s;"/>
+      </svg>
     </div>
 
-    <!-- Visual Flow Arrow (Mobile) -->
-    <div class="lg:hidden flex justify-center mt-12">
-      <div class="flex items-center gap-4 text-white/30">
-        <span class="text-sm">Client</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+    <!-- Mobile flow -->
+    <div class="lg:hidden flex justify-center mt-8">
+      <div class="flex items-center gap-3 text-white/25">
+        <span class="text-xs font-medium">Client</span>
+        <svg class="w-4 h-4 text-accent/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
         </svg>
-        <span class="text-sm">Proposal</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <span class="text-xs font-medium">Proposal</span>
+        <svg class="w-4 h-4 text-accent/40" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
         </svg>
-        <span class="text-sm">Invoice</span>
+        <span class="text-xs font-medium">Invoice</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Section 3: For Who -->
-<section class="py-32 px-6 lg:px-12 relative">
-  <div class="max-w-6xl mx-auto">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-      <div class="order-2 lg:order-1">
-        <div class="grid grid-cols-2 gap-4">
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
-            <div class="text-3xl mb-2">
-              <svg class="w-8 h-8 mx-auto text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- Section 3: For Who — Full-width moment + contained text    -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="relative overflow-hidden">
+  <!-- Full-width background strip -->
+  <div class="absolute inset-0" style="background: linear-gradient(180deg, transparent 0%, rgba(148,247,173,0.02) 30%, rgba(148,247,173,0.03) 50%, rgba(148,247,173,0.02) 70%, transparent 100%);"></div>
+  <div class="absolute inset-0 dot-pattern opacity-30"></div>
+
+  <div class="relative py-32 px-6 lg:px-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <!-- Left: Professional icons grid with overlapping effect -->
+        <div class="lg:col-span-5 order-2 lg:order-1 reveal-left">
+          <div class="grid grid-cols-3 gap-3 relative">
+            <!-- Glow behind grid -->
+            <div class="absolute inset-0 accent-glow scale-110 -z-10"></div>
+
+            <div class="glass-card rounded-2xl p-5 text-center bento-cell group">
+              <svg class="w-7 h-7 mx-auto text-accent/70 mb-2 group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"/>
               </svg>
+              <p class="text-[11px] text-white/50 font-medium">Designers</p>
             </div>
-            <p class="text-sm text-white/70">Designers</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
-            <div class="text-3xl mb-2">
-              <svg class="w-8 h-8 mx-auto text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <div class="glass-card rounded-2xl p-5 text-center bento-cell group">
+              <svg class="w-7 h-7 mx-auto text-accent/70 mb-2 group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/>
               </svg>
+              <p class="text-[11px] text-white/50 font-medium">Developers</p>
             </div>
-            <p class="text-sm text-white/70">Developers</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
-            <div class="text-3xl mb-2">
-              <svg class="w-8 h-8 mx-auto text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <div class="glass-card rounded-2xl p-5 text-center bento-cell group">
+              <svg class="w-7 h-7 mx-auto text-accent/70 mb-2 group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"/>
                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"/>
               </svg>
+              <p class="text-[11px] text-white/50 font-medium">Photo</p>
             </div>
-            <p class="text-sm text-white/70">Photographers</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
-            <div class="text-3xl mb-2">
-              <svg class="w-8 h-8 mx-auto text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <div class="glass-card rounded-2xl p-5 text-center bento-cell group">
+              <svg class="w-7 h-7 mx-auto text-accent/70 mb-2 group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
               </svg>
+              <p class="text-[11px] text-white/50 font-medium">Writers</p>
             </div>
-            <p class="text-sm text-white/70">Writers</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
-            <div class="text-3xl mb-2">
-              <svg class="w-8 h-8 mx-auto text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <div class="glass-card rounded-2xl p-5 text-center bento-cell group">
+              <svg class="w-7 h-7 mx-auto text-accent/70 mb-2 group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 110-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 01-1.44-4.282m3.102.069a18.03 18.03 0 01-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 018.835 2.535M10.34 6.66a23.847 23.847 0 008.835-2.535m0 0A23.74 23.74 0 0018.795 3m.38 1.125a23.91 23.91 0 011.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 001.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 010 3.46"/>
               </svg>
+              <p class="text-[11px] text-white/50 font-medium">Marketers</p>
             </div>
-            <p class="text-sm text-white/70">Marketers</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
-            <div class="text-3xl mb-2">
-              <svg class="w-8 h-8 mx-auto text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <div class="glass-card rounded-2xl p-5 text-center bento-cell group">
+              <svg class="w-7 h-7 mx-auto text-accent/70 mb-2 group-hover:text-accent transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605"/>
               </svg>
+              <p class="text-[11px] text-white/50 font-medium">Consultants</p>
             </div>
-            <p class="text-sm text-white/70">Consultants</p>
           </div>
         </div>
-      </div>
 
-      <div class="order-1 lg:order-2">
-        <span class="text-emerald-400 text-sm font-medium uppercase tracking-widest mb-4 block">Built for you</span>
-        <h2 class="text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
-          For freelancers.<br>
-          <span class="text-white/40">Not enterprises.</span>
-        </h2>
-        <p class="text-lg text-white/50 leading-relaxed mb-6">
-          Freeland is for solo operators and small studios who need to look professional without the overhead. No seats to pay for. No features you'll never use.
-        </p>
-        <p class="text-white/40">
-          If you're looking for team collaboration, Gantt charts, or enterprise integrations — this isn't for you. And that's okay.
-        </p>
+        <!-- Right: Text content -->
+        <div class="lg:col-span-6 lg:col-start-7 order-1 lg:order-2 reveal-right">
+          <span class="text-accent text-xs font-semibold uppercase tracking-[0.2em] mb-3 block">Built for you</span>
+          <h2 class="text-4xl lg:text-6xl font-extrabold text-white leading-[0.95] tracking-tight mb-6">
+            For freelancers.<br>
+            <span class="text-white/25">Not enterprises.</span>
+          </h2>
+          <p class="text-base text-white/45 leading-relaxed mb-5">
+            Billdeck is for solo operators and small studios who need to look professional without the overhead. No seats to pay for. No features you'll never use.
+          </p>
+          <p class="text-sm text-white/25 leading-relaxed">
+            If you're looking for team collaboration, Gantt charts, or enterprise integrations — this isn't for you. And that's okay.
+          </p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Section 4: Export & Flexibility -->
-<section class="py-32 px-6 lg:px-12 relative bg-gradient-to-b from-transparent via-white/[0.02] to-transparent">
-  <div class="max-w-4xl mx-auto text-center">
-    <span class="text-emerald-400 text-sm font-medium uppercase tracking-widest mb-4 block">Stay in control</span>
-    <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">
-      Your data. Your way.
-    </h2>
-    <p class="text-lg text-white/50 leading-relaxed mb-12 max-w-2xl mx-auto">
-      Export proposals and invoices as clean PDFs. Share secure links with clients. Everything you create is yours.
-    </p>
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- Final CTA — Full-width moment with gradient mesh           -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="relative py-40 px-6 lg:px-12 overflow-hidden">
+  <!-- Multi-point gradient mesh background -->
+  <div class="absolute inset-0" style="background:
+    radial-gradient(ellipse at 20% 50%, rgba(148,247,173,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 30%, rgba(148,247,173,0.05) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 80%, rgba(255,255,255,0.03) 0%, transparent 50%);"></div>
+  <div class="absolute inset-0 grid-pattern opacity-40"></div>
 
-    <div class="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-left">
-        <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center mb-4">
-          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12l3 3m0 0l3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/>
-          </svg>
-        </div>
-        <h3 class="text-lg font-semibold text-white mb-2">PDF Export</h3>
-        <p class="text-sm text-white/50">Download professional PDFs of your proposals and invoices. Multiple templates to choose from.</p>
-      </div>
+  <!-- Top border -->
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent"></div>
 
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-left">
-        <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center mb-4">
-          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/>
-          </svg>
-        </div>
-        <h3 class="text-lg font-semibold text-white mb-2">Shareable Links</h3>
-        <p class="text-sm text-white/50">Send clients a link to view and accept proposals online. No account required for them.</p>
-      </div>
+  <div class="relative max-w-4xl mx-auto text-center">
+    <!-- Editorial oversized text -->
+    <div class="reveal">
+      <span class="font-special text-accent/50 text-2xl lg:text-3xl block mb-4">ready?</span>
+      <h2 class="text-5xl sm:text-6xl lg:text-8xl font-black text-white leading-[0.9] tracking-tight mb-8">
+        Start<br>
+        <span class="text-shimmer">building.</span>
+      </h2>
     </div>
-  </div>
-</section>
 
-<!-- Final CTA -->
-<section class="py-32 px-6 lg:px-12 relative">
-  <div class="max-w-4xl mx-auto text-center">
-    <h2 class="text-5xl lg:text-7xl font-black text-white mb-6 leading-none tracking-tight">
-      Ready to simplify?
-    </h2>
-    <p class="text-xl text-white/50 mb-10 max-w-xl mx-auto">
+    <p class="text-lg text-white/40 mb-10 max-w-md mx-auto reveal" data-reveal-delay="150">
       Join freelancers who've stopped overcomplicating their business.
     </p>
 
-    <div class="flex flex-wrap justify-center gap-4">
-      <%= link_to new_user_registration_path, class: "inline-flex items-center px-10 py-5 bg-white text-black text-base font-semibold rounded-full hover:bg-white/90 transition-all duration-200" do %>
+    <div class="flex flex-wrap justify-center gap-4 reveal" data-reveal-delay="300">
+      <%= link_to new_user_registration_path, class: "group inline-flex items-center px-10 py-4 bg-accent text-black text-base font-bold btn-radius shadow-glow hover:shadow-[0_0_40px_rgba(148,247,173,0.25),0_0_100px_rgba(148,247,173,0.1)] transition-all duration-300" do %>
         Get started free
-        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+        <svg class="w-5 h-5 ml-2 group-hover:translate-x-1.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
         </svg>
       <% end %>
     </div>
 
-    <p class="mt-6 text-sm text-white/30">
+    <p class="mt-8 text-xs text-white/20 tracking-wide reveal" data-reveal-delay="400">
       No credit card required
     </p>
   </div>
 </section>
 
-<!-- Footer -->
-<footer class="py-12 px-6 lg:px-12 border-t border-white/10">
-  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-    <div class="text-white/40 text-sm">
-      Freeland
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- Footer                                                     -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<footer class="relative py-12 px-6 lg:px-12">
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-2">
+      <span class="font-special text-accent text-xl">B</span>
+      <span class="text-white/30 text-sm font-medium tracking-tight">Billdeck</span>
     </div>
-    <div class="flex items-center gap-6 text-sm text-white/40">
-      <%= link_to "Sign in", new_user_session_path, class: "hover:text-white transition-colors" %>
-      <%= link_to "Create account", new_user_registration_path, class: "hover:text-white transition-colors" %>
+    <div class="flex items-center gap-6 text-sm">
+      <%= link_to "Sign in", new_user_session_path, class: "text-white/30 hover:text-accent transition-colors duration-300" %>
+      <%= link_to "Create account", new_user_registration_path, class: "text-white/30 hover:text-accent transition-colors duration-300" %>
     </div>
   </div>
 </footer>
