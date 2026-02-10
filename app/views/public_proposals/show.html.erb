@@ -63,7 +63,7 @@
         <% if @proposal.fixed? %>
           <div class="flex justify-between">
             <dt class="text-sm text-white/50"><%= t("proposals.amount") %></dt>
-            <dd class="text-sm font-semibold text-emerald-400"><%= number_to_currency(@proposal.amount) %></dd>
+            <dd class="text-sm font-semibold text-accent"><%= number_to_currency(@proposal.amount) %></dd>
           </div>
         <% else %>
           <div class="flex justify-between">
@@ -76,7 +76,7 @@
           </div>
           <div class="flex justify-between border-t border-white/10 pt-3 mt-3">
             <dt class="text-sm font-medium text-white"><%= t("public_proposals.estimated_total") %></dt>
-            <dd class="text-sm font-semibold text-emerald-400"><%= number_to_currency(@proposal.total_amount) %></dd>
+            <dd class="text-sm font-semibold text-accent"><%= number_to_currency(@proposal.total_amount) %></dd>
           </div>
         <% end %>
       </dl>
@@ -95,14 +95,12 @@
 
   <!-- Already Accepted -->
   <% if @proposal.accepted? %>
-    <div class="bg-emerald-400/10 border border-emerald-400/20 rounded-2xl p-6 mb-6">
+    <div class="bg-accent/10 border border-accent/20 rounded-2xl p-6 mb-6">
       <div class="flex items-center">
-        <svg class="w-6 h-6 text-emerald-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-        </svg>
+        <%= icon(:check_circle, variant: :duotone, size: :lg, css_class: "text-accent mr-3") %>
         <div>
-          <h3 class="text-lg font-semibold text-emerald-400"><%= t("public_proposals.already_accepted") %></h3>
-          <p class="mt-1 text-sm text-emerald-400/70">
+          <h3 class="text-lg font-semibold text-accent"><%= t("public_proposals.already_accepted") %></h3>
+          <p class="mt-1 text-sm text-accent/70">
             <%= t("public_proposals.accepted_on", date: @proposal.signature_at&.strftime("%B %d, %Y")) %>
           </p>
         </div>
@@ -122,12 +120,12 @@
         </div>
 
         <div class="flex items-start">
-          <%= f.check_box :agree_to_terms, required: true, class: "h-4 w-4 bg-white/5 border-white/20 rounded text-emerald-400 focus:ring-emerald-400 focus:ring-offset-0 mt-0.5" %>
+          <%= f.check_box :agree_to_terms, required: true, class: "h-4 w-4 bg-white/5 border-white/20 rounded text-accent focus:ring-accent focus:ring-offset-0 mt-0.5" %>
           <%= f.label :agree_to_terms, t("public_proposals.agree_to_terms"), class: "ml-2 text-sm text-white/60" %>
         </div>
 
         <div>
-          <%= f.submit t("public_proposals.accept_button"), class: "w-full px-6 py-3 bg-emerald-400 text-black text-sm font-semibold rounded-full hover:bg-emerald-300 transition-all duration-200 cursor-pointer" %>
+          <%= f.submit t("public_proposals.accept_button"), class: "w-full px-6 py-3 bg-accent text-black text-sm font-semibold rounded-full hover:bg-accent-light transition-all duration-200 cursor-pointer" %>
         </div>
 
         <p class="text-xs text-white/40 text-center">
@@ -140,6 +138,6 @@
   <!-- Contact -->
   <div class="mt-6 text-center text-sm text-white/50">
     <p><%= t("public_proposals.questions") %></p>
-    <a href="mailto:<%= @proposal.user.email %>" class="text-emerald-400 hover:text-emerald-300 transition-colors"><%= @proposal.user.email %></a>
+    <a href="mailto:<%= @proposal.user.email %>" class="text-accent hover:text-accent-light transition-colors"><%= @proposal.user.email %></a>
   </div>
 </div>

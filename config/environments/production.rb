@@ -36,8 +36,8 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
-  # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  # Store uploaded files. Use :amazon (S3) when AWS_* env vars are set; otherwise :local (ephemeral on Render).
+  config.active_storage.service = (ENV["AWS_ACCESS_KEY_ID"].present? && ENV["AWS_S3_BUCKET"].present?) ? :amazon : :local
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   # Can be used together with config.force_ssl for Strict-Transport-Security and secure cookies.
@@ -73,6 +73,26 @@ Rails.application.configure do
   # caching is enabled.
   config.action_mailer.perform_caching = false
 
+  # Mailer host for links in emails (password reset, etc.). Set APP_HOST and APP_PROTOCOL on Render.
+  config.action_mailer.default_url_options = {
+    host: ENV.fetch("APP_HOST", "localhost"),
+    protocol: ENV.fetch("APP_PROTOCOL", "https")
+  }
+
+  # SMTP when SMTP_ADDRESS is set (e.g. SendGrid, Mailgun). See DEPLOYMENT.md.
+  if ENV["SMTP_ADDRESS"].present?
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: ENV["SMTP_ADDRESS"],
+      port: ENV.fetch("SMTP_PORT", "587").to_i,
+      domain: ENV.fetch("SMTP_DOMAIN", "localhost"),
+      user_name: ENV["SMTP_USERNAME"],
+      password: ENV["SMTP_PASSWORD"],
+      authentication: ENV.fetch("SMTP_AUTHENTICATION", "plain").to_sym,
+      enable_starttls_auto: true
+    }
+  end
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
@@ -90,11 +110,8 @@ Rails.application.configure do
   # Only use :id for inspections in production.
   config.active_record.attributes_for_inspect = [ :id ]
 
-  # Enable DNS rebinding protection and other `Host` header attacks.
-  # config.hosts = [
-  #   "example.com",     # Allow requests from example.com
-  #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
-  # ]
-  # Skip DNS rebinding protection for the default health check endpoint.
-  # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+  # Allow Render and custom host. Set APP_HOST on Render if using a custom domain.
+  config.hosts << ".onrender.com"
+  config.hosts << ENV["APP_HOST"] if ENV["APP_HOST"].present?
+  config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end

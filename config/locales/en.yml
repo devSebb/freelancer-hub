@@ -10,7 +10,6 @@ en:
     invoices: "Invoices"
     settings: "Settings"
     sign_out: "Sign out"
-    toggle_theme: "Toggle theme"
 
   # Dashboard
   dashboard:

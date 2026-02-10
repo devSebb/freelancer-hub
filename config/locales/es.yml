@@ -10,7 +10,6 @@ es:
     invoices: "Facturas"
     settings: "Ajustes"
     sign_out: "Cerrar sesion"
-    toggle_theme: "Cambiar tema"
 
   # Dashboard
   dashboard:

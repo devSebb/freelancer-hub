@@ -29,9 +29,7 @@
   <%= f.hidden_field :_destroy, value: "0", data: { invoice_items_target: "destroy" } %>
   <%= f.hidden_field :position %>
 
-  <button type="button" data-action="invoice-items#remove" class="flex-shrink-0 p-1.5 text-white/40 hover:text-red-400 transition-colors">
-    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-    </svg>
+  <button type="button" data-action="invoice-items#remove" class="flex-shrink-0 p-1.5 text-white/40 hover:text-red-400 transition-colors" aria-label="<%= t('common.remove', default: 'Remove') %>">
+    <%= icon(:close, size: :md, css_class: "text-white/50 hover:text-red-400") %>
   </button>
 </div>

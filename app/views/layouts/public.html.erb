@@ -7,13 +7,16 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="icon" href="/icon.png" type="image/png">
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-black min-h-screen">
+  <body class="bg-black min-h-screen" style="font-family: 'Poppins', sans-serif;">
     <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto">
         <%= yield %>

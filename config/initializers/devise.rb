@@ -21,10 +21,9 @@ Devise.setup do |config|
   # config.parent_controller = 'DeviseController'
 
   # ==> Mailer Configuration
-  # Configure the e-mail address which will be shown in Devise::Mailer,
-  # note that it will be overwritten if you use your own mailer class
-  # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  # Configure the e-mail address which will be shown in Devise::Mailer.
+  # Set MAILER_SENDER in production (e.g. "Freelancer Hub <noreply@yourdomain.com>").
+  config.mailer_sender = ENV.fetch("MAILER_SENDER", "please-change-me-at-config-initializers-devise@example.com")
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'

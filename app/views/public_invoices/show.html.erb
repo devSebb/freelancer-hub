@@ -56,7 +56,7 @@
         <% end %>
         <tr class="border-t border-white/20">
           <td colspan="3" class="px-6 py-4 text-lg font-bold text-white text-right"><%= t("invoices.total") %></td>
-          <td class="px-6 py-4 text-lg font-bold text-emerald-400 text-right"><%= number_to_currency(@invoice.total) %></td>
+          <td class="px-6 py-4 text-lg font-bold text-accent text-right"><%= number_to_currency(@invoice.total) %></td>
         </tr>
         <% if @invoice.has_deposit? %>
           <tr>
@@ -67,7 +67,7 @@
           </tr>
           <tr>
             <td colspan="3" class="px-6 py-3 text-sm font-medium text-white text-right"><%= t("invoices.balance_due") %></td>
-            <td class="px-6 py-3 text-sm font-semibold text-emerald-400 text-right"><%= number_to_currency(@invoice.final_amount) %></td>
+            <td class="px-6 py-3 text-sm font-semibold text-accent text-right"><%= number_to_currency(@invoice.final_amount) %></td>
           </tr>
         <% end %>
       </tfoot>
@@ -102,12 +102,10 @@
 
   <!-- Status / Payment Info -->
   <% if @invoice.paid? %>
-    <div class="bg-emerald-400/10 border border-emerald-400/20 rounded-2xl p-6 mb-6 text-center">
-      <svg class="mx-auto h-12 w-12 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-      </svg>
-      <h3 class="mt-2 text-lg font-semibold text-emerald-400"><%= t("public_invoices.paid") %></h3>
-      <p class="mt-1 text-sm text-emerald-400/70"><%= t("public_invoices.paid_message") %></p>
+    <div class="bg-accent/10 border border-accent/20 rounded-2xl p-6 mb-6 text-center">
+      <%= icon(:paid, variant: :duotone, size: :xl, css_class: "text-accent mx-auto") %>
+      <h3 class="mt-2 text-lg font-semibold text-accent"><%= t("public_invoices.paid") %></h3>
+      <p class="mt-1 text-sm text-accent/70"><%= t("public_invoices.paid_message") %></p>
     </div>
   <% elsif !@invoice.has_payment_methods? %>
     <div class="bg-blue-400/10 border border-blue-400/20 rounded-2xl p-6 mb-6 text-center">
@@ -122,6 +120,6 @@
   <!-- Contact -->
   <div class="text-center text-sm text-white/50">
     <p><%= t("public_invoices.questions") %></p>
-    <a href="mailto:<%= @invoice.user.email %>" class="text-emerald-400 hover:text-emerald-300 transition-colors"><%= @invoice.user.email %></a>
+    <a href="mailto:<%= @invoice.user.email %>" class="text-accent hover:text-accent-light transition-colors"><%= @invoice.user.email %></a>
   </div>
 </div>
