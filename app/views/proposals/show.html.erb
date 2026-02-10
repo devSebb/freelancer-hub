@@ -72,10 +72,9 @@
 
       <%= button_to proposal_path(@proposal), method: :delete,
           data: { turbo_confirm: t("proposals.confirm_delete") },
-          class: "inline-flex items-center gap-2 px-4 py-2.5 bg-red-400/20 text-red-400 text-sm font-medium rounded-full hover:bg-red-400/30 transition-all duration-200",
+          class: "inline-flex items-center justify-center p-2.5 bg-red-400/20 text-red-400 text-sm font-medium rounded-full hover:bg-red-400/30 transition-all duration-200",
           aria: { label: t("common.delete") } do %>
         <%= icon(:delete, size: :sm, css_class: "text-red-400") %>
-        <%= t("common.delete") %>
       <% end %>
     </div>
   </div>

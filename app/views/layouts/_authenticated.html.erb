@@ -2,35 +2,35 @@
   <!-- Top Navigation Bar -->
   <header class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/10">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="h-16 flex items-center justify-between">
+      <div class="h-24 flex items-center justify-between">
         <!-- Logo -->
-        <div class="flex items-center gap-1.5">
-          <span class="font-special text-accent text-3xl">B</span>
-          <span class="text-white text-xl font-semibold tracking-tight hidden sm:inline">illdeck</span>
-        </div>
+        <%= link_to dashboard_path, class: "flex items-center gap-1.5 hover:opacity-90 transition-opacity" do %>
+          <span class="font-special text-accent text-4xl">B</span>
+          <span class="text-white text-2xl font-semibold tracking-tight hidden sm:inline">illdeck</span>
+        <% end %>
 
         <!-- Center Navigation Pills -->
         <nav class="flex items-center gap-2">
-          <%= link_to clients_path, class: "group flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-200 #{request.path.start_with?('/clients') ? 'bg-white text-black' : 'bg-white/10 text-white hover:bg-white/20'}" do %>
+          <%= link_to clients_path, class: "group flex items-center gap-2.5 px-6 py-3 rounded-full transition-all duration-200 focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-black #{nav_pill_classes(%w[/clients])}" do %>
             <%= icon(:clients, variant: :duotone, size: :sm) %>
-            <span class="text-sm font-medium"><%= t("nav.clients") %></span>
+            <span class="text-base font-medium"><%= t("nav.clients") %></span>
           <% end %>
 
-          <%= link_to proposals_path, class: "group flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-200 #{request.path.start_with?('/proposals') || request.path.start_with?('/proposal_templates') ? 'bg-white text-black' : 'bg-white/10 text-white hover:bg-white/20'}" do %>
+          <%= link_to proposals_path, class: "group flex items-center gap-2.5 px-6 py-3 rounded-full transition-all duration-200 focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-black #{nav_pill_classes(%w[/proposals /proposal_templates])}" do %>
             <%= icon(:proposals, variant: :duotone, size: :sm) %>
-            <span class="text-sm font-medium"><%= t("nav.proposals") %></span>
+            <span class="text-base font-medium"><%= t("nav.proposals") %></span>
           <% end %>
 
-          <%= link_to invoices_path, class: "group flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-200 #{request.path.start_with?('/invoices') ? 'bg-white text-black' : 'bg-white/10 text-white hover:bg-white/20'}" do %>
+          <%= link_to invoices_path, class: "group flex items-center gap-2.5 px-6 py-3 rounded-full transition-all duration-200 focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-black #{nav_pill_classes(%w[/invoices])}" do %>
             <%= icon(:invoices, variant: :duotone, size: :sm) %>
-            <span class="text-sm font-medium"><%= t("nav.invoices") %></span>
+            <span class="text-base font-medium"><%= t("nav.invoices") %></span>
           <% end %>
         </nav>
 
         <!-- Right Icons -->
         <div class="flex items-center gap-3">
           <!-- Settings -->
-          <%= link_to settings_path, class: "w-10 h-10 flex items-center justify-center rounded-full transition-all duration-200 #{current_page?(settings_path) ? 'bg-white text-black' : 'bg-white/10 text-white hover:bg-white/20'}", title: t("nav.settings") do %>
+          <%= link_to settings_path, class: "w-10 h-10 flex items-center justify-center rounded-full transition-all duration-200 focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-black #{nav_pill_classes([], current_page: settings_path)}", title: t("nav.settings") do %>
             <%= icon(:settings, variant: :duotone) %>
           <% end %>
 
@@ -49,7 +49,7 @@
   </header>
 
   <!-- Main Content -->
-  <main class="pt-24 pb-12">
+  <main class="pt-32 pb-12">
     <!-- Flash messages -->
     <% if notice.present? %>
       <div class="max-w-5xl mx-auto px-6 mb-6">
