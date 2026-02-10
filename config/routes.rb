@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         post :send_proposal
         post :save_as_template
         get :export_pdf
+        get :preview_pdf
       end
     end
 
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
       member do
         post :send_invoice
         get :export_pdf
+        get :preview_pdf
       end
     end
   end

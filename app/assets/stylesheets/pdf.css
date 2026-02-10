@@ -18,6 +18,11 @@ body.pdf-document {
   padding: 0;
 }
 
+/* Preview-only: white padding in iframe so document doesn’t sit flush on dark panel */
+body.pdf-document.pdf-preview {
+  padding: 1.5cm;
+}
+
 /* Header styling */
 .pdf-header {
   display: flex;

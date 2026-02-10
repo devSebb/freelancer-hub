@@ -1,0 +1,79 @@
+<%# Locals: preview_url, download_url, resource_title %>
+<div>
+
+  <!-- Overlay -->
+  <div data-pdf-preview-target="overlay"
+       data-action="click->pdf-preview#close"
+       class="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+  </div>
+
+  <!-- Slide-over Panel -->
+  <div data-pdf-preview-target="panel"
+       class="fixed top-0 right-0 bottom-0 z-50 w-full sm:w-[75%] lg:w-[55%] xl:w-[50%] bg-zinc-950 border-l border-white/10 shadow-2xl translate-x-full transition-transform duration-300 ease-out flex flex-col">
+
+    <!-- Panel Header -->
+    <div class="flex items-center justify-between px-6 py-4 border-b border-white/10 flex-shrink-0">
+      <div>
+        <h3 class="text-lg font-semibold text-white"><%= t("common.export_pdf") %></h3>
+        <p class="text-xs text-white/40 mt-0.5"><%= resource_title %></p>
+      </div>
+      <button type="button" data-action="click->pdf-preview#close"
+              class="w-8 h-8 flex items-center justify-center rounded-lg bg-white/5 text-white/50 hover:bg-white/10 hover:text-white transition-all">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Style Tabs -->
+    <div class="flex items-center gap-2 px-6 py-3 border-b border-white/5 flex-shrink-0">
+      <span class="text-xs text-white/30 uppercase tracking-wider font-medium mr-2"><%= t("pdf.style") %></span>
+      <button type="button"
+              data-pdf-preview-target="styleBtn"
+              data-action="click->pdf-preview#switchStyle"
+              data-style="modern"
+              class="px-3 py-1.5 text-xs rounded-lg bg-[#94F7AD] text-black font-semibold transition-all duration-200">
+        <%= t("pdf.templates.modern") %>
+      </button>
+      <button type="button"
+              data-pdf-preview-target="styleBtn"
+              data-action="click->pdf-preview#switchStyle"
+              data-style="classic"
+              class="px-3 py-1.5 text-xs rounded-lg bg-white/10 text-white/70 transition-all duration-200">
+        <%= t("pdf.templates.classic") %>
+      </button>
+      <button type="button"
+              data-pdf-preview-target="styleBtn"
+              data-action="click->pdf-preview#switchStyle"
+              data-style="minimal"
+              class="px-3 py-1.5 text-xs rounded-lg bg-white/10 text-white/70 transition-all duration-200">
+        <%= t("pdf.templates.minimal") %>
+      </button>
+    </div>
+
+    <!-- Preview Area -->
+    <div class="flex-1 overflow-auto p-6 bg-zinc-900/50">
+      <div class="mx-auto" style="max-width: 595px; aspect-ratio: 210/297; min-height: 0;">
+        <iframe data-pdf-preview-target="iframe"
+                class="w-full h-full rounded-lg shadow-xl border border-white/5"
+                style="min-height: 842px; background: white;"
+                frameborder="0">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Panel Footer -->
+    <div class="flex items-center justify-between px-6 py-4 border-t border-white/10 flex-shrink-0">
+      <button type="button" data-action="click->pdf-preview#close"
+              class="px-4 py-2.5 text-sm text-white/50 hover:text-white transition-colors">
+        <%= t("common.cancel") %>
+      </button>
+      <button type="button" data-action="click->pdf-preview#download"
+              class="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-black transition-all duration-200 hover:opacity-90"
+              style="background-color: #94F7AD; border-radius: 13px;">
+        <%= icon(:export_pdf, size: :sm, css_class: "text-black") %>
+        <%= t("common.download_pdf") %>
+      </button>
+    </div>
+  </div>
+</div>

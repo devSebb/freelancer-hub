@@ -1,4 +1,6 @@
-<div>
+<div data-controller="pdf-preview"
+     data-pdf-preview-preview-url-value="<%= preview_pdf_invoice_path(@invoice) %>"
+     data-pdf-preview-download-url-value="<%= export_pdf_invoice_path(@invoice) %>">
   <!-- Back Link -->
   <div class="mb-6">
     <%= link_to invoices_path, class: "inline-flex items-center text-sm text-white/50 hover:text-white transition-colors" do %>
@@ -42,25 +44,12 @@
         <% end %>
       <% end %>
 
-      <!-- Export PDF dropdown -->
-      <div class="relative" data-controller="dropdown">
-        <button type="button" data-action="click->dropdown#toggle" class="inline-flex items-center gap-2 px-4 py-2.5 bg-white/10 text-white text-sm font-medium rounded-full hover:bg-white/20 transition-all duration-200">
-          <%= icon(:export_pdf, size: :sm) %>
-          <%= t("common.export_pdf") %>
-          <%= icon(:chevron_down, size: :sm) %>
-        </button>
-        <div data-dropdown-target="menu" class="hidden absolute right-0 mt-2 w-40 bg-zinc-900 border border-white/10 rounded-xl shadow-xl z-10 overflow-hidden">
-          <%= link_to export_pdf_invoice_path(@invoice, style: "modern"), class: "block px-4 py-2.5 text-sm text-white hover:bg-white/10 transition-colors", data: { turbo: false } do %>
-            <%= t("pdf.templates.modern") %>
-          <% end %>
-          <%= link_to export_pdf_invoice_path(@invoice, style: "classic"), class: "block px-4 py-2.5 text-sm text-white hover:bg-white/10 transition-colors", data: { turbo: false } do %>
-            <%= t("pdf.templates.classic") %>
-          <% end %>
-          <%= link_to export_pdf_invoice_path(@invoice, style: "minimal"), class: "block px-4 py-2.5 text-sm text-white hover:bg-white/10 transition-colors", data: { turbo: false } do %>
-            <%= t("pdf.templates.minimal") %>
-          <% end %>
-        </div>
-      </div>
+      <!-- Export PDF (opens preview panel) -->
+      <button type="button" data-action="click->pdf-preview#open"
+              class="inline-flex items-center gap-2 px-4 py-2.5 bg-white/10 text-white text-sm font-medium rounded-full hover:bg-white/20 transition-all duration-200">
+        <%= icon(:export_pdf, size: :sm) %>
+        <%= t("common.export_pdf") %>
+      </button>
 
       <%= button_to invoice_path(@invoice), method: :delete,
           data: { turbo_confirm: t("invoices.confirm_delete") },
@@ -183,4 +172,9 @@
       </div>
     <% end %>
   </div>
+
+  <%= render "shared/pdf_preview_panel",
+             preview_url: preview_pdf_invoice_path(@invoice),
+             download_url: export_pdf_invoice_path(@invoice),
+             resource_title: @invoice.invoice_number %>
 </div>

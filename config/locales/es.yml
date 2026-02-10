@@ -215,11 +215,14 @@ es:
     view: "Ver"
     add_new: "Agregar Nuevo"
     export_pdf: "Exportar PDF"
+    download_pdf: "Descargar PDF"
+    preview_pdf: "Previsualizar PDF"
 
   # PDF Export
   pdf:
     powered_by: "Creado con Freelancer Hub"
     generated_on: "Generado el %{date}"
+    style: "Estilo"
     templates:
       modern: "Moderno"
       classic: "Clasico"

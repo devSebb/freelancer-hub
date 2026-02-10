@@ -1,5 +1,5 @@
 class ProposalsController < ApplicationController
-  before_action :set_proposal, only: [ :show, :edit, :update, :destroy, :send_proposal, :save_as_template, :export_pdf ]
+  before_action :set_proposal, only: [ :show, :edit, :update, :destroy, :send_proposal, :save_as_template, :export_pdf, :preview_pdf ]
 
   def index
     @pagy, @proposals = pagy(current_user.proposals.includes(:client).order(created_at: :desc), items: 20)
@@ -82,6 +82,30 @@ class ProposalsController < ApplicationController
     else
       redirect_to @proposal, alert: template.errors.full_messages.join(", ")
     end
+  end
+
+  def preview_pdf
+    @preview = true
+    template_style = params[:style].presence || "modern"
+    template_style = "modern" unless %w[modern classic minimal].include?(template_style)
+
+    locale = @proposal.client&.language || current_user.language || I18n.default_locale
+
+    html = I18n.with_locale(locale) do
+      render_to_string(
+        template: "pdf/proposals/show",
+        layout: "pdf",
+        locals: {
+          proposal: @proposal,
+          user: @proposal.user,
+          client: @proposal.client,
+          template_style: template_style,
+          show_powered_by: !current_user.pro?
+        }
+      )
+    end
+
+    render html: html.html_safe, layout: false
   end
 
   def export_pdf

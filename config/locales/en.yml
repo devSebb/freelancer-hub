@@ -215,11 +215,14 @@ en:
     view: "View"
     add_new: "Add New"
     export_pdf: "Export PDF"
+    download_pdf: "Download PDF"
+    preview_pdf: "Preview PDF"
 
   # PDF Export
   pdf:
     powered_by: "Powered by Freelancer Hub"
     generated_on: "Generated on %{date}"
+    style: "Style"
     templates:
       modern: "Modern"
       classic: "Classic"

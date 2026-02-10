@@ -1,6 +1,6 @@
 class InvoicesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_invoice, only: [ :show, :edit, :update, :destroy, :send_invoice, :export_pdf ]
+  before_action :set_invoice, only: [ :show, :edit, :update, :destroy, :send_invoice, :export_pdf, :preview_pdf ]
 
   def index
     @pagy, @invoices = pagy(current_user.invoices.includes(:client).order(created_at: :desc), items: 20)
@@ -93,6 +93,30 @@ class InvoicesController < ApplicationController
     InvoiceMailer.invoice_sent(@invoice).deliver_later
 
     redirect_to @invoice, notice: t("invoices.sent")
+  end
+
+  def preview_pdf
+    @preview = true
+    template_style = params[:style].presence || "modern"
+    template_style = "modern" unless %w[modern classic minimal].include?(template_style)
+
+    locale = @invoice.client&.language || current_user.language || I18n.default_locale
+
+    html = I18n.with_locale(locale) do
+      render_to_string(
+        template: "pdf/invoices/show",
+        layout: "pdf",
+        locals: {
+          invoice: @invoice,
+          user: @invoice.user,
+          client: @invoice.client,
+          template_style: template_style,
+          show_powered_by: !current_user.pro?
+        }
+      )
+    end
+
+    render html: html.html_safe, layout: false
   end
 
   def export_pdf
