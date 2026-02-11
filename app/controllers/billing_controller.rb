@@ -24,8 +24,8 @@ class BillingController < ApplicationController
       customer: current_user.stripe_customer_id.presence,
       customer_email: current_user.stripe_customer_id.present? ? nil : current_user.email,
       line_items: [ { price: price_id, quantity: 1 } ],
-      success_url: "#{request.base_url}#{settings_path(checkout: "success")}",
-      cancel_url: "#{request.base_url}#{pricing_path(interval: interval)}"
+      success_url: "#{billing_base_url}#{settings_path(checkout: "success")}",
+      cancel_url: "#{billing_base_url}#{pricing_path(interval: interval)}"
     )
 
     redirect_to session.url, allow_other_host: true
@@ -42,7 +42,7 @@ class BillingController < ApplicationController
 
     session = Stripe::BillingPortal::Session.create(
       customer: current_user.stripe_customer_id,
-      return_url: "#{request.base_url}#{settings_path}"
+      return_url: "#{billing_base_url}#{settings_path}"
     )
 
     redirect_to session.url, allow_other_host: true
@@ -52,6 +52,11 @@ class BillingController < ApplicationController
   end
 
   private
+
+  def billing_base_url
+    base = ENV["APP_URL"].presence || request.base_url
+    base.to_s.chomp("/")
+  end
 
   def stripe_price_id_for(tier:, interval:)
     case [ tier, interval ]

@@ -36,3 +36,12 @@
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+# Ignore Claude.md
+CLAUDE.md
+
+# Ignore PRICING_BILLING_PLAN_V2.md
+PRICING_BILLING_PLAN_V2.md
+
+# Ignore DEPLOYMENT.md
+DEPLOYMENT.md
