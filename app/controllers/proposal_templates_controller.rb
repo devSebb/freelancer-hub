@@ -1,6 +1,7 @@
 class ProposalTemplatesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_template, only: [ :show, :edit, :update, :destroy ]
+  before_action :ensure_template_limit, only: [ :new, :create, :from_proposal ]
 
   def index
     @templates = current_user.proposal_templates.order(:name)
@@ -53,6 +54,16 @@ class ProposalTemplatesController < ApplicationController
   end
 
   private
+
+  def ensure_template_limit
+    return unless current_user.at_limit?(:templates)
+
+    redirect_to pricing_path(limit: :templates), alert: t(
+      "billing.limits.messages.templates_total",
+      usage: current_user.usage_for(:templates),
+      limit: current_user.limit_for(:templates)
+    )
+  end
 
   def set_template
     @template = current_user.proposal_templates.find(params[:id])

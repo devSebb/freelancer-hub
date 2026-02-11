@@ -92,4 +92,83 @@
       <%= f.submit t("settings.save_changes"), class: "px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-white/90 transition-all duration-200 cursor-pointer" %>
     </div>
   <% end %>
+
+  <!-- Billing Section -->
+  <div class="mt-6 bg-white/5 border border-white/10 rounded-2xl p-6">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div>
+        <h2 class="text-lg font-semibold text-white"><%= t("billing.section_title") %></h2>
+        <p class="mt-1 text-sm text-white/50"><%= t("billing.section_description") %></p>
+      </div>
+      <div class="inline-flex items-center px-4 py-2 rounded-full border border-white/15 bg-white/5">
+        <span class="text-xs uppercase tracking-wider text-white/60"><%= t("billing.current_plan_label") %></span>
+        <span class="ml-2 text-sm font-semibold text-accent"><%= t("billing.plan_names.#{@billing_plan}") %></span>
+      </div>
+    </div>
+
+    <% if @billing_activating %>
+      <div class="mt-5 rounded-xl border border-blue-400/30 bg-blue-400/10 px-4 py-3">
+        <p class="text-sm text-blue-300"><%= t("billing.activating") %></p>
+      </div>
+    <% end %>
+
+    <% if @billing_subscription&.current_period_end.present? %>
+      <div class="mt-5 rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+        <% if @billing_subscription.cancel_at_period_end? %>
+          <p class="text-sm text-white/70">
+            <%= t("billing.cancels_on", date: l(@billing_subscription.current_period_end.to_date, format: :long)) %>
+          </p>
+        <% else %>
+          <p class="text-sm text-white/70">
+            <%= t("billing.renews_on", date: l(@billing_subscription.current_period_end.to_date, format: :long)) %>
+          </p>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <% [
+        [:clients, t("billing.usage.clients"), false],
+        [:proposals, t("billing.usage.proposals"), true],
+        [:invoices, t("billing.usage.invoices"), true],
+        [:templates, t("billing.usage.templates"), false]
+      ].each do |resource, label, monthly| %>
+        <% data = @billing_usage[resource] %>
+        <div class="rounded-xl border border-white/10 bg-black/20 px-4 py-3">
+          <p class="text-xs text-white/45 uppercase tracking-wider"><%= label %></p>
+          <p class="mt-1 text-white font-semibold">
+            <% if data[:limit].nil? %>
+              <%= t("billing.unlimited") %>
+            <% else %>
+              <%= "#{data[:usage]}/#{data[:limit]}" %>
+              <% if monthly %>
+                <span class="text-xs text-white/40 ml-1"><%= t("billing.per_month") %></span>
+              <% end %>
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+
+    <% if @show_upgrade_nudge %>
+      <div class="mt-5 rounded-xl border border-accent/30 bg-accent/10 px-4 py-3">
+        <p class="text-sm text-accent"><%= t("billing.upgrade_nudge") %></p>
+      </div>
+    <% end %>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+      <% if @user.pro? %>
+        <%= button_to t("billing.manage_subscription"), billing_portal_path, method: :post, data: { turbo: false },
+                      class: "px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-white/90 transition-all duration-200 cursor-pointer" %>
+      <% else %>
+        <%= button_to t("billing.actions.upgrade_starter_monthly"), billing_checkout_path(tier: "starter", interval: "monthly"), method: :post, data: { turbo: false },
+                      class: "px-5 py-2.5 bg-accent text-black text-sm font-semibold rounded-full hover:bg-accent-light transition-all duration-200 cursor-pointer" %>
+        <%= button_to t("billing.actions.upgrade_starter_yearly"), billing_checkout_path(tier: "starter", interval: "yearly"), method: :post, data: { turbo: false },
+                      class: "px-5 py-2.5 bg-white/10 border border-white/20 text-white text-sm font-semibold rounded-full hover:bg-white/20 transition-all duration-200 cursor-pointer" %>
+        <%= button_to t("billing.actions.view_all_plans"), pricing_path,
+                      method: :get,
+                      class: "px-5 py-2.5 bg-transparent border border-white/20 text-white text-sm font-semibold rounded-full hover:border-white/35 transition-all duration-200 cursor-pointer" %>
+      <% end %>
+    </div>
+  </div>
 </div>

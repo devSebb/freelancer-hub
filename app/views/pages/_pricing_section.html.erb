@@ -1,0 +1,176 @@
+<% initial_interval = local_assigns.fetch(:initial_interval, "monthly") %>
+<% recommended_tier = local_assigns.fetch(:recommended_tier, :starter) %>
+
+<section id="pricing" class="relative py-28 px-6 lg:px-12 overflow-hidden">
+  <div class="absolute inset-0 dot-pattern opacity-35"></div>
+  <div class="absolute inset-0" style="background: radial-gradient(ellipse at center, rgba(148,247,173,0.06) 0%, transparent 65%);"></div>
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent"></div>
+
+  <div class="relative max-w-6xl mx-auto" data-controller="pricing-plans" data-pricing-plans-initial-interval-value="<%= initial_interval %>">
+    <% if alert.present? %>
+      <div class="mb-6 rounded-2xl border border-accent/30 bg-accent/10 px-5 py-4">
+        <p class="text-sm text-accent font-medium"><%= alert %></p>
+      </div>
+    <% end %>
+
+    <div class="text-center mb-10 reveal">
+      <span class="text-accent text-xs font-semibold uppercase tracking-[0.2em] mb-3 block">Pricing</span>
+      <h2 class="text-4xl lg:text-6xl font-extrabold text-white tracking-tight">
+        Clear plans.<br>
+        <span class="text-white/35">No surprises.</span>
+      </h2>
+      <p class="mt-4 text-white/45 max-w-2xl mx-auto">
+        Choose monthly or pay yearly and save one month.
+      </p>
+    </div>
+
+    <!-- Monthly/Yearly switch -->
+    <div class="flex justify-center mb-12 reveal" data-reveal-delay="100">
+      <div class="inline-flex items-center gap-2 p-1 rounded-full border border-white/10 bg-white/5">
+        <button type="button"
+                data-pricing-plans-target="toggleMonthly"
+                data-action="pricing-plans#setMonthly"
+                class="px-4 py-2 rounded-full text-sm font-semibold bg-white text-black transition-colors cursor-pointer">
+          Monthly
+        </button>
+        <button type="button"
+                data-pricing-plans-target="toggleYearly"
+                data-action="pricing-plans#setYearly"
+                class="px-4 py-2 rounded-full text-sm font-semibold text-white/60 transition-colors cursor-pointer">
+          Yearly
+        </button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-10">
+      <!-- Free -->
+      <article class="glass-card rounded-2xl border border-white/10 p-6 reveal-scale">
+        <h3 class="text-white text-xl font-bold">Free</h3>
+        <p class="text-white/50 text-sm mt-1">Get started, no card required</p>
+        <p class="mt-4 text-4xl font-black text-white">$0</p>
+        <p class="text-white/40 text-xs mt-1">Forever</p>
+
+        <ul class="mt-6 space-y-2 text-sm text-white/75">
+          <li>4 clients (total)</li>
+          <li>4 proposals / month</li>
+          <li>4 invoices / month</li>
+          <li>4 templates (total)</li>
+          <li>Powered-by PDF branding</li>
+        </ul>
+
+        <div class="mt-6">
+          <%= link_to (user_signed_in? ? dashboard_path : new_user_registration_path),
+                      class: "inline-flex w-full justify-center items-center px-5 py-2.5 bg-white/10 border border-white/20 text-white text-sm font-semibold rounded-full hover:bg-white/15 transition-colors cursor-pointer" do %>
+            Get started
+          <% end %>
+        </div>
+      </article>
+
+      <!-- Starter -->
+      <article class="relative glass-card rounded-2xl border p-6 reveal-scale <%= recommended_tier == :starter ? 'border-accent/40 shadow-glow' : 'border-white/10' %>" data-reveal-delay="120">
+        <div class="absolute -top-3 right-6 px-3 py-1 rounded-full text-[11px] font-semibold uppercase tracking-wider bg-accent text-black">
+          Most popular
+        </div>
+
+        <h3 class="text-white text-xl font-bold">Starter</h3>
+        <p class="text-white/50 text-sm mt-1">For steady freelance volume</p>
+
+        <div class="mt-4">
+          <p class="text-4xl font-black text-white" data-pricing-plans-target="monthlyOnly">$5.99</p>
+          <p class="text-4xl font-black text-white hidden" data-pricing-plans-target="yearlyOnly">$65.89</p>
+          <p class="text-white/40 text-xs mt-1" data-pricing-plans-target="monthlyOnly">Billed monthly</p>
+          <p class="text-white/40 text-xs mt-1 hidden" data-pricing-plans-target="yearlyOnly">Billed yearly</p>
+          <p class="text-accent text-xs mt-2 hidden" data-pricing-plans-target="yearlyOnly">1 month free (billed immediately)</p>
+        </div>
+
+        <ul class="mt-6 space-y-2 text-sm text-white/75">
+          <li>30 clients (total)</li>
+          <li>50 proposals / month</li>
+          <li>50 invoices / month</li>
+          <li>10 templates (total)</li>
+          <li>No PDF branding</li>
+        </ul>
+
+        <div class="mt-6">
+          <% if user_signed_in? %>
+            <%= form_with url: billing_checkout_path, method: :post, data: { turbo: false } do %>
+              <%= hidden_field_tag :tier, "starter" %>
+              <%= hidden_field_tag :interval, initial_interval, data: { pricing_plans_target: "intervalInput" } %>
+              <button type="submit" class="inline-flex w-full justify-center items-center px-5 py-2.5 bg-accent text-black text-sm font-semibold rounded-full hover:bg-accent-light transition-colors cursor-pointer">
+                <span data-pricing-plans-target="monthlyOnly">Upgrade</span>
+                <span class="hidden" data-pricing-plans-target="yearlyOnly">Pay yearly — 1 month free</span>
+              </button>
+            <% end %>
+          <% else %>
+            <%= link_to new_user_registration_path(plan: "starter"),
+                        class: "inline-flex w-full justify-center items-center px-5 py-2.5 bg-accent text-black text-sm font-semibold rounded-full hover:bg-accent-light transition-colors cursor-pointer" do %>
+              <span data-pricing-plans-target="monthlyOnly">Upgrade</span>
+              <span class="hidden" data-pricing-plans-target="yearlyOnly">Pay yearly — 1 month free</span>
+            <% end %>
+          <% end %>
+        </div>
+      </article>
+
+      <!-- Pro -->
+      <article class="glass-card rounded-2xl border p-6 reveal-scale <%= recommended_tier == :pro ? 'border-accent/35 shadow-glow' : 'border-white/10' %>" data-reveal-delay="180">
+        <h3 class="text-white text-xl font-bold">Pro</h3>
+        <p class="text-white/50 text-sm mt-1">For high-volume operators</p>
+
+        <div class="mt-4">
+          <p class="text-4xl font-black text-white" data-pricing-plans-target="monthlyOnly">$10.99</p>
+          <p class="text-4xl font-black text-white hidden" data-pricing-plans-target="yearlyOnly">$120.89</p>
+          <p class="text-white/40 text-xs mt-1" data-pricing-plans-target="monthlyOnly">Billed monthly</p>
+          <p class="text-white/40 text-xs mt-1 hidden" data-pricing-plans-target="yearlyOnly">Billed yearly</p>
+          <p class="text-accent text-xs mt-2 hidden" data-pricing-plans-target="yearlyOnly">1 month free (billed immediately)</p>
+        </div>
+
+        <ul class="mt-6 space-y-2 text-sm text-white/75">
+          <li>Unlimited clients</li>
+          <li>Unlimited proposals</li>
+          <li>Unlimited invoices</li>
+          <li>Unlimited templates</li>
+          <li>No PDF branding</li>
+        </ul>
+
+        <div class="mt-6">
+          <% if user_signed_in? %>
+            <%= form_with url: billing_checkout_path, method: :post, data: { turbo: false } do %>
+              <%= hidden_field_tag :tier, "pro" %>
+              <%= hidden_field_tag :interval, initial_interval, data: { pricing_plans_target: "intervalInput" } %>
+              <button type="submit" class="inline-flex w-full justify-center items-center px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-white/90 transition-colors cursor-pointer">
+                <span data-pricing-plans-target="monthlyOnly">Upgrade</span>
+                <span class="hidden" data-pricing-plans-target="yearlyOnly">Pay yearly — 1 month free</span>
+              </button>
+            <% end %>
+          <% else %>
+            <%= link_to new_user_registration_path(plan: "pro"),
+                        class: "inline-flex w-full justify-center items-center px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-white/90 transition-colors cursor-pointer" do %>
+              <span data-pricing-plans-target="monthlyOnly">Upgrade</span>
+              <span class="hidden" data-pricing-plans-target="yearlyOnly">Pay yearly — 1 month free</span>
+            <% end %>
+          <% end %>
+        </div>
+      </article>
+    </div>
+
+    <div class="text-center text-sm text-white/45 mb-10 reveal" data-reveal-delay="220">
+      <p>Cancel anytime · Secure checkout by Stripe</p>
+    </div>
+
+    <!-- FAQ -->
+    <div class="max-w-3xl mx-auto space-y-3 reveal" data-reveal-delay="260">
+      <details class="glass-card rounded-xl border border-white/10 px-5 py-4 group">
+        <summary class="cursor-pointer text-white font-medium">Can I change plans later?</summary>
+        <p class="mt-2 text-sm text-white/55">Yes. You can upgrade, downgrade, or cancel from the Stripe customer portal at any time.</p>
+      </details>
+      <details class="glass-card rounded-xl border border-white/10 px-5 py-4 group">
+        <summary class="cursor-pointer text-white font-medium">What happens when I hit my limit?</summary>
+        <p class="mt-2 text-sm text-white/55">You are redirected to pricing with a contextual message, and can upgrade immediately to continue creating.</p>
+      </details>
+      <details class="glass-card rounded-xl border border-white/10 px-5 py-4 group">
+        <summary class="cursor-pointer text-white font-medium">How does yearly billing work?</summary>
+        <p class="mt-2 text-sm text-white/55">Yearly is a discount, not a trial. You are billed once per year at the 11-month total and save one month.</p>
+      </details>
+    </div>
+  </div>
+</section>

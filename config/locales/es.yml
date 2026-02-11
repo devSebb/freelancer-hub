@@ -358,3 +358,47 @@ es:
   errors:
     not_found: "No encontrado"
     unauthorized: "Debes iniciar sesion primero."
+
+  pricing:
+    coming_soon_badge: "Precios"
+    title: "Los planes estaran listos pronto"
+    placeholder_description: "Estamos finalizando los detalles de los planes. Puedes seguir usando la app mientras activamos el cobro."
+    back_to_dashboard: "Volver"
+
+  billing:
+    section_title: "Facturacion y Plan"
+    section_description: "Administra tu suscripcion y revisa tu uso actual."
+    current_plan_label: "Plan actual"
+    plan_names:
+      free: "Gratis"
+      starter: "Starter"
+      pro: "Pro"
+    usage:
+      clients: "Clientes"
+      proposals: "Propuestas"
+      invoices: "Facturas"
+      templates: "Plantillas"
+    per_month: "este mes"
+    unlimited: "Ilimitado"
+    renews_on: "Renueva el %{date}"
+    cancels_on: "Se cancelara el %{date}"
+    activating: "Activando tu plan... esto puede tardar unos segundos despues del checkout."
+    upgrade_nudge: "Estas cerca de tu limite actual. Actualiza para seguir creando sin interrupciones."
+    manage_subscription: "Administrar suscripcion"
+    actions:
+      upgrade_starter_monthly: "Actualizar a Starter"
+      upgrade_starter_yearly: "Pagar anual — 1 mes gratis"
+      view_all_plans: "Ver todos los planes"
+    checkout:
+      invalid_selection: "Seleccion de plan invalida. Intentalo de nuevo."
+      missing_price: "La facturacion aun no esta configurada. Contacta soporte."
+      unavailable: "Stripe checkout no esta disponible en este momento. Intentalo de nuevo."
+    portal:
+      no_customer: "No se encontro un cliente de Stripe para tu cuenta."
+      unavailable: "El portal de facturacion no esta disponible en este momento. Intentalo de nuevo."
+    limits:
+      messages:
+        clients_total: "Has alcanzado el limite de clientes (%{usage}/%{limit}). Actualiza tu plan para agregar mas."
+        templates_total: "Has alcanzado el limite de plantillas (%{usage}/%{limit}). Actualiza tu plan para agregar mas."
+        proposals_monthly: "Has alcanzado tu limite mensual de propuestas (%{usage}/%{limit}). Actualiza tu plan para agregar mas."
+        invoices_monthly: "Has alcanzado tu limite mensual de facturas (%{usage}/%{limit}). Actualiza tu plan para agregar mas."

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   authenticate :user do
     get "dashboard", to: "dashboard#show"
     resource :settings, only: [ :show, :update ]
+    post "billing/checkout", to: "billing#checkout", as: :billing_checkout
+    post "billing/portal", to: "billing#portal", as: :billing_portal
 
     # Full CRUD
     resources :clients
@@ -34,6 +36,12 @@ Rails.application.routes.draw do
 
   # Public invoice viewing (no auth required)
   get "i/:token", to: "public_invoices#show", as: :public_invoice
+
+  # Stripe webhooks
+  post "webhooks/stripe", to: "stripe_webhooks#create"
+
+  # Public pricing page
+  get "pricing", to: "pages#pricing"
 
   # Landing page for guests, dashboard for authenticated users
   root to: "pages#home"

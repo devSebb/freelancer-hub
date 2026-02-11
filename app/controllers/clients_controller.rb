@@ -1,5 +1,6 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [ :show, :edit, :update, :destroy ]
+  before_action :ensure_client_limit, only: [ :new, :create ]
 
   def index
     @pagy, @clients = pagy(current_user.clients.order(created_at: :desc), items: 20)
@@ -39,6 +40,16 @@ class ClientsController < ApplicationController
   end
 
   private
+
+  def ensure_client_limit
+    return unless current_user.at_limit?(:clients)
+
+    redirect_to pricing_path(limit: :clients), alert: t(
+      "billing.limits.messages.clients_total",
+      usage: current_user.usage_for(:clients),
+      limit: current_user.limit_for(:clients)
+    )
+  end
 
   def set_client
     @client = current_user.clients.find(params[:id])

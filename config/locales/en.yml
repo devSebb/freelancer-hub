@@ -359,3 +359,47 @@ en:
   errors:
     not_found: "Not found"
     unauthorized: "You need to sign in first."
+
+  pricing:
+    coming_soon_badge: "Pricing"
+    title: "Plans are almost ready"
+    placeholder_description: "We are finalizing plan details. You can keep using the app until billing is enabled."
+    back_to_dashboard: "Back"
+
+  billing:
+    section_title: "Billing & Plan"
+    section_description: "Manage your subscription and track your current usage."
+    current_plan_label: "Current"
+    plan_names:
+      free: "Free"
+      starter: "Starter"
+      pro: "Pro"
+    usage:
+      clients: "Clients"
+      proposals: "Proposals"
+      invoices: "Invoices"
+      templates: "Templates"
+    per_month: "this month"
+    unlimited: "Unlimited"
+    renews_on: "Renews on %{date}"
+    cancels_on: "Cancels on %{date}"
+    activating: "Activating your plan... this can take a few seconds after checkout."
+    upgrade_nudge: "You are close to your current limit. Upgrade to keep creating without interruption."
+    manage_subscription: "Manage subscription"
+    actions:
+      upgrade_starter_monthly: "Upgrade to Starter"
+      upgrade_starter_yearly: "Pay yearly — 1 month free"
+      view_all_plans: "View all plans"
+    checkout:
+      invalid_selection: "Invalid plan selection. Please try again."
+      missing_price: "Billing is not configured yet. Please contact support."
+      unavailable: "Stripe checkout is currently unavailable. Please try again."
+    portal:
+      no_customer: "No Stripe customer found for your account yet."
+      unavailable: "The billing portal is currently unavailable. Please try again."
+    limits:
+      messages:
+        clients_total: "You've reached your client limit (%{usage}/%{limit}). Upgrade to add more."
+        templates_total: "You've reached your template limit (%{usage}/%{limit}). Upgrade to add more."
+        proposals_monthly: "You've reached your monthly proposal limit (%{usage}/%{limit}). Upgrade to add more."
+        invoices_monthly: "You've reached your monthly invoice limit (%{usage}/%{limit}). Upgrade to add more."

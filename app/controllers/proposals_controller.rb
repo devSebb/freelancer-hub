@@ -1,5 +1,6 @@
 class ProposalsController < ApplicationController
   before_action :set_proposal, only: [ :show, :edit, :update, :destroy, :send_proposal, :save_as_template, :export_pdf, :preview_pdf ]
+  before_action :ensure_proposal_limit, only: [ :new, :create ]
 
   def index
     @pagy, @proposals = pagy(current_user.proposals.includes(:client).order(created_at: :desc), items: 20)
@@ -136,6 +137,16 @@ class ProposalsController < ApplicationController
   end
 
   private
+
+  def ensure_proposal_limit
+    return unless current_user.at_limit?(:proposals)
+
+    redirect_to pricing_path(limit: :proposals), alert: t(
+      "billing.limits.messages.proposals_monthly",
+      usage: current_user.usage_for(:proposals),
+      limit: current_user.limit_for(:proposals)
+    )
+  end
 
   def set_proposal
     @proposal = current_user.proposals.find(params[:id])

@@ -1,6 +1,7 @@
 class InvoicesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_invoice, only: [ :show, :edit, :update, :destroy, :send_invoice, :export_pdf, :preview_pdf ]
+  before_action :ensure_invoice_limit, only: [ :new, :create ]
 
   def index
     @pagy, @invoices = pagy(current_user.invoices.includes(:client).order(created_at: :desc), items: 20)
@@ -147,6 +148,16 @@ class InvoicesController < ApplicationController
   end
 
   private
+
+  def ensure_invoice_limit
+    return unless current_user.at_limit?(:invoices)
+
+    redirect_to pricing_path(limit: :invoices), alert: t(
+      "billing.limits.messages.invoices_monthly",
+      usage: current_user.usage_for(:invoices),
+      limit: current_user.limit_for(:invoices)
+    )
+  end
 
   def set_invoice
     @invoice = current_user.invoices.find(params[:id])

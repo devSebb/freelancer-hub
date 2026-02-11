@@ -1,0 +1,30 @@
+default: &default
+  tiers:
+    free:
+      limits:
+        clients: 4
+        proposals_per_month: 4
+        invoices_per_month: 4
+        templates: 4
+    starter:
+      limits:
+        clients: 30
+        proposals_per_month: 50
+        invoices_per_month: 50
+        templates: 10
+    pro:
+      limits:
+        clients: null
+        proposals_per_month: null
+        invoices_per_month: null
+        templates: null
+  price_id_to_tier: {}
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

@@ -1,0 +1,10 @@
+<section class="pt-24 px-6 lg:px-12">
+  <div class="max-w-6xl mx-auto text-center">
+    <%= link_to root_path, class: "inline-flex items-center text-xs uppercase tracking-[0.2em] text-white/40 hover:text-accent transition-colors" do %>
+      <%= icon(:arrow_right, size: :sm, css_class: "-rotate-180 mr-2") %>
+      Back to home
+    <% end %>
+  </div>
+</section>
+
+<%= render "pricing_section", initial_interval: @initial_interval, recommended_tier: @recommended_tier %>

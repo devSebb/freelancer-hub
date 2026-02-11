@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_02_09_213833) do
+ActiveRecord::Schema[7.2].define(version: 2026_02_10_101100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -136,6 +136,22 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_09_213833) do
     t.index ["user_id"], name: "index_proposals_on_user_id"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "stripe_subscription_id", null: false
+    t.string "stripe_price_id", null: false
+    t.string "status", null: false
+    t.datetime "current_period_start"
+    t.datetime "current_period_end"
+    t.boolean "cancel_at_period_end", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "last_event_created_at"
+    t.index ["stripe_subscription_id"], name: "index_subscriptions_on_stripe_subscription_id", unique: true
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+    t.index ["user_id"], name: "index_subscriptions_one_active_or_trialing_per_user", unique: true, where: "((status)::text = ANY ((ARRAY['active'::character varying, 'trialing'::character varying])::text[]))"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -148,8 +164,22 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_09_213833) do
     t.integer "language", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "stripe_customer_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["stripe_customer_id"], name: "index_users_on_stripe_customer_id", unique: true
+  end
+
+  create_table "webhook_events", force: :cascade do |t|
+    t.string "stripe_event_id", null: false
+    t.string "event_type", null: false
+    t.string "stripe_subscription_id"
+    t.datetime "event_created_at", null: false
+    t.datetime "processed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stripe_event_id"], name: "index_webhook_events_on_stripe_event_id", unique: true
+    t.index ["stripe_subscription_id"], name: "index_webhook_events_on_stripe_subscription_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -162,4 +192,5 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_09_213833) do
   add_foreign_key "proposal_templates", "users"
   add_foreign_key "proposals", "clients"
   add_foreign_key "proposals", "users"
+  add_foreign_key "subscriptions", "users"
 end
