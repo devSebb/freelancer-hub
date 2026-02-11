@@ -112,6 +112,14 @@ Rails.application.configure do
 
   # Allow Render and custom host. Set APP_HOST on Render if using a custom domain.
   config.hosts << ".onrender.com"
+
+  # Custom domains
+  config.hosts << "billdeck.app"
+  config.hosts << "www.billdeck.app"
+
+  # Optional env-driven host (nice for staging)
   config.hosts << ENV["APP_HOST"] if ENV["APP_HOST"].present?
+
   config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
 end
