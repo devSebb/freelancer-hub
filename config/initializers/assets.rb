@@ -10,3 +10,11 @@ Rails.application.config.assets.version = "1.0"
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w[ admin.js admin.css ]
+
+# Precompile PDF stylesheets for inline rendering
+Rails.application.config.assets.precompile += %w[
+  pdf.css
+  pdf/modern.css
+  pdf/classic.css
+  pdf/minimal.css
+]

@@ -5,14 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= content_for(:title) || "Document" %></title>
   <style>
-    <%= Rails.application.assets["pdf.css"]&.source || File.read(Rails.root.join("app/assets/stylesheets/pdf.css")) %>
+    <%= begin
+          Rails.application.assets["pdf.css"]&.source ||
+          File.read(Rails.root.join("app/assets/stylesheets/pdf.css"))
+        rescue => e
+          Rails.logger.error("Failed to load pdf.css: #{e.message}")
+          ""
+        end %>
   </style>
   <% if @template_style.present? %>
     <style>
       <%= begin
             Rails.application.assets["pdf/#{@template_style}.css"]&.source ||
             File.read(Rails.root.join("app/assets/stylesheets/pdf/#{@template_style}.css"))
-          rescue
+          rescue => e
+            Rails.logger.error("Failed to load pdf/#{@template_style}.css: #{e.message}")
             ""
           end %>
     </style>
