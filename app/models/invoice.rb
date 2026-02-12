@@ -88,6 +88,12 @@ class Invoice < ApplicationRecord
   # Payment methods helpers
   PAYMENT_METHOD_TYPES = %w[bank_transfer paypal venmo zelle cashapp crypto other].freeze
 
+  # Normalize payment methods into an Array<Hash> regardless of how they were
+  # persisted (some forms submit a hash like { "0" => { ... } }).
+  def payment_methods
+    normalize_payment_methods(super)
+  end
+
   def has_payment_methods?
     payment_methods.present? && payment_methods.any?
   end
@@ -109,6 +115,32 @@ class Invoice < ApplicationRecord
   end
 
   private
+
+  def normalize_payment_methods(value)
+    methods =
+      case value
+      when nil
+        []
+      when Array
+        value
+      when Hash
+        # If this hash already looks like a single payment method, wrap it.
+        if value.key?("type") || value.key?(:type)
+          [ value ]
+        else
+          value.values
+        end
+      else
+        Array(value)
+      end
+
+    methods.filter_map do |pm|
+      pm = pm.to_unsafe_h if pm.respond_to?(:to_unsafe_h)
+      next unless pm.is_a?(Hash)
+
+      pm.deep_stringify_keys
+    end
+  end
 
   def generate_share_token
     self.share_token ||= SecureRandom.urlsafe_base64(32)

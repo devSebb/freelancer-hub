@@ -26,6 +26,8 @@
   <% end %>
 </head>
 <body class="pdf-document pdf-<%= @template_style %><%= ' pdf-preview' if @preview %>">
-  <%= yield %>
+  <div class="pdf-page-inner">
+    <%= yield %>
+  </div>
 </body>
 </html>

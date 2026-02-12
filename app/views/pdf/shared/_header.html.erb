@@ -1,5 +1,5 @@
 <div class="pdf-header">
-  <div class="business-info">
+  <div class="header-business">
     <% if user.logo.attached? %>
       <%= pdf_image_tag user.logo, class: "logo", alt: user.business_name.presence || user.name %>
     <% end %>
@@ -10,7 +10,20 @@
     <p class="email"><%= user.email %></p>
   </div>
 
-  <div class="document-info">
+  <div class="header-document">
     <%= yield %>
   </div>
+
+  <% if local_assigns[:client].present? && client.present? %>
+    <div class="header-client">
+      <h3><%= client_label %></h3>
+      <p class="client-name"><%= client.name %></p>
+      <% if client.company.present? %>
+        <p><%= client.company %></p>
+      <% end %>
+      <p><%= client.email %></p>
+    </div>
+  <% else %>
+    <div class="header-client"></div>
+  <% end %>
 </div>

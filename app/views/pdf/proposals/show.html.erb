@@ -1,7 +1,7 @@
 <% content_for(:title) { proposal.title } %>
 <% @template_style = template_style %>
 
-<%= render "pdf/shared/header", user: user do %>
+<%= render "pdf/shared/header", user: user, client: client, client_label: t("proposals.client") do %>
   <p class="document-type"><%= t("proposals.title").singularize.upcase %></p>
   <p class="document-date"><%= l(proposal.created_at.to_date, format: :long) %></p>
   <% if proposal.expires_at.present? %>

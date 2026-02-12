@@ -1,14 +1,3 @@
-<% if client.present? %>
-  <div class="pdf-recipient">
-    <h3><%= t("invoices.client") %></h3>
-    <p class="client-name"><%= client.name %></p>
-    <% if client.company.present? %>
-      <p><%= client.company %></p>
-    <% end %>
-    <p><%= client.email %></p>
-  </div>
-<% end %>
-
 <% if invoice.invoice_items.any? %>
   <div class="pdf-section pdf-line-items">
     <h2 class="pdf-section-title"><%= t("invoices.line_items") %></h2>

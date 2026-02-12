@@ -164,7 +164,7 @@ class InvoicesController < ApplicationController
   end
 
   def invoice_params
-    params.require(:invoice).permit(
+    permitted = params.require(:invoice).permit(
       :client_id,
       :proposal_id,
       :due_date,
@@ -176,5 +176,13 @@ class InvoicesController < ApplicationController
       invoice_items_attributes: [ :id, :description, :quantity, :rate, :position, :_destroy ],
       payment_methods: [ :type, :label, :bank_name, :account_number, :routing_number, :email, :handle, :address, :instructions ]
     )
+
+    # Some form submissions send payment_methods as a hash keyed by an index
+    # (e.g. { "0" => { ... } }). Convert to the expected array-of-hashes.
+    if permitted[:payment_methods].is_a?(ActionController::Parameters) || permitted[:payment_methods].is_a?(Hash)
+      permitted[:payment_methods] = permitted[:payment_methods].values
+    end
+
+    permitted
   end
 end
