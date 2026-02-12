@@ -220,7 +220,7 @@ en:
 
   # PDF Export
   pdf:
-    powered_by: "Powered by Freelancer Hub"
+    powered_by: "Powered by Billdeck"
     generated_on: "Generated on %{date}"
     style: "Style"
     templates:

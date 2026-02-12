@@ -6,21 +6,23 @@
           placeholder: t("invoices.description") %>
     </div>
     <div class="col-span-2">
-      <%= f.number_field :quantity,
-          step: 0.01,
-          min: 0,
+      <%= f.text_field :quantity,
+          inputmode: "decimal",
+          autocomplete: "off",
           class: "w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-0 transition-colors text-right",
-          placeholder: t("invoices.qty") %>
+          placeholder: t("invoices.qty"),
+          data: { action: "input->invoice-items#recalculate blur->invoice-items#recalculate" } %>
     </div>
     <div class="col-span-2">
-      <%= f.number_field :rate,
-          step: 0.01,
-          min: 0,
+      <%= f.text_field :rate,
+          inputmode: "decimal",
+          autocomplete: "off",
           class: "w-full px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm placeholder-white/30 focus:outline-none focus:border-white/30 focus:ring-0 transition-colors text-right",
-          placeholder: t("invoices.rate") %>
+          placeholder: t("invoices.rate"),
+          data: { action: "input->invoice-items#recalculate blur->invoice-items#recalculate" } %>
     </div>
     <div class="col-span-2 flex items-center">
-      <span class="text-sm text-white/50 w-full text-right pr-2">
+      <span class="text-sm text-white/50 w-full text-right pr-2" data-invoice-items-target="amount">
         <%= number_to_currency((f.object.quantity || 0) * (f.object.rate || 0)) %>
       </span>
     </div>
