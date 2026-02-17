@@ -1,0 +1,172 @@
+<% content_for :title, "Terms & Conditions" %>
+
+<section class="relative py-16 px-6 lg:px-12">
+  <div class="max-w-3xl mx-auto">
+    <!-- Back link -->
+    <%= link_to root_path, class: "inline-flex items-center text-xs uppercase tracking-[0.2em] text-white/40 hover:text-accent transition-colors mb-12" do %>
+      <%= icon(:arrow_right, size: :sm, css_class: "-rotate-180 mr-2") %>
+      Back to home
+    <% end %>
+
+    <header class="mb-12">
+      <h1 class="text-3xl lg:text-4xl font-bold text-white tracking-tight mb-2">Terms & Conditions</h1>
+      <p class="text-sm text-white/50">Effective date: February 16, 2026</p>
+    </header>
+
+    <div class="prose prose-invert prose-lg max-w-none space-y-10 text-white/80">
+      <!-- Section 1 -->
+      <section>
+        <h2 class="text-xl font-semibold text-white mb-4">1. Introduction & Acceptance</h2>
+        <p class="mb-4">These terms govern your use of the Billdeck web application (billdeck.app), including its installable Progressive Web App (PWA) version.</p>
+        <p class="mb-4">By creating an account or using the service, you accept these terms.</p>
+        <p class="mb-4">Billdeck reserves the right to update these terms at any time. Continued use of the service after changes are posted constitutes acceptance of the updated terms.</p>
+        <p>In the event of any discrepancy between the English and Spanish versions of these terms, the English version shall prevail.</p>
+      </section>
+
+      <!-- Section 2 -->
+      <section>
+        <h2 class="text-xl font-semibold text-white mb-4">2. Service Description</h2>
+        <p class="mb-4">Billdeck is a tool that helps freelancers organize client information, draft proposals, and create invoices.</p>
+        <p>It is a productivity and communication tool—not a legal, financial, accounting, or payment processing platform.</p>
+      </section>
+
+      <!-- Section 3 — CRITICAL DISCLAIMER (visually prominent) -->
+      <section class="rounded-2xl border-2 border-amber-400/40 bg-amber-400/5 p-6 lg:p-8">
+        <h2 class="text-xl font-bold text-amber-200 mb-6 flex items-center gap-2">
+          <span class="text-2xl" aria-hidden="true">⚠️</span>
+          3. Proposals and Invoices Are Not Legally Binding
+        </h2>
+        <p class="mb-4 text-white/90"><strong>Proposals</strong> created and sent through Billdeck are informational documents intended to communicate scope, pricing, and terms between a freelancer and their client. They do <strong>not</strong> constitute legally binding contracts, enforceable agreements, or formal offers under any jurisdiction's contract law unless independently validated by a licensed legal professional.</p>
+        <p class="mb-4 text-white/90">The "digital acceptance" feature—which records a name, IP address, and timestamp when a client accepts a proposal—is provided as a <strong>record of acknowledgment</strong> for communication purposes only. It does <strong>not</strong> by itself create a legally binding signature, a contract, or enforceable consent under electronic signature laws (such as ESIGN, eIDAS, or equivalent legislation). Users who require legally binding agreements must use dedicated e-signature platforms and consult with legal counsel.</p>
+        <p class="mb-4 text-white/90"><strong>Invoices</strong> created through Billdeck are informational documents intended to communicate amounts owed. They are <strong>not</strong> legal demands, certified financial documents, or tax-compliant instruments. Users are solely responsible for ensuring their invoices comply with the tax, accounting, and invoicing laws of their jurisdiction.</p>
+        <p class="mb-4 text-white/90">Billdeck does not verify, validate, or guarantee the legal enforceability of any proposal, acceptance, or invoice created through the platform.</p>
+        <p class="mb-0 text-amber-200/90 font-medium">Billdeck is <strong>not</strong> a substitute for legal contracts, accounting software, or professional legal and financial advice.</p>
+      </section>
+
+      <!-- Section 4 -->
+      <section>
+        <h2 class="text-xl font-semibold text-white mb-4">4. User Accounts and Responsibilities</h2>
+        <p class="mb-4">You must provide accurate information when registering for an account.</p>
+        <p class="mb-4">You are responsible for maintaining the confidentiality of your account credentials.</p>
+        <p class="mb-4">All content created through Billdeck—including client data, proposals, invoices, and templates—is created and managed entirely by you. Billdeck does not review, verify, or endorse any user content.</p>
+        <p>You are solely responsible for ensuring your content complies with applicable laws, including tax regulations, data protection laws, and professional standards.</p>
+      </section>
+
+      <!-- Section 5 -->
+      <section>
+        <h2 class="text-xl font-semibold text-white mb-4">5. Client Data and Privacy</h2>
+        <p class="mb-4">Freelancers enter and manage their clients' data (name, email, phone, company, language). Billdeck stores this data on behalf of the freelancer.</p>
+        <p class="mb-4">Freelancers are solely responsible for having the appropriate legal basis (such as consent or legitimate interest) to store and process their clients' personal information through Billdeck.</p>
+        <p class="mb-4">Billdeck acts as a data processor on the freelancer's instructions. Freelancers are the data controllers with respect to their clients' data.</p>
+        <p>For details on how Billdeck handles personal data, please refer to our Privacy Policy (when available).</p>
+      </section>
+
+      <!-- Section 6 -->
+      <section>
+        <h2 class="text-xl font-semibold text-white mb-4">6. Public Links</h2>
+        <p class="mb-4">Proposals and invoices can be shared via unique tokenized URLs (<code class="text-accent">/p/:token</code> and <code class="text-accent">/i/:token</code>). These links are accessible without login.</p>
+        <p class="mb-4">You are responsible for sharing these links only with intended recipients.</p>
+        <p class="mb-4">Billdeck is not liable for unauthorized access resulting from users sharing links publicly or insecurely.</p>
+        <p>Public links may be revoked at any time by deleting or modifying the underlying proposal or invoice.</p>
+      </section>
+
+      <!-- Section 7 -->
+      <section>
+        <h2 class="text-xl font-semibold text-white mb-4">7. Payment Information Disclaimer</h2>
+        <p class="mb-4">Invoices may contain user-provided payment details such as bank account numbers, PayPal addresses, Venmo handles, Zelle identifiers, cryptocurrency wallet addresses, or other payment methods.</p>
+        <p class="mb-4">This information is entered, stored, and displayed entirely at your discretion and risk.</p>
+        <p class="mb-4">Billdeck does <strong>not</strong> process, verify, validate, or facilitate any payment between freelancers and their clients. Billdeck is not a payment processor, money transmitter, or financial institution with respect to freelancer-client transactions.</p>
+        <p class="mb-4">Billdeck is not responsible for errors, fraud, disputes, or losses arising from payment information stored or shared through the platform.</p>
+        <p>You are responsible for ensuring the accuracy and security of payment details you include in invoices.</p>
+      </section>
+
+      <!-- Section 8 -->
+      <section>
+        <h2 class="text-xl font-semibold text-white mb-4">8. Subscription and Billing</h2>
+        <p class="mb-4">Billdeck offers Free, Starter, and Pro plans. Paid subscriptions are processed through Stripe.</p>
+        <p class="mb-4">Subscription management—including upgrades, downgrades, and cancellations—is handled via the Stripe Customer Portal.</p>
+        <p class="mb-4">Refund policies are governed by Billdeck's billing terms and Stripe's terms of service.</p>
+        <p>Billdeck reserves the right to modify pricing with reasonable advance notice to existing subscribers.</p>
+      </section>
+
+      <!-- Section 9 -->
+      <section>
+        <h2 class="text-xl font-semibold text-white mb-4">9. Intellectual Property</h2>
+        <p class="mb-4">Billdeck and its branding, design, and underlying code are the property of Billdeck.</p>
+        <p class="mb-4">User-generated content (proposals, invoices, templates, client data) remains your property. By using the service, you grant Billdeck a limited license to store, process, and display your content solely for the purpose of providing the service.</p>
+        <p>Free plan PDF exports include "Powered by Billdeck" branding. This branding is removed on paid plans.</p>
+      </section>
+
+      <!-- Section 10 -->
+      <section>
+        <h2 class="text-xl font-semibold text-white mb-4">10. Third-Party Services</h2>
+        <p class="mb-4">Billdeck relies on third-party services including Stripe (payment processing), cloud storage (file hosting), and transactional email providers.</p>
+        <p class="mb-4">You acknowledge that these services have their own terms and privacy policies.</p>
+        <p>Billdeck is not responsible for the availability, performance, or policies of third-party services.</p>
+      </section>
+
+      <!-- Section 11 -->
+      <section>
+        <h2 class="text-xl font-semibold text-white mb-4">11. Acceptable Use</h2>
+        <p class="mb-4">You may not use Billdeck to:</p>
+        <ul class="list-disc pl-6 space-y-2 mb-4">
+          <li>Conduct or facilitate illegal activity, including fraud, money laundering, or tax evasion</li>
+          <li>Send spam, phishing, or deceptive communications through proposal or invoice links</li>
+          <li>Store or transmit harmful, defamatory, or infringing content</li>
+          <li>Attempt to access other users' data, reverse-engineer the platform, or exploit vulnerabilities</li>
+          <li>Misrepresent Billdeck-generated documents as certified legal, financial, or government documents</li>
+        </ul>
+      </section>
+
+      <!-- Section 12 -->
+      <section>
+        <h2 class="text-xl font-semibold text-white mb-4">12. Limitation of Liability</h2>
+        <p class="mb-4">Billdeck is provided "as is" and "as available" without warranties of any kind, express or implied, including but not limited to merchantability, fitness for a particular purpose, or non-infringement.</p>
+        <p class="mb-4">Billdeck shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from the use or inability to use the service.</p>
+        <p class="mb-4">Billdeck is not liable for any loss, damage, or dispute resulting from: reliance on proposals or invoices as legal documents; inaccurate content created by users; unauthorized access to public links; errors in payment information; third-party service failures; or data loss.</p>
+        <p>Billdeck's total aggregate liability shall not exceed the amount paid by you in the twelve months preceding the claim.</p>
+      </section>
+
+      <!-- Section 13 -->
+      <section>
+        <h2 class="text-xl font-semibold text-white mb-4">13. Indemnification</h2>
+        <p>You agree to indemnify and hold harmless Billdeck from any claims, damages, losses, or expenses (including legal fees) arising from your use of the service, your content, or your violation of these terms.</p>
+      </section>
+
+      <!-- Section 14 -->
+      <section>
+        <h2 class="text-xl font-semibold text-white mb-4">14. Termination</h2>
+        <p class="mb-4">You may close your account at any time.</p>
+        <p class="mb-4">Billdeck reserves the right to suspend or terminate accounts that violate these terms.</p>
+        <p>Upon termination, your data may be deleted in accordance with the Privacy Policy.</p>
+      </section>
+
+      <!-- Section 15 -->
+      <section>
+        <h2 class="text-xl font-semibold text-white mb-4">15. Governing Law and Disputes</h2>
+        <p class="mb-4">These terms shall be governed by the laws of [Your State/Country].</p>
+        <p>Any disputes shall be resolved through binding arbitration or in the courts of [Your Jurisdiction], at Billdeck's discretion.</p>
+      </section>
+
+      <!-- Section 16 -->
+      <section>
+        <h2 class="text-xl font-semibold text-white mb-4">16. Contact</h2>
+        <p>For questions about these terms, please contact us at <a href="mailto:legal@billdeck.app" class="text-accent hover:text-accent/80 transition-colors">legal@billdeck.app</a>.</p>
+      </section>
+
+      <!-- Section 17 -->
+      <section>
+        <h2 class="text-xl font-semibold text-white mb-4">17. Effective Date</h2>
+        <p>These Terms & Conditions are effective as of February 16, 2026.</p>
+      </section>
+    </div>
+
+    <!-- Bottom back link -->
+    <div class="mt-16 pt-8 border-t border-white/10">
+      <%= link_to root_path, class: "inline-flex items-center text-xs uppercase tracking-[0.2em] text-white/40 hover:text-accent transition-colors" do %>
+        <%= icon(:arrow_right, size: :sm, css_class: "-rotate-180 mr-2") %>
+        Back to home
+      <% end %>
+    </div>
+  </div>
+</section>

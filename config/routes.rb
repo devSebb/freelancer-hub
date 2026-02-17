@@ -43,6 +43,9 @@ Rails.application.routes.draw do
   # Public pricing page
   get "pricing", to: "pages#pricing"
 
+  # Legal
+  get "terms", to: "pages#terms", as: :terms
+
   # Landing page for guests, dashboard for authenticated users
   root to: "pages#home"
 

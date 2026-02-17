@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
   <head>
-    <title>Billdeck — Clients. Proposals. Invoices.</title>
+    <title><%= content_for?(:title) ? "#{content_for(:title)} — Billdeck" : "Billdeck — Clients. Proposals. Invoices." %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description" content="A bold hub for freelancers. Manage clients, send proposals, create invoices. Nothing more, nothing less.">
     <%= csrf_meta_tags %>
@@ -283,8 +283,11 @@
     </style>
   </head>
 
-  <body class="bg-black text-white antialiased overflow-x-hidden noise-overlay">
-    <%= yield %>
+  <body class="bg-black text-white antialiased overflow-x-hidden noise-overlay flex flex-col min-h-screen">
+    <div class="flex-1">
+      <%= yield %>
+    </div>
+    <%= render "layouts/sub_footer" %>
 
     <script>
       // Scroll-triggered reveal animations

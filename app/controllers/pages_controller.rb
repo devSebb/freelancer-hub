@@ -5,6 +5,9 @@ class PagesController < ApplicationController
     redirect_to dashboard_path if user_signed_in?
   end
 
+  def terms
+  end
+
   def pricing
     @initial_interval = %w[monthly yearly].include?(params[:interval]) ? params[:interval] : "monthly"
     @recommended_tier = recommended_tier_for_pricing

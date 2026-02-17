@@ -16,11 +16,12 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-black min-h-screen" style="font-family: 'Poppins', sans-serif;">
-    <div class="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+  <body class="bg-black min-h-screen flex flex-col" style="font-family: 'Poppins', sans-serif;">
+    <div class="flex-1 py-12 px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto">
         <%= yield %>
       </div>
     </div>
+    <%= render "layouts/sub_footer" %>
   </body>
 </html>
