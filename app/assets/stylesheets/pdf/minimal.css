@@ -1,132 +1,333 @@
-/* ============================================================
-   Minimal Theme — Maximum whitespace, typography-driven
-   Font: System UI | No rules unless essential | Light weight
-   ============================================================ */
+/* ================================================================
+   MINIMAL THEME — Inter | Near-white #F9F9F9 | Zero decoration
+   Typography-first: silence does the work. Maximum whitespace.
+   ================================================================ */
 
-body.pdf-minimal {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-feature-settings: "tnum" 1, "liga" 1;
-
-  /* Expanded spacing for breathing room */
-  --space-4: 48px;
-  --space-5: 72px;
-  --font-doc-label: 18px;
-  --font-business: 14px;
+@font-face {
+  font-family: "Inter";
+  font-weight: 300;
+  font-style: normal;
+  src: url("/assets/fonts/Inter-Light.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-weight: 400;
+  font-style: normal;
+  src: url("/assets/fonts/Inter-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-weight: 500;
+  font-style: normal;
+  src: url("/assets/fonts/Inter-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-weight: 600;
+  font-style: normal;
+  src: url("/assets/fonts/Inter-SemiBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-weight: 700;
+  font-style: normal;
+  src: url("/assets/fonts/Inter-Bold.woff2") format("woff2");
 }
 
-/* ---- Header ---- */
+html,
+body.pdf-minimal {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body.pdf-minimal {
+  font-family: "Inter", -apple-system, Helvetica, Arial, sans-serif;
+  font-feature-settings: "tnum" 1;
+  background-color: #F9F9F9;
+  color: #2C2C3A;
+  font-size: 11pt;
+  line-height: 1.80;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Same inset on every page (top, right, bottom, left); background fills full page */
+@page {
+  size: A4;
+  margin: 60pt 72pt 70pt 72pt;
+  background: #F9F9F9;
+}
+
+body.pdf-minimal .pdf-page-inner {
+  padding: 0;
+}
+
+/* ── Header: NO borders at all ── */
 body.pdf-minimal .pdf-header {
-  padding-bottom: var(--space-4);
-  margin-bottom: var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding-bottom: 0;
+  margin-bottom: 0;
   border-bottom: none;
 }
 
-body.pdf-minimal .pdf-header .header-business h1 {
+/* Business (left) */
+body.pdf-minimal .header-business {
+  flex: 0 0 60%;
+  display: block;
+}
+
+body.pdf-minimal .header-business h1 {
+  font-family: "Inter", sans-serif;
+  font-size: 11pt;
   font-weight: 400;
+  letter-spacing: 0.08em;
+  color: #0D0D0D;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: var(--font-business);
+  margin: 0 0 4pt 0;
+  border: none;
+  padding: 0;
 }
 
-body.pdf-minimal .pdf-header .header-business .address,
-body.pdf-minimal .pdf-header .header-business .email {
-  font-size: var(--font-small);
+body.pdf-minimal .header-business .address,
+body.pdf-minimal .header-business .email {
+  font-size: 9pt;
+  font-weight: 300;
+  color: #A0AEC0;
+  margin: 2pt 0;
+  line-height: 1.5;
 }
 
-body.pdf-minimal .pdf-header .document-type {
-  font-size: var(--font-doc-label);
-  font-weight: 600;
-  letter-spacing: 0.12em;
+/* Document type (right) */
+body.pdf-minimal .header-document {
+  flex: 0 0 40%;
+  display: block;
+  text-align: right;
 }
 
-body.pdf-minimal .pdf-header .header-client h3 {
-  font-weight: 400;
-  letter-spacing: 0.1em;
+body.pdf-minimal .document-type {
+  font-family: "Inter", sans-serif;
+  font-size: 13pt;
+  font-weight: 500;
+  color: #A0AEC0;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 5pt;
 }
 
-/* ---- Title ---- */
+body.pdf-minimal .document-date {
+  font-family: "Inter", sans-serif;
+  font-size: 10pt;
+  font-weight: 300;
+  color: #A0AEC0;
+  display: block;
+}
+
+/* Client block (full-width below, generous gap) */
+body.pdf-minimal .header-client {
+  flex: 0 0 100%;
+  margin-top: 40pt;
+  text-align: left;
+}
+
+body.pdf-minimal .header-client h3 {
+  font-family: "Inter", sans-serif;
+  font-size: 9pt;
+  font-weight: 500;
+  color: #A0AEC0;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  margin: 0 0 10pt 0;
+}
+
+body.pdf-minimal .header-client .client-name {
+  font-family: "Inter", sans-serif;
+  font-size: 14pt;
+  font-weight: 500;
+  color: #0D0D0D;
+  display: block;
+  margin-bottom: 4pt;
+}
+
+body.pdf-minimal .header-client p {
+  font-size: 10pt;
+  font-weight: 300;
+  color: #2C2C3A;
+  margin: 2pt 0;
+  line-height: 1.5;
+}
+
+body.pdf-minimal .header-client p:last-of-type {
+  font-weight: 300;
+  color: #A0AEC0;
+}
+
+/* ── Proposal Title: largest element, island of whitespace ── */
 body.pdf-minimal .pdf-title {
+  font-family: "Inter", sans-serif;
+  font-size: 32pt;
   font-weight: 600;
-  line-height: 1.2;
-  margin-bottom: var(--space-5);
+  color: #0D0D0D;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 48pt 0 48pt 0;
+  padding: 0;
+  border: none;
 }
 
-/* ---- Sections ---- */
+/* ── Sections ── */
 body.pdf-minimal .pdf-section {
-  margin-bottom: var(--space-4);
+  margin: 28pt 0;
 }
 
 body.pdf-minimal .pdf-section-title {
+  font-family: "Inter", sans-serif;
+  font-size: 9pt;
   font-weight: 500;
-  font-size: var(--font-meta);
-  letter-spacing: 0.12em;
-  color: var(--color-meta);
+  color: #A0AEC0;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
   border-bottom: none;
-  margin-bottom: var(--space-2);
+  margin: 0 0 16pt 0;
+  padding: 0;
 }
 
+/* ── Prose ── */
 body.pdf-minimal .pdf-prose {
-  line-height: 1.7;
+  font-family: "Inter", sans-serif;
+  font-size: 11pt;
+  font-weight: 400;
+  color: #2C2C3A;
+  line-height: 1.80;
 }
 
-/* ---- Tables ---- */
-body.pdf-minimal .pdf-table th {
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  color: var(--color-meta);
-  border-bottom-color: var(--divider-light);
+body.pdf-minimal .pdf-prose p {
+  margin: 0 0 8pt 0;
+}
+
+/* ── Table ── */
+body.pdf-minimal .pdf-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
 body.pdf-minimal .pdf-table td {
-  border-bottom-color: var(--divider-faint);
+  font-family: "Inter", sans-serif;
+  font-size: 11pt;
+  font-weight: 400;
+  color: #2C2C3A;
+  padding: 14pt 0;
+  border-bottom: 0.5px solid #DEDEDE;
+  vertical-align: middle;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body.pdf-minimal .pdf-table td:first-child {
+  font-weight: 400;
+  color: #A0AEC0;
+  font-size: 10pt;
+  letter-spacing: 0.10em;
+}
+
+body.pdf-minimal .pdf-table td.text-right {
+  text-align: right;
 }
 
 body.pdf-minimal .pdf-table tr:last-child td {
   border-bottom: none;
 }
 
-body.pdf-minimal .pdf-totals-row {
-  font-size: var(--font-body);
-}
-
-body.pdf-minimal .pdf-totals-row.total {
+/* Total row: no background, no double rule. Weight + size + space only. */
+body.pdf-minimal .pdf-table tr.total-row td {
   font-weight: 600;
-  border-top: 1px solid var(--divider-light);
+  font-size: 12pt;
+  color: #0D0D0D;
+  padding-top: 24pt;
+  border-top: none;
+  border-bottom: none;
 }
 
-/* ---- Signature ---- */
+body.pdf-minimal .pdf-table tr.total-row td:first-child {
+  font-weight: 600;
+  color: #0D0D0D;
+  font-size: 12pt;
+  letter-spacing: 0;
+}
+
+/* ── Signature: open, no box, no border. Space is the signal. ── */
 body.pdf-minimal .pdf-signature {
+  margin-top: 80pt;
+  padding-top: 0;
   border-top: none;
-  padding-top: var(--space-4);
+  border: none;
+  background: transparent;
 }
 
 body.pdf-minimal .pdf-signature h2 {
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  font-size: var(--font-meta);
-  color: var(--color-meta);
-}
-
-/* ---- Notes ---- */
-body.pdf-minimal .pdf-notes {
-  border-top: none;
-  padding-top: var(--space-3);
-}
-
-body.pdf-minimal .pdf-notes h3 {
+  font-family: "Inter", sans-serif;
+  font-size: 9pt;
   font-weight: 500;
-  color: var(--color-meta);
+  color: #A0AEC0;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  margin: 0 0 14pt 0;
+  border: none;
+  padding: 0;
 }
 
-/* ---- Payment Methods ---- */
-body.pdf-minimal .payment-method-card {
-  border-color: var(--divider-faint);
+body.pdf-minimal .pdf-signature .signature-name {
+  font-family: "Inter", sans-serif;
+  font-size: 14pt;
+  font-weight: 500;
+  color: #0D0D0D;
+  display: block;
+  margin-bottom: 10pt;
 }
 
-/* ---- Footer ---- */
+body.pdf-minimal .pdf-signature p {
+  font-family: "Inter", sans-serif;
+  font-size: 10pt;
+  font-weight: 400;
+  color: #2C2C3A;
+  margin: 3pt 0;
+  line-height: 1.5;
+}
+
+body.pdf-minimal .pdf-signature p strong {
+  font-weight: 500;
+  color: #4A5568;
+}
+
+body.pdf-minimal .pdf-signature .generated-date {
+  font-size: 9pt;
+  font-weight: 300;
+  color: #A0AEC0;
+  margin-top: 8pt;
+}
+
+/* ── Footer: no rule, just quiet text ── */
 body.pdf-minimal .pdf-footer {
+  margin-top: 48pt;
+  padding-top: 0;
   border-top: none;
-  padding-top: var(--space-3);
-  font-size: var(--font-small);
-  color: var(--color-meta);
+  font-family: "Inter", sans-serif;
+  font-size: 9pt;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: #A0AEC0;
+}
+
+body.pdf-minimal .pdf-footer .footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+body.pdf-minimal .pdf-footer .footer-left {
+  font-size: 9pt;
+  font-weight: 300;
+  color: #A0AEC0;
 }

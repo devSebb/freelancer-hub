@@ -272,6 +272,10 @@ es:
   pdf:
     powered_by: "Creado con Billdeck"
     generated_on: "Generado el %{date}"
+    generated_short: "Generado"
+    confidential: "Confidencial"
+    prepared_for: "Preparado Para"
+    to: "Para"
     style: "Estilo"
     templates:
       modern: "Moderno"

@@ -2,5 +2,7 @@
   <% if show_powered_by %>
     <p class="powered-by"><%= t("pdf.powered_by") %></p>
   <% end %>
-  <p class="generated"><%= t("pdf.generated_on", date: l(Date.current, format: :long)) %></p>
+  <div class="footer-row">
+    <span class="footer-left"><%= user.business_name.presence || user.name %> &middot; <%= t("pdf.confidential") %></span>
+  </div>
 </div>

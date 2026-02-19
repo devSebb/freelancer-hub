@@ -24,6 +24,14 @@
           end %>
     </style>
   <% end %>
+  <% if @preview %>
+    <style>
+      /* Preview panel only: tighter padding so more content fits in the iframe */
+      body.pdf-preview .pdf-page-inner {
+        padding: 24pt 32pt 24pt 32pt;
+      }
+    </style>
+  <% end %>
 </head>
 <body class="pdf-document pdf-<%= @template_style %><%= ' pdf-preview' if @preview %>">
   <div class="pdf-page-inner">

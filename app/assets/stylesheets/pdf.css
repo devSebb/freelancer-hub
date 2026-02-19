@@ -3,8 +3,8 @@
    ============================================================ */
 
 /* Font imports for Chromium/Grover rendering reliability */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,700&display=swap');
 
 /* ---- Design Tokens ---- */
 :root {
@@ -16,12 +16,13 @@
   --divider-light: rgba(0, 0, 0, 0.08);
   --divider-medium: rgba(0, 0, 0, 0.15);
 
-  /* Spacing rhythm */
+  /* Spacing rhythm (8pt base) */
   --space-1: 8px;
   --space-2: 16px;
   --space-3: 24px;
   --space-4: 40px;
-  --space-5: 60px;
+  --space-5: 64px;
+  --space-6: 96px;
 
   /* Deterministic type scale */
   --font-title: 28px;
@@ -40,7 +41,7 @@
 /* ---- Global Reset for Print Precision ---- */
 @page {
   size: A4;
-  margin: 20mm 18mm;
+  margin: 0;
 }
 
 *,
@@ -69,11 +70,6 @@ body.pdf-document {
   font-feature-settings: "liga" 1;
 }
 
-/* Preview-only: simulate page padding in iframe */
-body.pdf-document.pdf-preview {
-  padding: var(--space-4);
-}
-
 /* ---- Editorial Measure ---- */
 .pdf-page-inner {
   max-width: 760px;
@@ -81,13 +77,13 @@ body.pdf-document.pdf-preview {
 }
 
 /* ============================================================
-   Header: 3-Zone Editorial Masthead
+   Header: 2-Column Layout (Business Left, Document Right)
+   with Client Block Full-Width Below
    ============================================================ */
 .pdf-header {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: var(--space-3);
-  align-items: start;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
   padding-bottom: var(--space-3);
   margin-bottom: var(--space-4);
   border-bottom: 1px solid var(--divider-light);
@@ -95,6 +91,7 @@ body.pdf-document.pdf-preview {
 
 /* Zone 1: Business */
 .pdf-header .header-business {
+  flex: 0 0 60%;
   text-align: left;
 }
 
@@ -128,7 +125,8 @@ body.pdf-document.pdf-preview {
 
 /* Zone 2: Document Meta */
 .pdf-header .header-document {
-  text-align: center;
+  flex: 0 0 40%;
+  text-align: right;
   padding-top: 2px;
 }
 
@@ -154,9 +152,10 @@ body.pdf-document.pdf-preview {
   margin-top: 2px;
 }
 
-/* Zone 3: Client */
+/* Zone 3: Client (full-width below) */
 .pdf-header .header-client {
-  text-align: right;
+  flex: 0 0 100%;
+  text-align: left;
 }
 
 .pdf-header .header-client h3 {
@@ -360,6 +359,14 @@ thead {
   margin-bottom: var(--space-2);
 }
 
+.pdf-signature .signature-name {
+  display: block;
+  font-size: 14pt;
+  font-weight: 700;
+  color: var(--color-heading);
+  margin-bottom: 10px;
+}
+
 .pdf-signature p {
   font-size: var(--font-body);
   color: var(--color-body);
@@ -447,7 +454,6 @@ thead {
   border-top: 1px solid var(--divider-light);
   font-size: var(--font-meta);
   color: var(--color-meta);
-  text-align: center;
 }
 
 .pdf-footer.free-tier {
@@ -456,6 +462,17 @@ thead {
 
 .pdf-footer .powered-by {
   margin-bottom: 2px;
+  text-align: center;
+}
+
+.pdf-footer .footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.pdf-footer .footer-left {
+  font-size: var(--font-small);
 }
 
 .pdf-footer .generated {

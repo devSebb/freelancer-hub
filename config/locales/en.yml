@@ -222,6 +222,10 @@ en:
   pdf:
     powered_by: "Powered by Billdeck"
     generated_on: "Generated on %{date}"
+    generated_short: "Generated"
+    confidential: "Confidential"
+    prepared_for: "Prepared For"
+    to: "To"
     style: "Style"
     templates:
       modern: "Modern"

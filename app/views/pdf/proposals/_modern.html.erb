@@ -1,3 +1,9 @@
+<%# ================================================================
+    MODERN PROPOSAL TEMPLATE
+    Font: Inter | Palette: Blue-white / Midnight / Blue (#2563EB)
+    Blue total row. Left-border signature panel.
+    ================================================================ %>
+
 <h1 class="pdf-title"><%= proposal.title %></h1>
 
 <% if proposal.scope.present? %>
@@ -15,7 +21,7 @@
 <% end %>
 
 <div class="pdf-section">
-  <h2 class="pdf-section-title"><%= t("proposals.timeline") %> & <%= t("proposals.pricing") %></h2>
+  <h2 class="pdf-section-title"><%= t("proposals.timeline") %> <span aria-hidden="true">&amp;</span> <%= t("proposals.pricing") %></h2>
   <table class="pdf-table">
     <tbody>
       <% if proposal.timeline_start.present? %>
@@ -69,7 +75,9 @@
 <% if proposal.accepted? && proposal.signature_name.present? %>
   <div class="pdf-signature">
     <h2><%= t("proposals.statuses.accepted") %></h2>
-    <p><strong><%= t("mailers.proposal_accepted.signed_by") %>:</strong> <%= proposal.signature_name %></p>
-    <p><strong><%= t("mailers.proposal_accepted.signed_at") %>:</strong> <%= l(proposal.signature_at, format: :long) %></p>
+    <span class="signature-name"><%= proposal.signature_name %></span>
+    <p><%= t("mailers.proposal_accepted.signed_by") %>:  <%= proposal.signature_name %></p>
+    <p><%= t("mailers.proposal_accepted.signed_at") %>:  <%= l(proposal.signature_at, format: :long) %></p>
+    <p class="generated-date"><%= t("pdf.generated_short") %>  &mdash;  <%= l(proposal.created_at.to_date, format: :long) %></p>
   </div>
 <% end %>

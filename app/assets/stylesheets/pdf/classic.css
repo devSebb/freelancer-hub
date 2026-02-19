@@ -1,106 +1,340 @@
-/* ============================================================
-   Classic Theme — Traditional, formal, serif
-   Font: Source Serif 4 | Double rules | Tighter spacing
-   ============================================================ */
+/* ================================================================
+   CLASSIC THEME — Source Serif 4 | Cream #FAF7F2 | Gold double-rules
+   Formal serif document: gravitas, permanence, institutional authority.
+   ================================================================ */
+
+@font-face {
+  font-family: "Source Serif 4";
+  font-weight: 400;
+  font-style: normal;
+  src: url("/assets/fonts/SourceSerif4-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-weight: 600;
+  font-style: normal;
+  src: url("/assets/fonts/SourceSerif4-SemiBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-weight: 700;
+  font-style: normal;
+  src: url("/assets/fonts/SourceSerif4-Bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-weight: 400;
+  font-style: italic;
+  src: url("/assets/fonts/SourceSerif4-Italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Source Serif 4";
+  font-weight: 700;
+  font-style: italic;
+  src: url("/assets/fonts/SourceSerif4-BoldItalic.woff2") format("woff2");
+}
+
+html,
+body.pdf-classic {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
 
 body.pdf-classic {
   font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
-  font-feature-settings: "tnum" 1, "liga" 1;
-
-  /* Tighter spacing for formal density */
-  --space-3: 20px;
-  --space-4: 32px;
-  --space-5: 48px;
-  --font-doc-label: 18px;
-  --font-business: 16px;
+  font-optical-sizing: auto;
+  background-color: #FAF7F2;
+  color: #2C2C3A;
+  font-size: 11pt;
+  line-height: 1.75;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 
-/* ---- Header ---- */
+/* Same inset on every page (top, right, bottom, left); background fills full page */
+@page {
+  size: A4;
+  margin: 54pt 68pt 64pt 68pt;
+  background: #FAF7F2;
+}
+
+body.pdf-classic .pdf-page-inner {
+  padding: 0;
+}
+
+/* ── Header ── */
 body.pdf-classic .pdf-header {
-  padding-bottom: var(--space-3);
-  margin-bottom: var(--space-4);
-  border-bottom-style: double;
-  border-bottom-width: 3px;
-  border-bottom-color: var(--color-heading);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding-bottom: 18pt;
+  margin-bottom: 0;
+  border-bottom: 3px double #C9B882;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 
-body.pdf-classic .pdf-header .header-business h1 {
+/* Business name + address (left) */
+body.pdf-classic .header-business {
+  flex: 0 0 60%;
+  display: block;
+}
+
+body.pdf-classic .header-business h1 {
+  font-family: "Source Serif 4", serif;
+  font-size: 14pt;
   font-weight: 700;
-  font-size: var(--font-business);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  color: #1C1C1C;
+  margin: 0 0 5pt 0;
+  border: none;
+  padding: 0;
+  text-transform: none;
 }
 
-body.pdf-classic .pdf-header .document-type {
-  font-size: var(--font-doc-label);
+body.pdf-classic .header-business .address {
+  font-size: 10pt;
+  font-weight: 400;
+  color: #4A5568;
+  margin: 2pt 0;
+  line-height: 1.5;
+}
+
+body.pdf-classic .header-business .email {
+  font-size: 10pt;
+  font-style: italic;
+  color: #4A5568;
+  margin: 2pt 0;
+  line-height: 1.5;
+}
+
+/* Document type (right) */
+body.pdf-classic .header-document {
+  flex: 0 0 40%;
+  display: block;
+  text-align: right;
+}
+
+body.pdf-classic .document-type {
+  font-family: "Source Serif 4", serif;
+  font-size: 18pt;
+  font-weight: 400;
+  font-style: italic;
+  color: #8B6914;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 4pt;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body.pdf-classic .document-date {
+  font-family: "Source Serif 4", serif;
+  font-size: 11pt;
+  font-style: italic;
+  color: #4A5568;
+  display: block;
+}
+
+/* Client block (full-width below header rule) */
+body.pdf-classic .header-client {
+  flex: 0 0 100%;
+  margin-top: 22pt;
+  text-align: left;
+}
+
+body.pdf-classic .header-client h3 {
+  font-family: "Source Serif 4", serif;
+  font-size: 10pt;
+  font-weight: 600;
+  color: #8B6914;
+  letter-spacing: 0.12em;
+  font-variant: all-small-caps;
+  text-transform: uppercase;
+  margin: 0 0 8pt 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body.pdf-classic .header-client .client-name {
+  font-family: "Source Serif 4", serif;
+  font-size: 14pt;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  color: #1C1C1C;
+  display: block;
+  margin-bottom: 4pt;
 }
 
-body.pdf-classic .pdf-header .document-date {
+body.pdf-classic .header-client p {
+  font-size: 11pt;
+  font-weight: 400;
+  color: #4A5568;
+  margin: 2pt 0;
+  line-height: 1.5;
+}
+
+body.pdf-classic .header-client p:last-of-type {
   font-style: italic;
 }
 
-/* ---- Title ---- */
+/* ── Proposal Title ── */
 body.pdf-classic .pdf-title {
+  font-family: "Source Serif 4", serif;
+  font-size: 30pt;
   font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #1C1C1C;
   line-height: 1.2;
-  padding-bottom: var(--space-2);
-  border-bottom: 1px solid var(--divider-light);
-  margin-bottom: var(--space-4);
+  margin: 24pt 0 14pt 0;
+  padding-bottom: 14pt;
+  border-bottom: 1px solid #C9B882;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 
-/* ---- Sections ---- */
+/* ── Sections ── */
+body.pdf-classic .pdf-section {
+  margin: 28pt 0;
+}
+
 body.pdf-classic .pdf-section-title {
+  font-family: "Source Serif 4", serif;
+  font-size: 10pt;
   font-weight: 600;
-  font-variant-caps: all-small-caps;
-  letter-spacing: 0.08em;
-  font-size: var(--font-body);
-  border-bottom-style: dotted;
-  border-bottom-color: var(--divider-medium);
+  color: #4A5568;
+  letter-spacing: 0.12em;
+  font-variant: all-small-caps;
+  text-transform: uppercase;
+  border-bottom: 1px solid #E8E0D0;
+  padding-bottom: 4pt;
+  margin: 0 0 12pt 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 
-/* ---- Tables ---- */
-body.pdf-classic .pdf-table th {
-  font-weight: 600;
-  font-variant-caps: all-small-caps;
-  font-size: var(--font-label);
-  letter-spacing: 0.06em;
-  border-bottom: 2px solid var(--color-heading);
+/* ── Prose ── */
+body.pdf-classic .pdf-prose {
+  font-family: "Source Serif 4", serif;
+  font-size: 11pt;
+  color: #2C2C3A;
+  line-height: 1.75;
+}
+
+body.pdf-classic .pdf-prose p {
+  margin: 0 0 8pt 0;
+}
+
+/* ── Table ── */
+body.pdf-classic .pdf-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
 body.pdf-classic .pdf-table td {
-  border-bottom-color: var(--divider-light);
+  font-family: "Source Serif 4", serif;
+  font-size: 11pt;
+  color: #2C2C3A;
+  padding: 10pt 0;
+  border-bottom: 1px solid #E8E0D0;
+  vertical-align: middle;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 
-body.pdf-classic .pdf-totals-row.total {
-  border-top-style: double;
-  border-top-width: 3px;
-  border-top-color: var(--color-heading);
+body.pdf-classic .pdf-table td.text-right {
+  text-align: right;
+  color: #1C1C1C;
 }
 
-/* ---- Signature ---- */
+body.pdf-classic .pdf-table tr.total-row td {
+  font-weight: 700;
+  font-size: 12pt;
+  color: #1C1C1C;
+  padding-top: 14pt;
+  border-top: 3px double #C9B882;
+  border-bottom: none;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ── Signature ── */
 body.pdf-classic .pdf-signature {
-  border-top-style: double;
-  border-top-width: 3px;
-  border-top-color: var(--color-heading);
+  margin-top: 48pt;
+  padding: 24pt;
+  border: 2px solid #C9B882;
+  border-radius: 4pt;
+  background-color: #FFFDF8;
+  border-top: 2px solid #C9B882;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 
 body.pdf-classic .pdf-signature h2 {
+  font-family: "Source Serif 4", serif;
+  font-size: 10pt;
+  font-weight: 600;
+  color: #8B6914;
+  letter-spacing: 0.15em;
+  font-variant: all-small-caps;
+  text-transform: uppercase;
+  margin: 0 0 8pt 0;
+  border-bottom: 1px solid #E8E0D0;
+  padding-bottom: 8pt;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body.pdf-classic .pdf-signature .signature-name {
+  font-family: "Source Serif 4", serif;
+  font-size: 14pt;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  font-variant-caps: all-small-caps;
-  font-size: var(--font-body);
+  color: #1C1C1C;
+  display: block;
+  margin-bottom: 10pt;
 }
 
-/* ---- Notes ---- */
-body.pdf-classic .pdf-notes {
-  border-top-style: dotted;
-  border-top-color: var(--divider-medium);
+body.pdf-classic .pdf-signature p {
+  font-family: "Source Serif 4", serif;
+  font-size: 10.5pt;
+  color: #4A5568;
+  margin: 4pt 0;
+  line-height: 1.5;
 }
 
-/* ---- Footer ---- */
+body.pdf-classic .pdf-signature p strong {
+  color: #1C1C1C;
+  font-weight: 600;
+}
+
+body.pdf-classic .pdf-signature .generated-date {
+  font-size: 9.5pt;
+  font-style: italic;
+  color: #718096;
+  margin-top: 8pt;
+}
+
+/* ── Footer ── */
 body.pdf-classic .pdf-footer {
-  border-top-style: double;
-  border-top-width: 3px;
-  border-top-color: var(--color-heading);
+  margin-top: 36pt;
+  padding-top: 10pt;
+  border-top: 3px double #C9B882;
+  font-family: "Source Serif 4", serif;
+  font-size: 9pt;
+  font-style: italic;
+  color: #718096;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body.pdf-classic .pdf-footer .footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+body.pdf-classic .pdf-footer .footer-left {
+  font-size: 9pt;
+  font-style: italic;
+  color: #718096;
 }
